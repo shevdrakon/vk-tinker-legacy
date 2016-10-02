@@ -1,7 +1,7 @@
+"use strict";
 
-
-var express = require('express'),
-  config = require('./config/config');
+import express from 'express'
+import config from './config/config'
 
 var app = express();
 

@@ -1,31 +1,32 @@
-var path = require('path'),
-    rootPath = path.normalize(__dirname + '/..'),
-    env = process.env.NODE_ENV || 'development';
+import path from 'path'
 
-var config = {
-  development: {
-    root: rootPath,
-    app: {
-      name: 'vk-tinker'
-    },
-    port: process.env.PORT || 3000,
-  },
+const rootPath = path.normalize(__dirname + '/..')
+const env = process.env.NODE_ENV || 'development'
 
-  test: {
-    root: rootPath,
-    app: {
-      name: 'vk-tinker'
+const config = {
+    development: {
+        root: rootPath,
+        app: {
+            name: 'vk-tinker'
+        },
+        port: process.env.PORT || 3000,
     },
-    port: process.env.PORT || 3000,
-  },
 
-  production: {
-    root: rootPath,
-    app: {
-      name: 'vk-tinker'
+    test: {
+        root: rootPath,
+        app: {
+            name: 'vk-tinker'
+        },
+        port: process.env.PORT || 3000,
     },
-    port: process.env.PORT || 3000,
-  }
+
+    production: {
+        root: rootPath,
+        app: {
+            name: 'vk-tinker'
+        },
+        port: process.env.PORT || 3000,
+    }
 };
 
 module.exports = config[env];
