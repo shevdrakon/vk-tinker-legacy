@@ -1,13 +1,10 @@
-"use strict";
+const express = require('express')
+const config = require('./config/config')
 
-import express from 'express'
-import config from './config/config'
-
-var app = express();
-
-require('./config/express')(app, config);
+var app = express()
+require('./config/express')(app, config)
 
 app.listen(config.port, function () {
-  console.log('Express server listening on port ' + config.port);
+    console.log('Express server listening on port ' + config.port);
 });
 
