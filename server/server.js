@@ -22,7 +22,7 @@ process.on('uncaughtException', (err) => {
 var args = minimist(process.argv.slice(2));
 
 if(!args.env)
-    args.env = process.env.HUB_ENV;
+    args.env = process.env.NODE_ENV;
 
 var app = new Application(args, process.env.PORT);
 

@@ -10,11 +10,11 @@ module.exports = (config) => {
         cache: true,
         devtool: config.devtool,
         entry: {
-            'vendor': ['babel-polyfill', 'jquery', 'underscore', 'backbone', 'react', 'react-bootstrap', 'mobx', 'mobx-react', 'highcharts'],
+            'vendor': ['babel-polyfill', 'jquery', 'react', 'react-mdl', 'mobx', 'mobx-react'],
             'main': ['./public/js/main']
         },
         output: {
-            publicPath: '/hub/assets/',
+            publicPath: '/assets/',
             path: './public/assets',
             filename: config.filename,
             chunkFilename: config.chunkFilename
@@ -33,7 +33,6 @@ module.exports = (config) => {
                     }
                 },
                 {test: /\.css$/, loader: 'style!css'},
-                {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass')},
                 {
                     test: /\.html/,
                     loader: 'underscore-template'
