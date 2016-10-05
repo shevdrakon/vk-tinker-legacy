@@ -6,7 +6,8 @@
     "webpack-dev-server": "webpack-dev-server --progress --config webpack/webpack.development.js --inline --hot",
     "webpack-dev": "webpack --progress --config webpack/webpack.development.js",
     "webpack-prod": "webpack --progress --config webpack/webpack.production.js",
-    "start-with-webpack-dev-server": "node index --env development --assetsRoot http://localhost:8080/hub/assets",
+    "start-with-webpack-dev-server": "node index --env development --assetsRoot http://localhost:8080/assets",
+    "start-with-webpack-dev-server-DEBUG": "node %NODE_DEBUG_OPTION% index --env development --assetsRoot http://localhost:8080/assets",
     "start-with-dev": "node index --env development",
     "start": "npm run webpack-dev && npm run start-with-dev"
   },

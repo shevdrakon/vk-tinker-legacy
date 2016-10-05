@@ -1,0 +1,9 @@
+{
+  "serverPort": 1338,
+
+  "assetsRoot": "/assets",
+  "siteRoot" : "/",
+  "apiUrl": "/api",
+
+  "logDirPath": "./logs"
+}

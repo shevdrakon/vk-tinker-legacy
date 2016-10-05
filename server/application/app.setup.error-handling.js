@@ -1,7 +1,6 @@
 'use strict';
 
-var ConfirmitLogger = require('../lib/ConfirmitLogger');
-var Logger = require('../util/logger');
+const Logger = require('../utils/logger')
 
 module.exports = function (app, configuration) {
 // Error handlers
@@ -45,7 +44,7 @@ module.exports = function (app, configuration) {
 // would remain being executed, however here
 // we simply respond with an error page.
 
-    app.use(ConfirmitLogger.errorLogger(configuration, __filename));
+    // app.use(ConfirmitLogger.errorLogger(configuration, __filename));
 
     app.use(function (err, req, res, next) {
         if (err.status !== 401)
@@ -53,22 +52,22 @@ module.exports = function (app, configuration) {
 
         res.status(401);
 
-        var loginUrl = `${configuration.loginUrl}?ReturnUrl=${req.protocol}://${req.get('host')}${req.url}`;
-
-        // respond with html page
-        if (req.accepts('html')) {
-            res.redirect(loginUrl);
-            return;
-        }
-
-        // respond with json
-        if (req.accepts('json')) {
-            res.send({error: 'Unauthorized'});
-            return;
-        }
-
-        // default to plain-text. send()
-        res.redirect(loginUrl);
+        // var loginUrl = `${configuration.loginUrl}?ReturnUrl=${req.protocol}://${req.get('host')}${req.url}`;
+        //
+        // // respond with html page
+        // if (req.accepts('html')) {
+        //     res.redirect(loginUrl);
+        //     return;
+        // }
+        //
+        // // respond with json
+        // if (req.accepts('json')) {
+        //     res.send({error: 'Unauthorized'});
+        //     return;
+        // }
+        //
+        // // default to plain-text. send()
+        // res.redirect(loginUrl);
     });
 
     app.use(function (err, req, res, next) {

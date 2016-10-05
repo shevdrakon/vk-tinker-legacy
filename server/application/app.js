@@ -1,6 +1,6 @@
 var express = require('express');
 var Logger = require('../utils/logger');
-var ConfigurationManager = require('../configuration/ConfigurationManager');
+var ConfigurationManager = require('../configuration/configuration-manager');
 
 function Application(env, port) {
 
