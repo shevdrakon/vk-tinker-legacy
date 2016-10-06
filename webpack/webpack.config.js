@@ -10,8 +10,8 @@ module.exports = (config) => {
         cache: true,
         devtool: config.devtool,
         entry: {
-            'vendor': ['babel-polyfill', 'jquery', 'react', 'react-mdl', 'mobx', 'mobx-react']
-            //'main': ['./public/js/main']
+            'vendor': ['babel-polyfill', 'jquery', 'react', 'react-mdl', 'mobx', 'mobx-react'],
+            'main': ['public/js/index']
         },
         output: {
             publicPath: '/assets/',

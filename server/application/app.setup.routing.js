@@ -10,7 +10,7 @@ module.exports = function (app, configurationManager) {
     const controllersPath = path.join(__dirname, '../controllers/*.js')
     const controllers = glob.sync(controllersPath);
     controllers.forEach(function (controller) {
-        require(controller)(app);
+        require(controller)(app, configuration);
     });
 
     const publicPath = path.join(__dirname, '../../public/assets')
