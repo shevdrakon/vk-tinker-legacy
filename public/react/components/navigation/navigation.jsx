@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router'
 
 import NavigationItems from './navigation-items.jsx'
+import NavigationMobileItems from './navigation-mobile-items.jsx'
 
 export default class Navigation extends Component {
     render() {
@@ -12,18 +13,18 @@ export default class Navigation extends Component {
                         <Link id="logo-container" className="brand-logo" to="/">M'sT</Link>
 
                         <NavigationItems>
-                            <Link to="#intro">Service</Link>
+                            <Link to="/admin">Admin</Link>
                             <Link to="#work">Work</Link>
                             <Link to="#team">Team</Link>
                             <Link to="#contact">Contact</Link>
                         </NavigationItems>
 
-                        <ul id="nav-mobile" className="side-nav">
-                            <li><a href="#intro">Service</a></li>
-                            <li><a href="#work">Work</a></li>
-                            <li><a href="#team">Team</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
+                        <NavigationMobileItems>
+                            <Link to="#intro">Service</Link>
+                            <Link to="#work">Work</Link>
+                            <Link to="#team">Team</Link>
+                            <Link to="#contact">Contact</Link>
+                        </NavigationMobileItems>
 
                         <a href="#" data-activates="nav-mobile" className="button-collapse">
                             <i className="mdi-navigation-menu"></i>

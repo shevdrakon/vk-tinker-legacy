@@ -14,7 +14,7 @@ module.exports = (config) => {
             'main': ['public/js/index']
         },
         output: {
-            publicPath: '/assets/',
+            publicPath: config.publicPath + '/assets/',
             path: './public/assets',
             filename: config.filename,
             chunkFilename: config.chunkFilename

@@ -3,8 +3,8 @@ var Logger = require('../utils/logger');
 var ConfigurationManager = require('../configuration/configuration-manager');
 
 function Application(env, port) {
-
     this.configurationManager = new ConfigurationManager(env);
+
     if (port)
         this.configurationManager.configuration.serverPort = port;
 
@@ -17,6 +17,7 @@ Application.prototype.init = function () {
     const configuration = this.configurationManager.configuration
 
     require('./app.setup.security.js')(this.app, configuration);
+    // require('./app.setup.passport.js')(this.app, configuration);
     require('./app.setup.rendering.js')(this.app);
     require('./app.setup.routing.js')(this.app, this.configurationManager);
     require('./app.setup.error-handling.js')(this.app, configuration);

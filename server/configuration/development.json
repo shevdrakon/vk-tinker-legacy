@@ -2,8 +2,8 @@
   "serverPort": 1338,
 
   "assetsRoot": "/assets",
-  "siteRoot" : "/",
+  "siteRoot": "/",
+  "siteFullUrl": "http://localhost:1338",
   "apiUrl": "/api",
-
   "logDirPath": "./logs"
 }

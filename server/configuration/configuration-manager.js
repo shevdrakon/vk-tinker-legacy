@@ -6,7 +6,9 @@ var path = require('path');
 module.exports = class ConfigurationManager {
     static get DEFAULTS() {
         return {
-            app_id: 5653171 // vk application Id
+            app_id: 5653171, // vk application Id
+            app_secret: '57e5u3RCrakfO0nAGknE', // vk application secret key,
+            siteFullUrl: 'http://localhost:1338'
         }
     }
 
