@@ -1,51 +1,48 @@
-import $ from 'jquery';
-import Application from './application';
+import $ from 'jquery'
+import Application from './application'
 
-import './backbone-extensions';
-import './../styles/main.scss';
+// import './../styles/main.scss';
 
 // __webpack_public_path__ = window.APP_CONFIG.cfgSettings.assetsRoot + '/'
 
-var module = {
+__webpack_public_path__ = 'http://localhost:8080/assets/'
+
+const module = {
     start: function (config, callback) {
 
-        var ajaxHeadersExtend = {};
+        const ajaxHeadersExtend = {}
 
-        _.defaults(Application, config || {});
+        Object.assign(Application, config || {})
+        // _.defaults(Application, config || {});
 
         // user is not authorized to access hub designer
-        if (!Application.user) {
-            Application.loggedOut();
-            return;
-        }
-
-        if (!Application.user.permissions.systemHubDesignerAccess) {
-            Application.message.error("You do not have permissions to access Hub Designer.");
-            return;
-        }
+        // if (!Application.user) {
+        //     Application.loggedOut();
+        //     return;
+        // }
 
         if (Application.token) {
-            ajaxHeadersExtend[Application.tokenHeader] = Application.token;
+            ajaxHeadersExtend[Application.tokenHeader] = Application.token
         }
 
         if (Application.initiatingServiceHeader) {
-            ajaxHeadersExtend[Application.initiatingServiceHeader] = Application.applicationId;
+            ajaxHeadersExtend[Application.initiatingServiceHeader] = Application.applicationId
         }
 
         $.ajaxSetup({
             headers: ajaxHeadersExtend
         })
 
-        window.App = Application;
+        window.App = Application
 
-        Application.initialize(HubRouter);
+        Application.initialize()
 
         if (typeof callback === 'function') {
-            callback();
+            callback()
         }
     }
 };
 
 module.start(window.APP_CONFIG)
 
-export default module;
+export default module

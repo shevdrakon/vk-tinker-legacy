@@ -3,13 +3,12 @@ import $ from 'jquery';
 import toastr from 'toastr';
 import 'toastr/toastr.scss';
 
-import 'plugins/global-navigation/global-navigation';
-import ErrorHandlerMixin from 'mixins/error-handler'
+// import ErrorHandlerMixin from 'mixins/error-handler'
 
 import fetch from 'isomorphic-fetch'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Mobx, {reaction} from 'mobx'
+import Mobx from 'mobx'
 import {Provider} from 'mobx-react'
 
 import curryServices from '../react/utils/curry-services'
@@ -20,28 +19,29 @@ import storeHolder from '../react/utils/store-holder'
 import ApplicationStore from '../react/modules/application/application-store'
 import ApplicationService from '../react/modules/application/application-service'
 
-import Layout from '../react/layout/layout.jsx'
+import Layout from '../react/components/layout.jsx'
+import Routes from './routes'
 
 export default {
     currentView: null,
     router: null,
     currentHubId: '',
 
-    initialize: function (Router) {
-        this.router = new Router;
+    initialize: function () {
+        // this.router = Routes({app:this})
 
-        this.baseUrl = window.APP_CONFIG.cfgSettings.apiBaseUrl
+        this.baseUrl = '' //window.APP_CONFIG.cfgSettings.apiBaseUrl
         this.ajax = new Ajax({
             fetch,
-            tokenHeader: window.App.tokenHeader,
-            token: window.App.token,
-            initiatingServiceHeader: window.App.initiatingServiceHeader,
-            initiatingService: window.App.applicationId,
+            //tokenHeader: window.App.tokenHeader,
+            //token: window.App.token,
+            //initiatingServiceHeader: window.App.initiatingServiceHeader,
+            //initiatingService: window.App.applicationId,
         })
 
-        const api = this.api = curryServices({
-            application: ApplicationService
-        }, {ajax: this.ajax, baseUrl: this.baseUrl})
+        const api = this.api = curryServices(
+            {application: ApplicationService},
+            {ajax: this.ajax, baseUrl: this.baseUrl})
 
         Mobx.useStrict(true)
 
@@ -55,16 +55,15 @@ export default {
 
         this.storeHolder = storeHolder({
             application: {
-                tokenHeader: window.App.tokenHeader,
-                token: window.App.token,
-                user: JSON.parse(JSON.stringify(window.App.user))
+                //tokenHeader: window.App.tokenHeader,
+                //token: window.App.token
             }
         }, {
-            router: this.router,
+            // router: this.router,
             localStorage: localStorage,
-            messageProvider: window.App.message,
-            helpProvider: window.App,
-            errorHandler: ErrorHandlerMixin,
+            //messageProvider: window.App.message,
+            //helpProvider: window.App,
+            //errorHandler: ErrorHandlerMixin,
             window: window,
             get api() {
                 return api
@@ -72,6 +71,13 @@ export default {
             getStore
         })
         this.storeHolder.extend(this.storeCreators.get())
+
+        const routes = Routes({app: this})
+        const provider = <Provider store={this.storeHolder}>
+            <Layout routes={routes}/>
+        </Provider >
+
+        ReactDOM.render(provider, document.getElementById('root'))
     },
 
     navigate: function (url) {
@@ -123,7 +129,7 @@ export default {
 
     message: (function () {
         const _showMessage = function (msg, type, timeout) {
-            toastr[type](escapeHtml(msg), '', {
+            toastr[type](escape(msg), '', {
                 timeOut: timeout,
                 positionClass: 'toast-top-full-width'
             });
