@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 
+import './style.scss'
+
 export default class LoginForm extends Component {
 
     render() {
-        return <div>
+        return <div className="login-form-container">
             <div className="container">
                 <div className="info">
                     <h1>Mommy's Treasure</h1>
@@ -29,7 +31,7 @@ export default class LoginForm extends Component {
                 </form>
             </div>
 
-            <div id="video">
+            <div id="overlay">
                 262144
                 106168410
             </div>

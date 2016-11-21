@@ -11,10 +11,10 @@ module.exports = (config) => {
         devtool: config.devtool,
         entry: {
             'vendor': ['babel-polyfill', 'jquery', 'react', 'react-mdl', 'mobx', 'mobx-react'],
-            'main': ['public/js/index']
+            'main': ['public/js/main']
         },
         output: {
-            publicPath: config.publicPath + '/assets/',
+            publicPath: '/assets/',
             path: './public/assets',
             filename: config.filename,
             chunkFilename: config.chunkFilename
@@ -33,6 +33,7 @@ module.exports = (config) => {
                     }
                 },
                 {test: /\.css$/, loader: 'style!css'},
+                {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass')},
                 {
                     test: /\.html/,
                     loader: 'underscore-template'
