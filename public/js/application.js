@@ -3,7 +3,7 @@ import $ from 'jquery';
 import toastr from 'toastr';
 import 'toastr/toastr.scss';
 
-// import ErrorHandlerMixin from 'mixins/error-handler'
+import ErrorHandler from '../react/utils/error-handler'
 
 import fetch from 'isomorphic-fetch'
 import React from 'react'
@@ -63,7 +63,7 @@ export default {
             localStorage: localStorage,
             //messageProvider: window.App.message,
             //helpProvider: window.App,
-            //errorHandler: ErrorHandlerMixin,
+            errorHandler: ErrorHandler,
             window: window,
             get api() {
                 return api
