@@ -20,7 +20,7 @@ import ApplicationStore from '../react/modules/application/application-store'
 import ApplicationService from '../react/modules/application/application-service'
 
 import Layout from '../react/components/layout.jsx'
-import Routes from './routes'
+import RootRoutes from './routes/root'
 
 export default {
     currentView: null,
@@ -72,9 +72,8 @@ export default {
         })
         this.storeHolder.extend(this.storeCreators.get())
 
-        const routes = Routes({app: this})
         const provider = <Provider store={this.storeHolder}>
-            <Layout routes={routes}/>
+            <Layout routes={RootRoutes}/>
         </Provider >
 
         ReactDOM.render(provider, document.getElementById('root'))
@@ -102,6 +101,19 @@ export default {
     },
 
     showComponent(element, {reset}) {
+        if (reset)
+            this.storeHolder.extend(this.storeCreators.get(), {replace: true})
+
+        const provider = <Provider store={this.storeHolder}>
+            <Layout>{element}</Layout>
+        </Provider >
+
+        ReactDOM.render(provider, document.getElementById('root'))
+
+        return this.storeHolder
+    },
+
+    prepareComponent(element, {reset}) {
         if (reset)
             this.storeHolder.extend(this.storeCreators.get(), {replace: true})
 

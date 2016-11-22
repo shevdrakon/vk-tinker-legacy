@@ -1,8 +1,29 @@
 import React, {Component} from 'react'
+import {observer} from 'mobx-react'
+import inject from '../../utils/inject'
 
 import './style.scss'
 
-class LoginForm extends Component {
+export class LoginForm extends Component {
+
+    handleClick = (e) => {
+        e.preventDefault()
+
+        // if ($('.login-form').is(':visible'))
+        //     requestAccessToken();
+
+        $('form').animate({height: "toggle", opacity: "toggle"}, "slow")
+    }
+
+    handleTokenChange = (e) => {
+        this.props.login.onTokenChange({value: e.target.value})
+    }
+
+    handleLoginClick = (e) => {
+        e.preventDefault()
+
+        this.props.login.onLogin()
+    }
 
     render() {
         return <div className="login-form-container">
@@ -12,8 +33,8 @@ class LoginForm extends Component {
                 </div>
             </div>
             <div className="form">
-                <button
-                    className="login mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                <button onClick={this.handleClick}
+                        className="login mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
                     <i className="icon-vk"></i>
                 </button>
 
@@ -21,10 +42,11 @@ class LoginForm extends Component {
                     Click to process vk api auth request
                 </form>
 
-                <form action="/login" method="post" className="register-form">
+                <form className="register-form">
                     <div style={{"display": "inline-block"}}>
-                        <input name="access_token" type="access_token" placeholder="access_token"/>
-                        <button type="submit" className="go pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                        <input onChange={this.handleTokenChange} placeholder="access_token"/>
+                        <button onClick={this.handleLoginClick}
+                                className="pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                             <i className="icon-chevron-right"></i>
                         </button>
                     </div>
@@ -39,4 +61,6 @@ class LoginForm extends Component {
     }
 }
 
-module.exports = LoginForm
+export default inject(({login}) => {
+    login
+})(observer(LoginForm))
