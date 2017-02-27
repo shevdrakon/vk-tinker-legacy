@@ -1,7 +1,11 @@
 var path = require('path')
 
 module.exports = {
-    root: path.resolve(path.join(__dirname, '../')),
+    // root: path.resolve(path.join(__dirname, '../')),
+    modules: [
+        path.resolve(path.join(__dirname, '../')),
+        'node_modules'
+    ],
     alias: {
         'modules': 'public/js/modules',
         'base': 'public/js/base',

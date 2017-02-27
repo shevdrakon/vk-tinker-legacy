@@ -19,11 +19,13 @@ process.on('uncaughtException', (err) => {
     Logger.error(err.stack);
 });
 
-var args = minimist(process.argv.slice(2));
+const args = minimist(process.argv.slice(2));
 
 if(!args.env)
     args.env = process.env.NODE_ENV;
 
-var app = new Application(args, process.env.PORT);
+const app = new Application(args, process.env.PORT);
 
 app.init().listen();
+
+module.exports = app;

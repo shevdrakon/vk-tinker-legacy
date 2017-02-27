@@ -26,5 +26,3 @@ const rootRoute = {
 }
 
 module.exports = rootRoute
-
-export default rootRoute

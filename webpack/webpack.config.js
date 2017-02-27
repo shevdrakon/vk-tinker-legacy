@@ -7,6 +7,7 @@ const resolve = require('./resolve')
 
 module.exports = (config) => {
     return {
+        resolve,
         cache: true,
         devtool: config.devtool,
         entry: {
@@ -15,40 +16,61 @@ module.exports = (config) => {
         },
         output: {
             publicPath: '/assets/',
-            path: './public/assets',
+            path: '/public/assets',
+            // Add /* filename */ comments to generated require()s in the output.
+            pathinfo: true,
             filename: config.filename,
             chunkFilename: config.chunkFilename
         },
         module: {
-            preLoaders: [
-                {test: /\.jsx?$/, loader: 'eslint', exclude: /(node_modules|libs)/}
-            ],
-            loaders: [
+            rules: [
                 {
-                    test: /\.jsx?$/,
+                    test: /\.(js|jsx)$/,
+                    enforce: 'pre',
+                    loader: 'eslint-loader',
+                    exclude: /(node_modules|libs)/
+                },
+                {
+                    test: /\.(js|jsx)$/,
                     exclude: /(node_modules|libs)/,
-                    loader: 'babel',
+                    loader: 'babel-loader',
                     query: {
+                        // This is a feature of `babel-loader` for webpack (not Babel itself).
+                        // It enables caching results in ./node_modules/.cache/babel-loader/
+                        // directory for faster rebuilds.
                         cacheDirectory: true,
                     }
                 },
-                {test: /\.css$/, loader: 'style!css'},
-                {test: /\.scss$/, loader: ExtractTextPlugin.extract('style', 'css!sass')},
+                {
+                    test: /\.css$/,
+                    use: ['style-loader', 'css-loader']
+                },
+                {
+                    test: /\.scss$/,
+                    use: ExtractTextPlugin.extract({
+                        fallback: 'style-loader',
+                        use: ['css-loader', 'sass-loader']
+                    })
+                },
                 {
                     test: /\.html/,
                     loader: 'underscore-template'
                 },
-                {test: /\.json$/, loader: 'json'},
-                {test: /\.png$/, loader: 'url?limit=1000&mimetype=image/png'},
-                {test: /\.gif$/, loader: 'url?limit=1000&mimetype=image/gif'},
-                {test: /\.woff2?(\?.+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
-                {test: /\.ttf(\?.+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-                {test: /\.eot(\?.+)?$/, loader: 'file'},
-                {test: /\.svg(\?.+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+                {test: /\.png$/, loader: 'url-loader?limit=1000&mimetype=image/png'},
+                {test: /\.gif$/, loader: 'url-loader?limit=1000&mimetype=image/gif'},
+                {test: /\.woff2?(\?.+)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff'},
+                {test: /\.ttf(\?.+)?$/, loader: 'url-loader?limit=10000&mimetype=application/octet-stream'},
+                {test: /\.eot(\?.+)?$/, loader: 'file-loader'},
+                {test: /\.svg(\?.+)?$/, loader: 'url-loader?limit=10000&mimetype=image/svg+xml'}
             ]
         },
-        resolve,
         plugins: [
+            // Makes some environment variables available in index.html.
+            // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
+            // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+            // In development, this will be an empty string.
+            // new InterpolateHtmlPlugin(env.raw),
+
             new CleanWebpackPlugin(['./public/assets'], {
                 root: path.join(__dirname, '/..')
             }),
@@ -59,7 +81,7 @@ module.exports = (config) => {
                 jQuery: 'jquery',
                 'window.jQuery': 'jquery',
             }),
-            new webpack.optimize.CommonsChunkPlugin('vendor', config.chunkFilename),
+            new webpack.optimize.CommonsChunkPlugin({name: 'vendor', filename: config.chunkFilename}),
             new webpack.optimize.CommonsChunkPlugin({
                 children: true,
                 async: true,
