@@ -1,0 +1,9 @@
+{
+  "assetsByChunkName": {
+    "main": [
+      "main.js",
+      "main.css"
+    ],
+    "vendor": "vendor.js"
+  }
+}

@@ -9,5 +9,4 @@ module.exports = function (app, configuration) {
 
     // Disable reporting of framework information
     app.disable('x-powered-by')
-
 }

@@ -1,8 +1,7 @@
-'use strict';
-
 const express = require('express')
 const path = require('path')
-const glob = require('glob')
+
+const IndexRouter = require('./../routers/index-router')
 
 module.exports = function (app, configurationManager) {
     const configuration = configurationManager.configuration
@@ -13,9 +12,5 @@ module.exports = function (app, configurationManager) {
     const templatePath = path.join(__dirname, '../../public')
     app.use(express.static(templatePath))
 
-    const controllersPath = path.join(__dirname, '../controllers/*.js')
-    const controllers = glob.sync(controllersPath);
-    controllers.forEach(function (controller) {
-        require(controller)(app, configuration);
-    });
+    app.use('/', IndexRouter(configuration))
 }

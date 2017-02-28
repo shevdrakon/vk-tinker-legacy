@@ -1,31 +1,29 @@
 require('babel-polyfill')
 
-var minimist = require('minimist')
-var Logger = require('./utils/logger')
-var Application = require('./application/app.js')
+const minimist = require('minimist')
+const Logger = require('./utils/logger')
+const Application = require('./application/app.js')
 
 process.on('uncaughtException', (err) => {
-    var request, error;
+    let request, error;
 
     if (err instanceof Error) {
-        error = err;
-        request = {};
+        error = err
+        request = {}
     } else if (err.headers) {
-        error = {};
-        request = err;
+        error = {}
+        request = err
     }
 
-    Logger.error(err.message);
-    Logger.error(err.stack);
-});
+    Logger.error(err.message)
+    Logger.error(err.stack)
+})
 
-const args = minimist(process.argv.slice(2));
+const args = minimist(process.argv.slice(2))
 
 if(!args.env)
-    args.env = process.env.NODE_ENV;
+    args.env = process.env.NODE_ENV
 
-const app = new Application(args, process.env.PORT);
+const app = new Application(args, process.env.PORT)
 
-app.init().listen();
-
-module.exports = app;
+app.init().listen()

@@ -1,8 +1,10 @@
+'use strict'
+
 var consolidate = require('consolidate');
 var path = require('path');
 var bodyParser = require('body-parser');
 
-var setup = function (app) {
+module.exports = function (app, configurationManager) {
     app.set('views', path.join(__dirname, '../views'));
 
     app.engine('html', consolidate.underscore);
@@ -12,6 +14,4 @@ var setup = function (app) {
     app.use(bodyParser.urlencoded({
         extended: true
     }))
-};
-
-module.exports = setup;
+}
