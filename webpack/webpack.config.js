@@ -12,7 +12,7 @@ module.exports = (config) => {
             'main': ['./public/react/entry']
         },
         output: {
-            publicPath: '/assets/',
+            publicPath: config.publicPath || '/assets/',
             path: path.join(__dirname, '../public/assets'),
             // path: '/public/assets',
             // Add /* filename */ comments to generated require()s in the output.
@@ -23,7 +23,7 @@ module.exports = (config) => {
         module: {
             rules: [
                 {
-                    test: /\.(js|jsx)$/,
+                    test: /\.jsx?$/,
                     enforce: 'pre',
                     loader: 'eslint-loader',
                     exclude: /(node_modules|libs)/,
@@ -34,7 +34,7 @@ module.exports = (config) => {
                     }
                 },
                 {
-                    test: /\.(js|jsx)$/,
+                    test: /\.jsx?$/,
                     exclude: /(node_modules|libs)/,
                     loader: 'babel-loader',
                     query: {

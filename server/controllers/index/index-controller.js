@@ -10,8 +10,8 @@ class Controller extends BaseController {
     }
 
     index() {
-
-        this.response.render('index', {
+        this.response.render('index.jsx', {
+            apiUrl: this.configuration.apiUrl,
             assetsRoot: this.configuration.assetsRoot,
             stats: this.configuration.stats
         })

@@ -5,5 +5,5 @@ module.exports = config({
     filename: '[name].js',
     chunkFilename: "[name].js",
     cssFilename: '[name].css',
-    publicPath: 'http://localhost:8080'
+    publicPath: 'http://localhost:8080/assets'
 })

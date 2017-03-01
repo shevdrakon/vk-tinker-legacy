@@ -1,4 +1,4 @@
-export default ({fetch, tokenHeader, token}) => {
+export default ({fetch}) => {
     return {
         handleStatus(response) {
             if (response.status >= 200 && response.status < 300)
@@ -24,7 +24,8 @@ export default ({fetch, tokenHeader, token}) => {
                 credentials: 'same-origin',
                 headers: {
                     ...headers,
-                    [tokenHeader]: token,
+                    // [tokenHeader]: token,
+                    // [initiatingServiceHeader]: initiatingService,
                 },
                 body: data
             }).then(this.handleStatus)

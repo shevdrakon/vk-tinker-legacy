@@ -1,162 +1,100 @@
-import $ from 'jquery';
-
-import toastr from 'toastr';
-import 'toastr/toastr.scss';
-
-import ErrorHandler from '../react/utils/error-handler'
-
 import fetch from 'isomorphic-fetch'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Mobx from 'mobx'
 import {Provider} from 'mobx-react'
+import {browserHistory, createRoutes, Router} from 'react-router'
 
-import curryServices from '../react/utils/curry-services'
-import Ajax from '../react/utils/ajax'
-import storeCreators from '../react/utils/store-creators'
-import storeHolder from '../react/utils/store-holder'
+import curryServices from './utils/curry-services'
+import Ajax from './utils/ajax'
 
-import ApplicationStore from '../react/modules/application/application-store'
-import ApplicationService from '../react/modules/application/application-service'
+import RootStore from './base/root-store'
 
-import Layout from '../react/components/layout.jsx'
-import RootRoutes from './routes/root'
+import ApplicationService from './modules/application/application-service'
+import HubsService from './modules/hubs/hubs-service'
+import HubOverviewService from './modules/hub-overview/hub-overview-service'
+
+import messageProvider from './utils/message-provider'
+
+let routerKey = 0
+
+const container = document.getElementById('page-container')
+
+const mount = (app) => {
+    const Layout = require('./layout/layout').default
+    const routes = require('./routes')
+
+    const provider = <Provider store={app.store}>
+        <Layout>
+            <Router key={routerKey} history={browserHistory} routes={createRoutes(routes(app))}/>
+        </Layout>
+    </Provider>
+
+    ReactDOM.render(provider, container)
+}
 
 export default {
-    currentView: null,
-    router: null,
-    currentHubId: '',
+    initialize(config) {
+        this.baseUrl = config.cfgSettings.apiBaseUrl
+        this.ajax = new Ajax({fetch})
 
-    initialize: function () {
-        // this.router = Routes({app:this})
-
-        this.baseUrl = '' //window.APP_CONFIG.cfgSettings.apiBaseUrl
-        this.ajax = new Ajax({
-            fetch,
-            //tokenHeader: window.App.tokenHeader,
-            //token: window.App.token,
-            //initiatingServiceHeader: window.App.initiatingServiceHeader,
-            //initiatingService: window.App.applicationId,
-        })
-
-        const api = this.api = curryServices(
-            {application: ApplicationService},
-            {ajax: this.ajax, baseUrl: this.baseUrl})
+        const api = this.api = curryServices({
+            application: ApplicationService,
+            hubs: HubsService,
+            hubOverview: HubOverviewService,
+        }, {ajax: this.ajax, baseUrl: this.baseUrl})
 
         Mobx.useStrict(true)
 
         const getStore = () => {
-            return this.storeHolder.get()
+            return this.store
         }
-
-        this.storeCreators = storeCreators({
-            application: ApplicationStore
-        })
-
-        this.storeHolder = storeHolder({
+        this.store = new RootStore({
             application: {
-                //tokenHeader: window.App.tokenHeader,
-                //token: window.App.token
+                tokenHeader: config.tokenHeader,
+                token: config.token,
+                applications: config.applications,
+                user: config.user,
+                daysToKeepHubData: config.cfgSettings.daysToKeepHubData,
+                helpUrl: config.cfgSettings.helpUrl,
+                authoringHost: config.cfgSettings.authoringHost,
+                siteRoot: config.cfgSettings.siteRoot,
             }
         }, {
-            // router: this.router,
+            browserHistory,
+            location,
             localStorage: localStorage,
-            //messageProvider: window.App.message,
-            //helpProvider: window.App,
-            errorHandler: ErrorHandler,
+            messageProvider,
             window: window,
+            getStore,
             get api() {
                 return api
             },
-            getStore
         })
-        this.storeHolder.extend(this.storeCreators.get())
 
-        const provider = <Provider store={this.storeHolder}>
-            <Layout routes={RootRoutes}/>
-        </Provider >
+        this.store.globalNavigation.fetchRecentHubsInfo()
+        mount(this)
 
-        ReactDOM.render(provider, document.getElementById('root'))
-    },
-
-    navigate: function (url) {
-        location.href = url;
-    },
-
-    title: function (title) {
-        $('title').text(title);
-    },
-
-    extendStores(storeCreators) {
-        this.storeCreators.extend(storeCreators)
-        this.storeHolder.extend(this.storeCreators.get())
+        /* eslint-disable no-undef */
+        if (process.env.NODE_ENV !== 'production') {
+            if (module.hot) {
+                module.hot.accept([
+                    './layout/layout',
+                    './routes'
+                ], () => {
+                    routerKey++
+                    mount(this)
+                })
+            }
+        }
+        /* eslint-disable no-undef */
     },
 
     extendServices(services) {
         Object.assign(this.api, curryServices(services, {ajax: this.ajax, baseUrl: this.baseUrl}))
     },
 
-    unmountComponent() {
-        ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+    extendStores(stores, state) {
+        this.store.extendWith(stores, state)
     },
-
-    showComponent(element, {reset}) {
-        if (reset)
-            this.storeHolder.extend(this.storeCreators.get(), {replace: true})
-
-        const provider = <Provider store={this.storeHolder}>
-            <Layout>{element}</Layout>
-        </Provider >
-
-        ReactDOM.render(provider, document.getElementById('root'))
-
-        return this.storeHolder
-    },
-
-    prepareComponent(element, {reset}) {
-        if (reset)
-            this.storeHolder.extend(this.storeCreators.get(), {replace: true})
-
-        const provider = <Provider store={this.storeHolder}>
-            <Layout>{element}</Layout>
-        </Provider >
-
-        ReactDOM.render(provider, document.getElementById('root'))
-
-        return this.storeHolder
-    },
-
-    // showMainView(view) {
-    //     this.closeMainView()
-    //     this.unmountComponent()
-    //
-    //     $('#page-container').html(view.render().el);
-    //
-    //     // needed to make IE undock menu, scroll event is not fired in IE when page dimensions change
-    //     window.scroll(0, 0);
-    //
-    //     this.currentView = view;
-    //     return view;
-    // },
-
-    message: (function () {
-        const _showMessage = function (msg, type, timeout) {
-            toastr[type](escape(msg), '', {
-                timeOut: timeout,
-                positionClass: 'toast-top-full-width'
-            });
-        };
-
-        return {
-            success: function (msg, timeout) {
-                _showMessage(msg, 'success', timeout || 2000);
-            },
-            error: function (msg, timeout) {
-                _showMessage(msg, 'error', timeout || 4000);
-            },
-            warning: function (msg, timeout) {
-                _showMessage(msg, 'warning', timeout || 4000);
-            }
-        };
-    }())
-};
+}
