@@ -26,7 +26,7 @@ module.exports = (config) => {
                     test: /\.jsx?$/,
                     enforce: 'pre',
                     loader: 'eslint-loader',
-                    exclude: /(node_modules|libs)/,
+                    exclude: /(node_modules|www)/,
                     options: {
                         cache: true,
                         emitWarning: true, // hmr is working only there no errors
@@ -35,7 +35,7 @@ module.exports = (config) => {
                 },
                 {
                     test: /\.jsx?$/,
-                    exclude: /(node_modules|libs)/,
+                    exclude: /(node_modules|www)/,
                     loader: 'babel-loader',
                     query: {
                         // This is a feature of `babel-loader` for webpack (not Babel itself).
@@ -105,11 +105,11 @@ module.exports = (config) => {
             }),
             new ExtractTextPlugin(config.cssFilename),
             // new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en/),
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery',
-                'window.jQuery': 'jquery',
-            }),
+            // new webpack.ProvidePlugin({
+            //     $: 'jquery',
+            //     jQuery: 'jquery',
+            //     'window.jQuery': 'jquery',
+            // }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
                 filename: config.chunkFilename

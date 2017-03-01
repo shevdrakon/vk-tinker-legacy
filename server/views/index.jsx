@@ -43,15 +43,13 @@ export default class Index extends Component {
             <div className="loader-section section-right"></div>
         </div>
 
-        Hello world!
-
         <div id="page-container"></div>
 
-        <script src="www/min/plugin-min.js"></script>
-        <script src="www/min/custom-min.js"></script>
+        <script src="/www/min/plugin-min.js"></script>
+        <script src="/www/min/custom-min.js"></script>
         <script dangerouslySetInnerHTML={{__html: `window['APP_CONFIG'] = ${JSON.stringify(config)}`}}/>
         <script src={`${assetsRoot}/${stats.assetsByChunkName.vendor}`}/>
-        {/*<script src={`${assetsRoot}/${stats.assetsByChunkName.main[0]}`}/>*/}
+        <script src={`${assetsRoot}/${stats.assetsByChunkName.main[0]}`}/>
         </body>
         </html>
     }

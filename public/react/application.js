@@ -9,10 +9,7 @@ import curryServices from './utils/curry-services'
 import Ajax from './utils/ajax'
 
 import RootStore from './base/root-store'
-
 import ApplicationService from './modules/application/application-service'
-import HubsService from './modules/hubs/hubs-service'
-import HubOverviewService from './modules/hub-overview/hub-overview-service'
 
 import messageProvider from './utils/message-provider'
 
@@ -35,30 +32,23 @@ const mount = (app) => {
 
 export default {
     initialize(config) {
-        this.baseUrl = config.cfgSettings.apiBaseUrl
+        this.apiUrl = config.apiUrl
         this.ajax = new Ajax({fetch})
 
         const api = this.api = curryServices({
-            application: ApplicationService,
-            hubs: HubsService,
-            hubOverview: HubOverviewService,
-        }, {ajax: this.ajax, baseUrl: this.baseUrl})
+            application: ApplicationService
+        }, {ajax: this.ajax, apiUrl: this.apiUrl})
 
         Mobx.useStrict(true)
 
         const getStore = () => {
             return this.store
         }
+
         this.store = new RootStore({
             application: {
-                tokenHeader: config.tokenHeader,
-                token: config.token,
-                applications: config.applications,
-                user: config.user,
-                daysToKeepHubData: config.cfgSettings.daysToKeepHubData,
-                helpUrl: config.cfgSettings.helpUrl,
-                authoringHost: config.cfgSettings.authoringHost,
-                siteRoot: config.cfgSettings.siteRoot,
+                // tokenHeader: config.tokenHeader,
+                // token: config.token,
             }
         }, {
             browserHistory,
@@ -72,7 +62,6 @@ export default {
             },
         })
 
-        this.store.globalNavigation.fetchRecentHubsInfo()
         mount(this)
 
         /* eslint-disable no-undef */
@@ -91,10 +80,10 @@ export default {
     },
 
     extendServices(services) {
-        Object.assign(this.api, curryServices(services, {ajax: this.ajax, baseUrl: this.baseUrl}))
+        Object.assign(this.api, curryServices(services, {ajax: this.ajax, apiUrl: this.apiUrl}))
     },
 
     extendStores(stores, state) {
         this.store.extendWith(stores, state)
-    },
+    }
 }

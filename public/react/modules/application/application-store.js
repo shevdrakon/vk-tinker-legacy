@@ -1,12 +1,8 @@
-import {action, extendObservable} from 'mobx'
-import BaseStore from '../../base/base-store'
+import SmartStore from '../../base/smart-store'
 
-export default class ApplicationStore extends BaseStore {
+export default class ApplicationStore extends SmartStore {
+
     constructor(...args) {
         super(...args)
-
-        action(() => {
-            extendObservable(this, {hub: {name: ''}})
-        })()
     }
 }

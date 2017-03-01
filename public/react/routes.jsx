@@ -12,36 +12,36 @@ const Routes = (app) => {
     /* eslint-enable no-undef */
 
 
-    // const ensureClient = (routeCallback) => (nextState, cb) => {
-    //     typeof window === 'undefined' ? cb() : routeCallback(nextState, cb)
-    // }
+    const ensureClient = (routeCallback) => (nextState, cb) => {
+        typeof window === 'undefined' ? cb() : routeCallback(nextState, cb)
+    }
 
-    // const loadComponent = ({rootComponent, stores = {}, services = {}}, nextState, cb) => {
-    //     /* eslint-disable no-undef */
-    //     if (process.env.NODE_ENV !== 'production') {
-    //         if (module.hot && module.hot.data) {
-    //             const state = module.hot.data && module.hot.data.state
-    //             delete module.hot.data.state
-    //
-    //             app.extendStores(stores, state)
-    //             app.extendServices(services)
-    //         } else {
-    //             app.extendStores(stores)
-    //             app.extendServices(services)
-    //
-    //             rootComponent.load(nextState.params, app.store)
-    //         }
-    //     }
-    //     else {
-    //         app.extendStores(stores)
-    //         app.extendServices(services)
-    //
-    //         rootComponent.load(nextState.params, app.store)
-    //     }
-    //     /* eslint-enable no-undef */
-    //
-    //     cb(null, rootComponent)
-    // }
+    const loadComponent = ({rootComponent, stores = {}, services = {}}, nextState, cb) => {
+        /* eslint-disable no-undef */
+        if (process.env.NODE_ENV !== 'production') {
+            if (module.hot && module.hot.data) {
+                const state = module.hot.data && module.hot.data.state
+                delete module.hot.data.state
+
+                app.extendStores(stores, state)
+                app.extendServices(services)
+            } else {
+                app.extendStores(stores)
+                app.extendServices(services)
+
+                rootComponent.load(nextState.params, app.store)
+            }
+        }
+        else {
+            app.extendStores(stores)
+            app.extendServices(services)
+
+            rootComponent.load(nextState.params, app.store)
+        }
+        /* eslint-enable no-undef */
+
+        cb(null, rootComponent)
+    }
 
     return {
         path: '/',
@@ -57,19 +57,19 @@ const Routes = (app) => {
                 // })
             // })
         },
-        // childRoutes: [{
-        //     path: 'deleted-hubs',
-        //     getComponent: ensureClient((nextState, cb) => {
-        //         require.ensure(['./modules/deleted-hubs/index'], require => {
-        //             const {Root, Store, Service} = require('./modules/deleted-hubs/index').default
-        //             loadComponent({
-        //                 rootComponent: Root,
-        //                 stores: {deletedHubs: Store},
-        //                 services: {deletedHubs: Service}
-        //             }, nextState, cb)
-        //         })
-        //     })
-        // }, {
+        childRoutes: [{
+            path: 'login',
+            getComponent: ensureClient((nextState, cb) => {
+                require.ensure(['./modules/login/index'], require => {
+                    const {Root, Store} = require('./modules/login/index').default
+                    loadComponent({
+                        rootComponent: Root,
+                        stores: {login: Store}
+                        // services: {loginForm: Service}
+                    }, nextState, cb)
+                })
+            })
+        } //, {
         //     path: ':hubId/overview',
         //     getComponent: ensureClient((nextState, cb) => {
         //         require.ensure(['./modules/hub-overview/index'], require => {
@@ -326,7 +326,8 @@ const Routes = (app) => {
         //             }, nextState, cb)
         //         })
         //     })
-        // }]
+        // }
+        ]
     }
     /* commented until server side rendering is enabled
      return <Route path="/hub">

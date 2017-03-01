@@ -1,13 +1,28 @@
-import React, {Component} from 'react'
+import React, {Component, PropTypes} from 'react'
 import {observer} from 'mobx-react'
-import inject from '../../utils/inject'
 
-import './style.scss'
+import $ from 'jquery'
+
+import inject from '../../../utils/inject'
+
+import '../styles/style.scss'
 
 export class LoginForm extends Component {
 
+    static propTypes = {
+        login: PropTypes.shape({
+            access_token: PropTypes.string,
+            showLoginButton: PropTypes.bool,
+            toggle: PropTypes.func,
+            onTokenChange: PropTypes.func,
+            onLogin: PropTypes.func
+        })
+    };
+
     handleClick = (e) => {
         e.preventDefault()
+
+        this.props.login.toggle({value: !this.props.login.showLoginButton})
 
         // if ($('.login-form').is(':visible'))
         //     requestAccessToken();
@@ -25,7 +40,12 @@ export class LoginForm extends Component {
         this.props.login.onLogin()
     }
 
+    static load() {
+    }
+
     render() {
+        const {access_token} = this.props.login
+
         return <div className="login-form-container">
             <div className="container">
                 <div className="info">
@@ -38,13 +58,11 @@ export class LoginForm extends Component {
                     <i className="icon-vk"></i>
                 </button>
 
-                <form className="login-form">
-                    Click to process vk api auth request
-                </form>
+                <form className="login-form">Click to process vk api auth request</form>
 
                 <form className="register-form">
-                    <div style={{"display": "inline-block"}}>
-                        <input onChange={this.handleTokenChange} placeholder="access_token"/>
+                    <div>
+                        <input onChange={this.handleTokenChange} placeholder="access_token" value={access_token}/>
                         <button onClick={this.handleLoginClick}
                                 className="pull-right mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
                             <i className="icon-chevron-right"></i>
@@ -53,14 +71,13 @@ export class LoginForm extends Component {
                 </form>
             </div>
 
-            <div id="overlay">
-                262144
-                106168410
-            </div>
+            <div id="overlay"></div>
         </div>
     }
 }
 
 export default inject(({login}) => {
-    login
+    return {
+        login: login.form
+    }
 })(observer(LoginForm))

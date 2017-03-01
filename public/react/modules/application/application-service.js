@@ -1,6 +1,6 @@
-export default ({ajax, baseUrl}) => {
+export default ({ajax, apiUrl}) => {
 
-    const url = (hubId) => `${baseUrl}/hubs/${hubId}/access`
+    const url = (hubId) => `${apiUrl}/hubs/${hubId}/access`
 
     const T = {
         getHubPermissions: ({hubId}) => {
