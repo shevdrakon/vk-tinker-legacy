@@ -13,7 +13,8 @@ class Controller extends BaseController {
         this.response.render('index.jsx', {
             apiUrl: this.configuration.apiUrl,
             assetsRoot: this.configuration.assetsRoot,
-            stats: this.configuration.stats
+            stats: this.configuration.stats,
+            vkAppId: this.configuration.app_id
         })
     }
 }

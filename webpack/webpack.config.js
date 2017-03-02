@@ -4,6 +4,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = (config) => {
+    console.log(config)
+
     return {
         cache: true,
         devtool: config.devtool,
@@ -18,7 +20,8 @@ module.exports = (config) => {
             // Add /* filename */ comments to generated require()s in the output.
             pathinfo: true,
             filename: config.filename,
-            chunkFilename: config.chunkFilename
+            chunkFilename: config.chunkFilename,
+           // sourceMapFilename: '[file].map'
         },
         module: {
             rules: [
@@ -26,7 +29,7 @@ module.exports = (config) => {
                     test: /\.jsx?$/,
                     enforce: 'pre',
                     loader: 'eslint-loader',
-                    exclude: /(node_modules|www)/,
+                    exclude: /(node_modules|www|vkapi)/,
                     options: {
                         cache: true,
                         emitWarning: true, // hmr is working only there no errors
@@ -35,14 +38,17 @@ module.exports = (config) => {
                 },
                 {
                     test: /\.jsx?$/,
-                    exclude: /(node_modules|www)/,
+                    exclude: /(node_modules|www|vkapi)/,
                     loader: 'babel-loader',
-                    query: {
-                        // This is a feature of `babel-loader` for webpack (not Babel itself).
-                        // It enables caching results in ./node_modules/.cache/babel-loader/
-                        // directory for faster rebuilds.
+                    options: {
                         cacheDirectory: true,
                     }
+                    // query: {
+                    //     // This is a feature of `babel-loader` for webpack (not Babel itself).
+                    //     // It enables caching results in ./node_modules/.cache/babel-loader/
+                    //     // directory for faster rebuilds.
+                    //     cacheDirectory: true,
+                    // }
                 },
                 {
                     test: /\.css$/,
@@ -82,16 +88,16 @@ module.exports = (config) => {
             //     'mixwith': 'public/react/utils/mixwith.js',
             // }
 
-            alias: {
-                base: path.resolve(__dirname, '../public/js/base'),
-                components: path.resolve(__dirname, '../public/react/components'),
-                constants: path.resolve(__dirname, '../public/react/constants'),
-                layout: path.resolve(__dirname, '../public/js/layout'),
-                mixins: path.resolve(__dirname, '../public/js/mixins'),
-                modules: path.resolve(__dirname, '../public/react/modules'),
-                utils: path.resolve(__dirname, '../public/react/utils'),
-                styles: path.resolve(__dirname, '../public/styles'),
-            }
+            // alias: {
+            //     base: path.resolve(__dirname, '../public/js/base'),
+            //     components: path.resolve(__dirname, '../public/react/components'),
+            //     constants: path.resolve(__dirname, '../public/react/constants'),
+            //     layout: path.resolve(__dirname, '../public/js/layout'),
+            //     mixins: path.resolve(__dirname, '../public/js/mixins'),
+            //     modules: path.resolve(__dirname, '../public/react/modules'),
+            //     utils: path.resolve(__dirname, '../public/react/utils'),
+            //     styles: path.resolve(__dirname, '../public/styles'),
+            // }
         },
         plugins: [
             // Makes some environment variables available in index.html.
@@ -112,7 +118,7 @@ module.exports = (config) => {
             // }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
-                filename: config.chunkFilename
+                chunkFilename: config.chunkFilename
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 children: true,

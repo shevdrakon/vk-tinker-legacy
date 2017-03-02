@@ -13,6 +13,8 @@ import ApplicationService from './modules/application/application-service'
 
 import messageProvider from './utils/message-provider'
 
+require('jquery')
+
 let routerKey = 0
 
 const container = document.getElementById('page-container')
@@ -47,6 +49,7 @@ export default {
 
         this.store = new RootStore({
             application: {
+                vkAppId: config.vkAppId
                 // tokenHeader: config.tokenHeader,
                 // token: config.token,
             }
