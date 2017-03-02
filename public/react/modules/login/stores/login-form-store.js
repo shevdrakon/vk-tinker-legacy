@@ -10,22 +10,23 @@ export default class LoginFormStore extends SmartStore {
     }
 
     @observable access_token = ''
-    @observable showLoginButton = false
 
     get applicationStore() {
         return this.store.application
     }
 
-    @action toggle({value}) {
-        this.showLoginButton = value
-
-        if (value) {
-            vkPopup({app_id: this.applicationStore.vkAppId}, this.window)
-        }
+    @action openVkPopup() {
+        vkPopup({app_id: this.applicationStore.vkAppId}, this.window)
     }
 
     @action onTokenChange({value}) {
         this.access_token = value
+    }
+
+    @action validate() {
+        if (this.access_token.length === 0) {
+            this.messageProvider.error('access_token cannot be empty')
+        }
     }
 
     @action onLogin() {

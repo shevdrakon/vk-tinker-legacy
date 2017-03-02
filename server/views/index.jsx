@@ -32,6 +32,7 @@ export default class Index extends Component {
 
             <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"/>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
 
             <link rel="stylesheet" href="/www/css/font-awesome.min.css"/>
             {/*<link rel="stylesheet" href="/www/min/plugin-min.css"/>*/}
@@ -41,14 +42,9 @@ export default class Index extends Component {
 
         <body id="top" className="scrollspy">
 
-        <div id="loader-wrapper">
-            <div id="loader"></div>
-
-            <div className="loader-section section-left"></div>
-            <div className="loader-section section-right"></div>
+        <div className="wrapper">
+            <div id="page-container"></div>
         </div>
-
-        <div id="page-container"></div>
 
         {/*<script src="/www/min/plugin-min.js"></script>*/}
         {/*<script src="/www/min/custom-min.js"></script>*/}
@@ -63,7 +59,7 @@ export default class Index extends Component {
         <script src="/js/bootstrap.min.js" type="text/javascript"></script>
         <script src="/js/bootstrap-datepicker.js" type="text/javascript"></script>
         {/*<script src="/js/nouislider.min.js" type="text/javascript"></script>*/}
-        <script src="/js/material-kit.js" type="text/javascript"></script>
+        {/*<script src="/js/material-kit.js" type="text/javascript"></script>*/}
 
         </body>
         </html>

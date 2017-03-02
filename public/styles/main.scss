@@ -1,2 +1,5 @@
 @import 'material-kit';
-@import 'bootstrap.min.css';
+
+.mdl-textfield__label {
+  margin-bottom: 0px;
+}
