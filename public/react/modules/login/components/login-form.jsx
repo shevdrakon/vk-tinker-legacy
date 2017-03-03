@@ -5,7 +5,7 @@ import {observer} from 'mobx-react'
 import inject from '../../../utils/inject'
 
 import {Col} from 'react-bootstrap'
-import {Textfield} from 'react-mdl'
+import {TextfieldWithIcon} from '../../../components/react-mdl/textfield-with-icon.jsx'
 
 import '../styles/style.scss'
 
@@ -68,10 +68,7 @@ export class LoginForm extends Component {
 
                                 <div className="content">
                                     <div className="input-group">
-                                    <span className="input-group-addon">
-                                        <i className="material-icons">lock_outline</i>
-                                    </span>
-                                        <Textfield label="access_token" style={{width: '100%'}} onChange={this.handleTokenChange}/>
+                                        <TextfieldWithIcon icon="lock_outline" label="access_token" style={{width: '100%'}} onChange={this.handleTokenChange}/>
                                     </div>
                                 </div>
                                 <div className="footer text-center">
