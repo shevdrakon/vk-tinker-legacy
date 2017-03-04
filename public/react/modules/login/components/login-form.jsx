@@ -68,7 +68,7 @@ export class LoginForm extends Component {
 
                                 <div className="content">
                                     <div className="input-group">
-                                        <TextfieldWithIcon icon="lock_outline" label="access_token" style={{width: '100%'}} onChange={this.handleTokenChange}/>
+                                        <TextfieldWithIcon icon="lock_outline" label="access_token" style={{width: "100%"}} onChange={this.handleTokenChange}/>
                                     </div>
                                 </div>
                                 <div className="footer text-center">
