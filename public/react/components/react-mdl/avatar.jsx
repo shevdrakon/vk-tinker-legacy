@@ -5,15 +5,15 @@ const propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string
 }
-export class TinkerAvatar extends Component{
+export class Avatar extends Component{
     render(){
         const {src, alt, ...otherProps} = this.props
         return(
-            <div className="tinker-ava-container">
-                <img className="tinker-ava-img" src={src} alt={alt}/>
+            <div className="avatar-container">
+                <img className="avatar-img" src={src} alt={alt}/>
             </div>
         )
     }
 }
 
-TinkerAvatar.propTypes = propTypes
+Avatar.propTypes = propTypes

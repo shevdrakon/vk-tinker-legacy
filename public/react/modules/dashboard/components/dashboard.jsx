@@ -2,9 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import inject from '../../../utils/inject'
 import {observer} from 'mobx-react'
 
-import {Layout, Content, Drawer, Navigation} from 'react-mdl'
-
-import {NavigationHeader} from '../../../components/react-mdl/tinker-nav/components/tinker-nav.jsx'
+import {Navigation} from '../../../components/react-mdl/navbar.jsx'
 
 export class DashboardPage extends Component{
     static propTypes = {
@@ -28,7 +26,7 @@ export class DashboardPage extends Component{
 
         return (
         <div>
-                <NavigationHeader onMenuClick={this.handleMenuButtonClick} menuShown={this.props.dashboard.collapsibleMenuShown}/>
+            <Navigation/>
         </div>
         )
     }
