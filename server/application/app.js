@@ -17,8 +17,7 @@ Application.prototype.init = function () {
     const configuration = this.configurationManager.configuration
 
     require('./app.setup.security.js')(this.app, configuration);
-
-    // require('./app.setup.rendering.underscore.js')(this.app);
+    require('./app.setup.passport.custom.js')(this.app, configuration);
     require('./app.setup.rendering.jsx.js')(this.app);
 
     require('./app.setup.routing.js')(this.app, this.configurationManager);

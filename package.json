@@ -32,6 +32,7 @@
     "mobx-react": "4.1.0",
     "morgan": "^1.6.1",
     "passport": "^0.3.2",
+    "passport-custom": "^1.0.5",
     "passport-vkontakte": "^0.3.2",
     "qs": "^6.2.1",
     "react": "^15.3.2",

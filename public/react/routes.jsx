@@ -61,11 +61,11 @@ const Routes = (app) => {
             path: 'login',
             getComponent: ensureClient((nextState, cb) => {
                 require.ensure(['./modules/login/index'], require => {
-                    const {Root, Store} = require('./modules/login/index').default
+                    const {Root, Store, Service} = require('./modules/login/index').default
                     loadComponent({
                         rootComponent: Root,
-                        stores: {login: Store}
-                        // services: {loginForm: Service}
+                        stores: {loginForm: Store},
+                        services: {loginForm: Service}
                     }, nextState, cb)
                 })
             })
