@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react'
 import {observer} from 'mobx-react'
-// import $ from 'jquery'
 
 import inject from '../../../utils/inject'
 
+import {ProgressBar} from 'react-mdl'
 import {Col} from 'react-bootstrap'
 import {TextfieldWithIcon} from '../../../components/react-mdl/textfield-with-icon.jsx'
 
@@ -14,10 +14,11 @@ export class LoginForm extends Component {
     static propTypes = {
         login: PropTypes.shape({
             access_token: PropTypes.string,
+            logging: PropTypes.bool,
             openVkPopup: PropTypes.func,
             onTokenChange: PropTypes.func,
             onLogin: PropTypes.func,
-            validate: PropTypes.func
+            validateAndLogin: PropTypes.func
         })
     };
 
@@ -33,26 +34,28 @@ export class LoginForm extends Component {
         this.props.login.onTokenChange({value: e.target.value})
     }
 
-    handleLoginClick = (e) => {
+    handleGetStartedClick = (e) => {
         e.preventDefault()
 
-        this.props.login.validate()
+        const {logging} = this.props.login
+        if (logging)
+            return
 
-        // this.form.submit()
+        this.props.login.validateAndLogin()
     }
 
     static load() {
     }
 
     render() {
-        // const {access_token} = this.props.login
+        const {access_token, logging} = this.props.login
 
         return <div className="header header-filter">
             <div className="container">
                 <div className="row">
                     <Col md={4} mdOffset={4} sm={6} smOffset={3}>
                         <div className="card card-signup">
-                            <form ref={f => this.form = f} className="form" method="POST" action="/login">
+                            <form className="form" method="" action="">
                                 <div className="header header-primary text-center">
                                     <h3>Mommy's Treasure</h3>
                                     <div className="social-line">
@@ -68,11 +71,12 @@ export class LoginForm extends Component {
 
                                 <div className="content">
                                     <div className="input-group">
-                                        <TextfieldWithIcon icon="lock_outline" label="access_token" style={{width: "100%"}} onChange={this.handleTokenChange}/>
+                                        <TextfieldWithIcon icon="lock_outline" label="access_token" value={access_token} onChange={this.handleTokenChange}/>
                                     </div>
                                 </div>
                                 <div className="footer text-center">
-                                    <a href="#pablo" className="btn btn-simple btn-primary btn-lg" onClick={this.handleLoginClick}>Get Started</a>
+                                    <a disabled={logging} href="#pablo" className="btn btn-simple btn-primary btn-lg" onClick={this.handleGetStartedClick}>Get Started</a>
+                                    {logging && <ProgressBar className="login-progress-bar" indeterminate/>}
                                 </div>
                             </form>
                         </div>
@@ -83,8 +87,8 @@ export class LoginForm extends Component {
     }
 }
 
-export default inject(({login}) => {
+export default inject(({loginForm}) => {
     return {
-        login: login.form
+        login: loginForm
     }
 })(observer(LoginForm))
