@@ -10,7 +10,6 @@ const Icon = (props) => {
     })
 
     return <i className={classes} {...rest}>{children}</i>
-
 }
 
 Icon.propTypes = {
