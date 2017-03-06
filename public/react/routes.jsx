@@ -69,6 +69,18 @@ const Routes = (app) => {
                     }, nextState, cb)
                 })
             })
+        }, {
+            path: 'dashboard',
+            getComponent: ensureClient((nextState, cb) => {
+                require.ensure(['./modules/dashboard/index'], require => {
+                    const {Root, Store} = require('./modules/dashboard/index').default
+                    loadComponent({
+                        rootComponent: Root,
+                        stores: {dashboard: Store}
+                        // services: {loginForm: Service}
+                    }, nextState, cb)
+                })
+            })
         } //, {
         //     path: ':hubId/overview',
         //     getComponent: ensureClient((nextState, cb) => {
