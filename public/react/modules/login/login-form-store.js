@@ -9,6 +9,7 @@ export default class LoginFormStore extends SmartStore {
         super(initialState, environment)
     }
 
+    @observable showAboutAccessToken = false
     @observable access_token = ''
     @observable logging = false
 
@@ -33,6 +34,14 @@ export default class LoginFormStore extends SmartStore {
         else {
             this.tryToLogin()
         }
+    }
+
+    @action openAboutAccessToken() {
+        this.showAboutAccessToken = true
+    }
+
+    @action closeAboutAccessToken() {
+        this.showAboutAccessToken = false
     }
 
     @action tryToLogin() {
