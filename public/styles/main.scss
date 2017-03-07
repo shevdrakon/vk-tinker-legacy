@@ -51,5 +51,73 @@
   }
 }
 
+/*picture-card*/
+.card-container {
+  width: 500px;
+  height: 500px;
+
+  .card-title {
+    padding: 0px;
+
+    .card-image {
+      width: 100%;
+    }
+  }
+
+  .card-short-text{
+    font-size: 14px;
+  }
+
+  .card-actions{
+    bottom: 0px;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    .card-information{
+      color: rgba(0,0,0,.54);
+      font-size: 14px;
+      line-height: 18px;
+      border-top: 1px solid rgba(0,0,0,.1);
+      margin-top: 10px;
+      padding: 20px;
+    }
+
+    &.small{
+      height: 53px;
+      .card-information{
+        display: none;
+      }
+    }
+
+    &.big{
+      height: 100%;
+      .card-information{
+        display: block;
+      }
+    }
+  }
+
+  .card-menu-icon{
+    color: #ffffff
+  }
+
+  .card-more{
+    float: right;
+
+    &:after{
+      clear: both;
+    }
+  }
+
+  .card-validation{
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    &.done{
+      color: #00A000;
+    }
+  }
+}
+
 
 

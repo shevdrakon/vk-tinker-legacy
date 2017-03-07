@@ -1,17 +1,16 @@
 import React, {Component, PropTypes} from 'react'
 
-export default class Avatar extends Component{
-    render(){
-        const {src, alt} = this.props
-        return(
-            <div className="avatar-container">
-                <img className="avatar-img" src={src} alt={alt}/>
+const Avatar = (props) => {
+        const {src, alt, ...otherProps} = props
+        return <div className="avatar-container">
+                <img className="avatar-img" src={src} alt={alt} {...otherProps}/>
             </div>
-        )
-    }
+
 }
 
 Avatar.propTypes = {
     src: PropTypes.string.isRequired,
     alt: PropTypes.string
 }
+
+export default Avatar
