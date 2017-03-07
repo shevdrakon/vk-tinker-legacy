@@ -81,7 +81,20 @@ const Routes = (app) => {
                     }, nextState, cb)
                 })
             })
-        } //, {
+        }, {
+            path: 'sample',
+            getComponent: ensureClient((nextState, cb) => {
+                require.ensure(['./modules/sample/index'], require => {
+                    const {Root} = require('./modules/sample/index').default
+                    loadComponent({
+                        rootComponent: Root
+                    }, nextState, cb)
+                })
+            })
+        }
+
+
+            //, {
         //     path: ':hubId/overview',
         //     getComponent: ensureClient((nextState, cb) => {
         //         require.ensure(['./modules/hub-overview/index'], require => {

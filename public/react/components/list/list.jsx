@@ -1,25 +1,34 @@
 import React, {Component, PropTypes} from 'react'
-import {propTypes as mPropTypes} from 'mobx'
 import classnames from 'classnames'
 
 import ListHeader from './list-header.jsx'
 import ListContent from './list-content.jsx'
-import ListContentHeader from './list-content-header.jsx'
+import ListContentColumn from './list-content-column.jsx'
+
+const parseHeader = (children) => {
+    const clones = React.Children.toArray(children)
+    const header = clones.length > 0 && clones.find(x => x.type === ListHeader)
+
+    return header ? React.cloneElement(header, {}) : undefined
+}
 
 export default class List extends Component {
     static propTypes = {
+        children: PropTypes.oneOfType([
+            PropTypes.arrayOf(PropTypes.element),
+            PropTypes.element,
+        ]),
         plain: PropTypes.bool,
-        children: PropTypes.node,
-        itemTemplate: PropTypes.node,
-        collection: mPropTypes.arrayOrObservableArray
+        rowTemplate: PropTypes.element,
+        className: PropTypes.string,
     }
 
     render() {
-        const {children, plain, itemTemplate, collection = []} = this.props
+        const {children, plain, ...restProps} = this.props
         const clones = React.Children.toArray(children)
 
-        const header = clones.length > 0 && React.cloneElement(clones.find(x => x.type === ListHeader), {})
-        const contentHeader = clones.length > 0 && React.cloneElement(clones.find(x => x.type === ListContentHeader), {})
+        const header = parseHeader(children)
+        const restChildren = clones.length > 0 && clones.filter(x => x.type !== ListHeader)
 
         const classes = classnames({
             'card-plain': plain
@@ -27,12 +36,12 @@ export default class List extends Component {
 
         return <div className={classes}>
             {header}
-            <ListContent itemTemplate={itemTemplate}>
-                {contentHeader}
+            <ListContent {...restProps}>
+                {restChildren}
             </ListContent>
         </div>
     }
 }
 
 List.Header = ListHeader
-List.ContentHeader = ListContentHeader
+List.Column = ListContentColumn
