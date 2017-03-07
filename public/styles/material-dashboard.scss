@@ -1,0 +1,51 @@
+/*!
+    
+ =========================================================
+ * Material Dashboard - v1.1.1.0
+ =========================================================
+ 
+ * Product Page: http://www.creative-tim.com/product/material-dashboard
+ * Copyright 2017 Creative Tim (http://www.creative-tim.com)
+ * Licensed under MIT (https://github.com/creativetimofficial/material-dashboard/blob/master/LICENSE.md)
+ 
+ =========================================================
+ 
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+ 
+ */
+
+
+//variables and mixins
+@import "material-dashboard/variables";
+@import "material-dashboard/mixins";
+@import "material-dashboard/shadows";
+
+//plugin css
+@import "material-dashboard/plugins/_plugin-nouislider";
+@import "material-dashboard/plugins/_animate";
+
+// Core CSS
+@import "material-dashboard/typography";
+@import "material-dashboard/sidebar-and-main-panel";
+@import "material-dashboard/buttons";
+@import "material-dashboard/misc";
+@import "material-dashboard/inputs";
+@import "material-dashboard/forms";
+@import "material-dashboard/alerts";
+@import "material-dashboard/tables";
+@import "material-dashboard/checkboxes";
+@import "material-dashboard/radios";
+@import "material-dashboard/togglebutton";
+@import "material-dashboard/ripples";
+@import "material-dashboard/pills";
+@import "material-dashboard/dialogs";
+@import "material-dashboard/navbars";
+@import "material-dashboard/popups";
+@import "material-dashboard/footers";
+
+// Fancy material-dashboarduff
+@import "material-dashboard/dropdown";
+@import "material-dashboard/cards";
+@import "material-dashboard/tabs";
+@import "material-dashboard/chartist";
+@import "material-dashboard/responsive";

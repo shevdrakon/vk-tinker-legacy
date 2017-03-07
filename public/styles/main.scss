@@ -1,35 +1,35 @@
-@import 'material-kit';
+@import 'material-dashboard';
 
 .mdl-textfield__label {
   margin-bottom: 0px;
 }
 
-.tinker-textfield-icon{
+.tinker-textfield-icon {
   position: absolute;
   bottom: 20px;
 }
 
-.tinker-textfield-container{
+.tinker-textfield-container {
   padding-left: 34px;
 }
 
-.avatar-container{
+.avatar-container {
   display: inline;
   padding: 0px 10px;
 }
 
-.avatar-img{
+.avatar-img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
 }
 
-
 /*bootstrap navigation*/
-.nav-header.navbar.navbar-default.navbar-inverse{
+.nav-header.navbar.navbar-default.navbar-inverse {
   background-color: #9c27b0;
 }
-.site-name{
+
+.site-name {
   float: right;
   display: inline;
   font-size: 16px;
@@ -40,13 +40,14 @@
   height: 40px;
   text-align: left;
 }
-.title-container.navbar-brand{
+
+.title-container.navbar-brand {
   padding: 0;
   cursor: default;
 }
 
-.navbar .navbar-nav>li{
-  >a.nav-button.active, >a.nav-button:hover {
+.navbar .navbar-nav > li {
+  > a.nav-button.active, > a.nav-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
@@ -118,6 +119,3 @@
     }
   }
 }
-
-
-

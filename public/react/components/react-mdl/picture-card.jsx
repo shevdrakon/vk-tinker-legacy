@@ -11,16 +11,27 @@ export default class PictureCard extends Component {
         imgLink: PropTypes.string.isRequired
     }
 
+    constructor(props) {
+        super(props);
+        this.state = {collapsed: true};
+        this.toggleCollapse = this.toggleCollapse.bind(this)
+    }
+
+    toggleCollapse(){
+        this.setState(prevState => {collapsed: !prevState.collapsed})
+    }
+
     render(){
     const {imgSrc, cardText, imgLink, ...otherProps} = this.props
+        const actionClass = this.state.collapsed ? 'small':'big'
        return <Card shadow={0} className="card-container" {...otherProps}>
            <CardTitle className="card-title"><img src={imgSrc} className="card-image"/></CardTitle>
            <CardText className="card-short-text">
                {cardText}
            </CardText>
-           <CardActions className="card-actions big" border>
+           <CardActions className={"card-actions "+actionClass} border>
                <Button raised ripple><Icon>delete</Icon>Delete</Button>
-               <IconButton name="more_vert" className="card-more"/>
+               <IconButton name="more_vert" className="card-more" onClick={this.toggleCollapse}/>
                <div className="card-information">Lalala Info here.</div>
            </CardActions>
            <CardMenu className="card-menu">
