@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
-import {Navbar, Nav} from 'react-bootstrap'
+import {Navbar} from 'react-bootstrap'
 
 import Avatar from './avatar.jsx'
 import Icon from '../react-mdl/icon.jsx'

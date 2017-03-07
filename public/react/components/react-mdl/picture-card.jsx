@@ -1,5 +1,4 @@
 import React, {Component,PropTypes} from 'react'
-import {Link} from 'react-router'
 import {Card, CardTitle, CardText, CardActions, Button, IconButton, CardMenu} from 'react-mdl'
 
 import Icon from '../react-mdl/icon.jsx'
@@ -18,7 +17,7 @@ export default class PictureCard extends Component {
     }
 
     toggleCollapse(){
-        this.setState(prevState => {collapsed: !prevState.collapsed})
+        this.setState(prevState => ({collapsed: !prevState.collapsed}))
     }
 
     render(){
