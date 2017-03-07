@@ -1,6 +1,6 @@
 import {escape} from 'lodash'
 import toastr from 'toastr'
-import 'toastr/toastr.scss'
+import '../../styles/toastr.scss'
 
 const showMessage = function (msg, type, timeout) {
     toastr[type](escape(msg), '', {
