@@ -6,8 +6,10 @@ const path = require('path')
 module.exports = class ConfigurationManager {
     static get defaults() {
         return {
-            app_id: 5653171, // vk application Id
-            app_secret: '57e5u3RCrakfO0nAGknE', // vk application secret key,
+            // app_id: 5653171, // vk application Id
+            app_id: 5737599, // vk application Id
+            app_secret: 'jqbQwO3G69OlVzU7Fp3I', // vk application secret key,
+            groupId: 106168410,
             siteFullUrl: 'http://localhost:1338'
         }
     }

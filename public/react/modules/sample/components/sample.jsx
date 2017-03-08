@@ -5,6 +5,7 @@ import Title from './title.jsx'
 
 import {Navigation} from '../../../components/navigation/navigation-bar.jsx'
 import SampleList from './sample-list.jsx'
+import Checkboxes from './checkboxes.jsx'
 
 export default class DashboardPage extends Component {
     static propTypes = {
@@ -24,7 +25,8 @@ export default class DashboardPage extends Component {
 
             <div className="container">
                 <Col sm={3}>
-                <Title>Checkboxes</Title>
+                    <Title>Checkboxes</Title>
+                    <Checkboxes/>
                 </Col>
             </div>
 
