@@ -29,7 +29,7 @@ export default class PictureCard extends Component {
                {cardText}
            </CardText>
            <CardActions className={"card-actions "+actionClass} border>
-               <Button raised ripple><Icon>delete</Icon>Delete</Button>
+               <Button ripple><Icon>delete</Icon>Delete</Button>
                <IconButton name="more_vert" className="card-more" onClick={this.toggleCollapse}/>
                <div className="card-information">Lalala Info here.</div>
            </CardActions>

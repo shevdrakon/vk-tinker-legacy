@@ -74,6 +74,8 @@
     position: absolute;
     z-index: 1;
     background-color: #fff;
+    transition: height 0.5s ease-in-out;
+
     .card-information{
       color: rgba(0,0,0,.54);
       font-size: 14px;
@@ -114,8 +116,10 @@
     position: absolute;
     top: 16px;
     left: 16px;
+    height: 32px;
+    line-height: 32px;
     &.done{
-      color: #00A000;
+      color: #76FF03;
     }
   }
 }
