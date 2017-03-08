@@ -1,0 +1,136 @@
+.ajax-loading-indicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: -17px 0 0 -39px;
+  padding: 10px 15px;
+  background: #3F454A;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 3px solid #FFFFFF;
+
+  box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+  opacity:0.9;
+}
+
+.ajax-loading-indicator-hidden {
+  top: -9999px;
+}
+
+.ajax-loading-indicator-dot {
+  float: left;
+  width: 8px;
+  height: 8px;
+  margin: 0 3px;
+  background: #92B343;
+}
+
+.busy-indicator-dot,
+.ajax-loading-indicator-dot {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+
+  opacity: 0;
+
+  -webkit-animation: loadingFade 1s infinite;
+  -moz-animation: loadingFade 1s infinite;
+  animation: loadingFade 1s infinite;
+
+  &:nth-child(1) {
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
+    animation-delay: 0s;
+  }
+
+  &:nth-child(2) {
+    -webkit-animation-delay: 0.1s;
+    -moz-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+  }
+
+  &:nth-child(3) {
+    -webkit-animation-delay: 0.2s;
+    -moz-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+  }
+}
+
+@-webkit-keyframes loadingFade {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+@-moz-keyframes loadingFade {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+@keyframes loadingFade {
+  0% { opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { opacity: 0; }
+}
+
+.busy-indicator-dot {
+  background:#FFF;
+  width: 6px;
+  height: 6px;
+  margin: 0px 2px 2px 2px;
+  line-height: 20px;
+  display: inline-block;
+  position: absolute;
+  top: -9999px;
+}
+
+.busy-indicator-text {
+  display: none;
+}
+
+.busy {
+  .busy-indicator {
+    .busy-indicator-text {
+      display: inline-block;
+      margin-right: 10px;
+    }
+  }
+
+  .busy-indicator-dot{
+    position: static;
+  }
+
+  .hide-when-busy {
+    display: none;
+  }
+}
+
+.infinite-scroll-busy.busy-indicator-dots {
+  height: 45px;
+  text-align: center;
+  padding: 15px;
+
+  .busy-indicator-dot {
+    width: 10px;
+    height: 10px;
+    background: $purple-500;
+  }
+
+  &.scrolled {
+    background-color: #fff;
+  }
+}
+
+.busy-indicator-dots-gray {
+  .busy-indicator-dot {
+    background:$purple-500;
+  }
+}
+
+.busy.busy-indicator .busy-indicator-text {
+  display: inline-block;
+  margin-right: 10px;
+}

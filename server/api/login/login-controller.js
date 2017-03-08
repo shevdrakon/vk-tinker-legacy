@@ -14,15 +14,6 @@ class LoginController extends BaseController {
         return new UserService()
             .getCurrentUserInfo({access_token})
     }
-
-    setAuthCookie() {
-        const access_token = this.request.params.access_token
-        const ttl = 24 * 60 * 60 * 1000
-
-       // this.response.cookie('vk-tinker-idp', access_token, {maxAge: ttl})
-
-        return this
-    }
 }
 
 module.exports = LoginController

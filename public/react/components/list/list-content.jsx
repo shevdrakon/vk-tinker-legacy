@@ -2,8 +2,11 @@ import React, {Component, PropTypes} from 'react'
 import {propTypes as mPropTypes} from 'mobx-react'
 import cn from 'classnames'
 
+import BusyDots from '../busy-dots.jsx'
+
 import ListContentColumn from './list-content-column.jsx'
 import ColumnHeader from './list-content-column-header.jsx'
+// import ListContentFooter from './list-content-footer.jsx'
 
 const parseColumns = (children) => {
     if (!children || children.length === 0)
@@ -21,12 +24,20 @@ const parseColumns = (children) => {
         })
 }
 
+// const parseFooter = (children) => {
+//     const clones = React.Children.toArray(children)
+//     const header = clones.length > 0 && clones.find(x => x.type === ListContentFooter)
+//
+//     return header ? React.cloneElement(header, {}) : undefined
+// }
+
 export default class ListContent extends Component {
     static propTypes = {
         children: PropTypes.oneOfType([
             PropTypes.arrayOf(PropTypes.element),
             PropTypes.element,
         ]),
+        busy: PropTypes.bool,
         collection: mPropTypes.arrayOrObservableArray,
         hover: PropTypes.bool,
         headerClassName: PropTypes.string,
@@ -50,7 +61,7 @@ export default class ListContent extends Component {
     }
 
     render() {
-        const {headerClassName = 'text-primary', children, hover, collection = [], rowTemplate} = this.props
+        const {headerClassName = 'text-primary', children, hover, collection = [], rowTemplate, busy} = this.props
         const columns = parseColumns(children)
 
         const tableClasses = cn({
@@ -78,6 +89,7 @@ export default class ListContent extends Component {
                 })}
                 </tbody>
             </table>
+            {busy && <BusyDots/>}
         </div>
     }
 }
