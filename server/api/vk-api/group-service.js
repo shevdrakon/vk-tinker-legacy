@@ -10,6 +10,7 @@ class GroupService extends VkApiServiceBase {
             group_id: groupId,
             count: top,
             offset: skip,
+            fields: 'photo_50',
             access_token
         })
 

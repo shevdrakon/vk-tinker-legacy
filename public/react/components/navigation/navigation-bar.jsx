@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router'
 import {Navbar} from 'react-bootstrap'
 
-import Avatar from './avatar.jsx'
+import Avatar from '../avatar.jsx'
 import Icon from '../react-mdl/icon.jsx'
 
 export class Navigation extends Component {

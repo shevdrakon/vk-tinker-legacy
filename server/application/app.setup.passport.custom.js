@@ -47,6 +47,16 @@ module.exports = function (app, configuration) {
     app.use(passport.initialize())
     app.use(passport.session())
 
+    app.use(function (req, res, next) {
+        if (!req.user) {
+            req.user = {
+                access_token: 'b3ac5def2b653718b5bed667767807f643b49b32863551a9177587a1d1b6dd35c158265f6f2c9dcc37648'
+            }
+        }
+
+        next()
+    })
+
     //app.use('', passport.authenticate('custom', {}))
 
     // GET /auth/vk

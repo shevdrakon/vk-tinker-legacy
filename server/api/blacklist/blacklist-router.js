@@ -13,7 +13,11 @@ module.exports = (configuration) => {
             groupId: configuration.groupId
         }
         const controller = new BlacklistController(req, res, next, configuration)
-        controller.getBanned(payload)
+        controller
+            .getBanned(payload)
+            .then((response) => {
+                res.json(response)
+            })
     })
 
     return router

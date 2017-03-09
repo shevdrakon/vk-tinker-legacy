@@ -7,6 +7,8 @@ import {Col} from 'react-bootstrap'
 import {Navigation} from '../../../components/navigation/navigation-bar.jsx'
 import List from './blacklist-list.jsx'
 
+import '../styles/_styles.scss'
+
 class Blacklist extends Component {
     static propTypes = {
         loading: PropTypes.bool,
@@ -17,15 +19,18 @@ class Blacklist extends Component {
     static load({}, {blacklist}) {
         return blacklist.load()
     }
+
     /* eslint-enable no-empty-pattern */
 
     render() {
         return <div>
             <Navigation/>
 
-            <Col md={8} mdOffset={2}>
-                <List />
-            </Col>
+            <div className="blacklist-container">
+                <Col md={10} mdOffset={1}>
+                    <List />
+                </Col>
+            </div>
         </div>
     }
 }

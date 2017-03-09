@@ -1,0 +1,19 @@
+.blacklist-container {
+  padding-top: 90px;
+
+  .avatar-container {
+    display: flex;
+
+    span {
+      align-self: center;
+    }
+  }
+
+  .card {
+    min-width: 400px;
+
+    img {
+      width: 50px;
+    }
+  }
+}

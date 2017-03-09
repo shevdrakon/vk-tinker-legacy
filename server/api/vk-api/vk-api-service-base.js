@@ -1,4 +1,4 @@
-import qs from 'qs'
+const qs = require('qs')
 
 const Logger = require('../../utils/logger')
 const BaseService = require('../../lib/base-service')
