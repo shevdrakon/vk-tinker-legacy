@@ -46,7 +46,7 @@ class Sample extends Component {
                 <Title>Pagination</Title>
                 <Pagination prev next first last items={5} activePage={3} maxButtons={3}/>
                 <Pagination prev next first last items={10} activePage={2} maxButtons={3}/>
-                <Pagination prev next first last items={10} activePage={9} maxButtons={3}/>
+                <Pagination prev next first last items={10} activePage={8} maxButtons={3}/>
             </div>
 
             <div className="container">
