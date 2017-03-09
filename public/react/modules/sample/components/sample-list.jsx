@@ -1,23 +1,10 @@
-import React from 'react'
-
+import React, {PropTypes} from 'react'
 import {Col} from 'react-bootstrap'
 
 import List from '../../../components/list/list.jsx'
 import Row from './sample-list-row.jsx'
 
-const SampleList = () => {
-    const collection = [{
-        name: 'Ivan',
-        country: 'Russia',
-        city: 'Yaroslavl',
-        salary: '18.000 rub.'
-    }, {
-        name: 'Hanso',
-        country: 'Norway',
-        city: 'Oslo',
-        salary: '4.200 kr.'
-    }]
-
+const SampleList = ({collection}) => {
     const rowTemplate = <Row/>
 
     return <div>
@@ -51,6 +38,10 @@ const SampleList = () => {
             </List>
         </Col>
     </div>
+}
+
+SampleList.propTypes = {
+    collection: PropTypes.array
 }
 
 export default SampleList

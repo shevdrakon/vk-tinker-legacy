@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import {observer} from 'mobx-react'
 
 import {Col} from 'react-bootstrap'
 import Title from './title.jsx'
@@ -9,11 +10,15 @@ import SampleList from './sample-list.jsx'
 import Checkboxes from './checkboxes.jsx'
 
 
-export default class DashboardPage extends Component {
+import BusyDots from '../../../components/busy-dots.jsx'
+
+import inject from '../../../utils/inject'
+
+class Sample extends Component {
+
     static propTypes = {
-        dashboard: PropTypes.shape({
-            collapsibleMenuShown: PropTypes.bool,
-            onMenuClick: PropTypes.func
+        sample: PropTypes.shape({
+            collection: PropTypes.array
         })
     }
 
@@ -21,9 +26,16 @@ export default class DashboardPage extends Component {
     }
 
     render() {
+        const {collection} = this.props.sample
+
         return <div>
             <Title>Navigation</Title>
             <Navigation/>
+
+            <div className="container">
+                <Title>BusyDots</Title>
+                <BusyDots/>
+            </div>
 
             <div className="container">
                 <Col sm={3}>
@@ -34,7 +46,7 @@ export default class DashboardPage extends Component {
 
             <div className="container">
                 <Title>List</Title>
-                <SampleList/>
+                <SampleList collection={collection}/>
             </div>
 
             <div className="container">
@@ -44,3 +56,9 @@ export default class DashboardPage extends Component {
         </div>
     }
 }
+
+export default inject(({sample}) => {
+    return {
+        sample: sample
+    }
+})(observer(Sample))
