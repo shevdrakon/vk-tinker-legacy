@@ -4,8 +4,10 @@ import {Col} from 'react-bootstrap'
 import Title from './title.jsx'
 
 import {Navigation} from '../../../components/navigation/navigation-bar.jsx'
+import SamplePictureCard from './sample-picture-card.jsx'
 import SampleList from './sample-list.jsx'
 import Checkboxes from './checkboxes.jsx'
+
 
 export default class DashboardPage extends Component {
     static propTypes = {
@@ -33,6 +35,11 @@ export default class DashboardPage extends Component {
             <div className="container">
                 <Title>List</Title>
                 <SampleList/>
+            </div>
+
+            <div className="container">
+                <Title>Picture card</Title>
+                <SamplePictureCard/>
             </div>
         </div>
     }

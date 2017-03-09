@@ -144,11 +144,12 @@
          @include transition (0.33s, cubic-bezier(0.685, 0.0473, 0.346, 1));
          position: relative;
     }
+    /*
     .navbar .navbar-collapse.collapse,
     .navbar .navbar-collapse.collapse.in,
     .navbar .navbar-collapse.collapsing{
         display: none !important;
-    }
+    }*/
 
     .navbar-nav > li{
         float: none;
@@ -338,7 +339,7 @@
         .open .dropdown-menu > li > a,
         .open .dropdown-menu > li > a:hover,
         .open .dropdown-menu > li > a:focus{
-            opacity: .7;
+            /*opacity: .7;*/
             background: transparent;
         }
 
@@ -413,7 +414,7 @@
     }
 
     .navbar-collapse.collapse{
-        height: 100% !important;
+        /*height: 100% !important;*/
     }
     .navbar-collapse.collapse.in {
         display: block;

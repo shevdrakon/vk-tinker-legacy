@@ -7,7 +7,7 @@ import Icon from '../react-mdl/icon.jsx'
 
 export class Navigation extends Component {
     render() {
-        return <Navbar inverse collapseOnSelect className="navbar-default nav-header">
+        return <Navbar inverse collapseOnSelect className="navbar-default nav-header navbar-fixed-top">
             <Navbar.Header>
                 <Navbar.Brand>
                     <div className="title-container">
