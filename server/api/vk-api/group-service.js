@@ -1,12 +1,17 @@
-const VkApiService = require('./vk-api-service')
+const VkApiServiceBase = require('./vk-api-service-base')
 
-class UserSevice extends VkApiService {
+class GroupService extends VkApiServiceBase {
     constructor() {
         super({})
     }
 
     getBanned({top, skip, groupId, access_token}) {
-        const url = `https://api.vk.com/method/groups.getBanned?group_id=${groupId}&count=${top}&offset=${skip}&access_token=${access_token}`
+        const url = this.getUrl('groups.getBanned', {
+            group_id: groupId,
+            count: top,
+            offset: skip,
+            access_token
+        })
 
         return this.get(url)
             .then(this.handleError)
@@ -16,4 +21,4 @@ class UserSevice extends VkApiService {
     }
 }
 
-module.exports = UserSevice
+module.exports = GroupService

@@ -1,12 +1,15 @@
-const VkApiService = require('./vk-api-service')
+const VkApiServiceBase = require('./vk-api-service-base')
 
-class UserSevice extends VkApiService {
+class UserSevice extends VkApiServiceBase {
     constructor() {
         super({})
     }
 
     getCurrentUserInfo({access_token}) {
-        const url = `https://api.vk.com/method/users.get?fields=photo_50&access_token=${access_token}`
+        const url = this.getUrl('users.get', {
+            fields: 'photo_50',
+            access_token
+        })
 
         return this.get(url)
             .then(this.handleError)

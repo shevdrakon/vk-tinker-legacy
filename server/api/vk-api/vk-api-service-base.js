@@ -1,9 +1,15 @@
+import qs from 'qs'
+
 const Logger = require('../../utils/logger')
 const BaseService = require('../../lib/base-service')
 
-class VkApiService extends BaseService {
+class VkApiServiceBase extends BaseService {
     constructor() {
         super({})
+    }
+
+    get vkApiBaseUrl() {
+        return 'https://api.vk.com/method'
     }
 
     handleError(response) {
@@ -21,6 +27,12 @@ class VkApiService extends BaseService {
 
         return response
     }
+
+    getUrl(method, payload) {
+        const query = qs.stringify(payload, {skipNulls: true})
+
+        return `${this.vkApiBaseUrl}/${method}?${query}`
+    }
 }
 
-module.exports = VkApiService
+module.exports = VkApiServiceBase
