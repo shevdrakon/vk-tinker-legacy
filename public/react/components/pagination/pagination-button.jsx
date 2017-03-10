@@ -5,8 +5,20 @@ import {Button} from 'react-mdl'
 
 export default class PaginationButton extends Component {
     static propTypes = {
+        eventKey: PropTypes.number,
         children: PropTypes.node,
-        active: PropTypes.bool
+        active: PropTypes.bool,
+        disabled: PropTypes.bool,
+        onSelect: PropTypes.func
+    }
+
+    handleClick = () => {
+        const {disabled, onSelect, eventKey} = this.props
+        if (disabled)
+            return
+
+        if (onSelect)
+            onSelect({value: eventKey})
     }
 
     render() {
@@ -16,7 +28,9 @@ export default class PaginationButton extends Component {
         })
 
         return <li className={classes}>
-            <Button ripple>{children}</Button>
+            <Button ripple onClick={this.handleClick}>
+                {children}
+            </Button>
         </li>
     }
 }
