@@ -9,12 +9,7 @@ export default class NotificationStore extends SmartStore {
         if (error && error.response) {
             const {status} = error.response
             if (status === 500) {
-                this.store.error.update({
-                    errorUrl: this.window.location.href,
-                    errorMessage: message
-                })
-
-                this.store.routing.replace('error')
+                this.messageProvider.error(message || 'Oops, something went wrong.')
             }
             else {
                 if (status === 401) {

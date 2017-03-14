@@ -29,7 +29,13 @@ export default class BlacklistStore extends SmartStore {
             else {
                 this.loading = false
             }
+        }), action(() => {
+            this.loading = false
         }))
+    }
+
+    @action repeat(){
+        this.fetch()
     }
 
     @action fetch({reset} = {reset: true}) {

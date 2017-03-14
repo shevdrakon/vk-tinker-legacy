@@ -2,6 +2,8 @@ import React, {PropTypes, Component} from 'react'
 import {observer, propTypes as mPropTypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
+import {IconButton} from 'react-mdl'
+
 import List from '../../../components/list/list.jsx'
 import ListItem from './blacklist-list-item.jsx'
 
@@ -10,8 +12,13 @@ class BlacklistList extends Component {
         list: PropTypes.shape({
             loading: PropTypes.bool,
             fetching: PropTypes.bool,
-            collection: mPropTypes.arrayOrObservableArray
+            collection: mPropTypes.arrayOrObservableArray,
+            repeat: PropTypes.func
         })
+    }
+
+    handleRepeatClick = (e) => {
+        this.props.list.repeat()
     }
 
     render() {
@@ -22,7 +29,10 @@ class BlacklistList extends Component {
 
         return <div>
             <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="uid">
-                <List.Header>Members :: Blacklist</List.Header>
+                <List.Header>
+                    Members :: Blacklist
+                    <IconButton onClick={this.handleRepeatClick} name="autorenew" className="renew"/>
+                </List.Header>
                 <List.Column>Name</List.Column>
                 <List.Column>Blocked by</List.Column>
                 <List.Column>Until</List.Column>
