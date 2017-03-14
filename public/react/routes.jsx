@@ -92,8 +92,19 @@ const Routes = (app) => {
                     }, nextState, cb)
                 })
             })
-        },
-            {
+        }, {
+                path: 'pending',
+                getComponent: ensureClient((nextState, cb) => {
+                    require.ensure(['./modules/pending/index'], require => {
+                        const {Root, Store, Service} = require('./modules/pending/index').default
+                        loadComponent({
+                            rootComponent: Root,
+                            stores: {pending: Store},
+                            services: {pending: Service}
+                        }, nextState, cb)
+                    })
+                })
+            }, {
             path: 'sample',
             getComponent: ensureClient((nextState, cb) => {
                 require.ensure(['./modules/sample/index'], require => {

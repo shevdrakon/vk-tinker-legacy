@@ -2,6 +2,17 @@
 @import './components/ajax-in-progress';
 @import './components/pagination';
 
+.equal{
+  display: flex;
+  flex: 1 0 auto;
+  flex-wrap: wrap;
+}
+
+.row.equal> [class*='col-'] {
+  display: flex;
+  flex-direction: column;
+}
+
 .mdl-textfield__label {
   margin-bottom: 0px;
 }
@@ -63,11 +74,12 @@
 /*picture-card*/
 .card-container {
   width: 100%;
-  height: 500px;
+  height: 100%;
   display: inline-flex;
 
   .card-title {
     padding: 0px;
+    height: calc(100% - 53px);
 
     .card-image {
       width: 100%;
@@ -76,6 +88,12 @@
 
   .card-short-text{
     font-size: 14px;
+    width: 100%;
+    position: absolute;
+    bottom: 50px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: #fff;
+    font-weight: 500;
   }
 
   .card-actions{
@@ -83,7 +101,7 @@
     position: absolute;
     z-index: 1;
     background-color: #fff;
-    transition: height 0.5s ease-in-out;
+    transition: height 0.3s ease-in-out;
 
     .mdl-button{
       color: inherit;
@@ -114,8 +132,18 @@
     }
   }
 
-  .card-menu-icon{
-    color: #ffffff
+  .card-menu {
+    .mdl-button{
+      background-color: rgba(0, 0, 0, 0.2);
+
+      &:hover{
+        background-color: rgba(158,158,158,.2);
+      }
+    }
+
+    .card-menu-icon {
+      color: #ffffff
+    }
   }
 
   .card-more{
