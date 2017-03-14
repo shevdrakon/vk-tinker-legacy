@@ -8,7 +8,8 @@ export default class Pagination extends Component {
         items: PropTypes.number,
         maxButtons: PropTypes.number,
         prev: PropTypes.bool,
-        next: PropTypes.bool
+        next: PropTypes.bool,
+        onSelect: PropTypes.func
     }
 
     static defaultProps = {
@@ -19,7 +20,7 @@ export default class Pagination extends Component {
         next: false
     }
 
-    renderPageButtons(activePage, items, maxButtons) {
+    renderPageButtons(activePage, items, maxButtons, buttonProps) {
         const pageButtons = []
 
         let startPage
@@ -35,7 +36,7 @@ export default class Pagination extends Component {
 
         for (let page = startPage; page <= endPage; ++page) {
             pageButtons.push(
-                <Button key={page} eventKey={page} active={page === activePage}>
+                <Button key={page} eventKey={page} active={page === activePage} {...buttonProps}>
                     {page}
                 </Button>
             )
@@ -44,24 +45,24 @@ export default class Pagination extends Component {
         if (startPage > 1) {
             if (startPage > 2) {
                 pageButtons.unshift(
-                    <Button key="ellipsisFirst" disabled>{'\u2026'}</Button>
+                    <Button key="ellipsisFirst" disabled {...buttonProps}>{'\u2026'}</Button>
                 )
             }
 
             pageButtons.unshift(
-                <Button key={1} eventKey={1} active={false}>1</Button>
+                <Button key={1} eventKey={1} active={false} {...buttonProps}>1</Button>
             )
         }
 
         if (endPage < items) {
             if (endPage < items - 1) {
                 pageButtons.push(
-                    <Button key="ellipsis" disabled>{'\u2026'}</Button>
+                    <Button key="ellipsis" disabled {...buttonProps}>{'\u2026'}</Button>
                 )
             }
 
             pageButtons.push(
-                <Button key={items} eventKey={items} active={false}>
+                <Button key={items} eventKey={items} active={false} {...buttonProps}>
                     {items}
                 </Button>
             )
@@ -71,14 +72,17 @@ export default class Pagination extends Component {
     }
 
     render() {
-        const {prev, next, activePage, items, maxButtons} = this.props
+        const {prev, next, activePage, items, maxButtons, onSelect} = this.props
+        const buttonProps = {
+            onSelect
+        }
 
         return <ul className="pagination">
-            {prev && <Button>&lt; prev</Button>}
+            {prev && <Button eventKey={activePage - 1} disabled={activePage === 1} {...buttonProps}>&lt; prev</Button>}
 
-            {this.renderPageButtons(activePage, items, maxButtons)}
+            {this.renderPageButtons(activePage, items, maxButtons, buttonProps)}
 
-            {next && <Button>next &gt;</Button>}
+            {next && <Button eventKey={activePage + 1} disabled={activePage >= items} {...buttonProps}>next &gt;</Button>}
         </ul>
     }
 }

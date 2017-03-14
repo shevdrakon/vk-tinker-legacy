@@ -16,15 +16,21 @@ class Sample extends Component {
 
     static propTypes = {
         sample: PropTypes.shape({
-            collection: PropTypes.array
+            collection: PropTypes.array,
+            activePage: PropTypes.number,
+            setActivePage: PropTypes.func
         })
     }
 
     static load() {
     }
 
+    handlePaginationSelect = ({value}) => {
+        this.props.sample.setActivePage({value})
+    }
+
     render() {
-        const {collection} = this.props.sample
+        const {collection, activePage} = this.props.sample
 
         return <div>
             <Title>Navigation</Title>
@@ -44,9 +50,8 @@ class Sample extends Component {
 
             <div className="container">
                 <Title>Pagination</Title>
-                <Pagination prev next first last items={5} activePage={3} maxButtons={3}/>
-                <Pagination prev next first last items={10} activePage={2} maxButtons={3}/>
-                <Pagination prev next first last items={10} activePage={8} maxButtons={3}/>
+                <Pagination prev next items={10} activePage={activePage} maxButtons={3} onSelect={this.handlePaginationSelect}/>
+                <Pagination prev next items={10} activePage={activePage} maxButtons={5} onSelect={this.handlePaginationSelect}/>
             </div>
 
             <div className="container">
