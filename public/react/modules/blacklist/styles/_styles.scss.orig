@@ -1,0 +1,31 @@
+.blacklist-container {
+<<<<<<< HEAD
+  padding-top: 90px;
+
+  .renew {
+    float: right;
+  }
+
+=======
+>>>>>>> navigation
+  .avatar-container {
+    display: flex;
+
+    span {
+      align-self: center;
+    }
+  }
+
+  .card {
+    min-width: 400px;
+
+    img {
+      width: 50px;
+    }
+  }
+
+  .pagination {
+    margin-top: 0px;
+    float: right
+  }
+}

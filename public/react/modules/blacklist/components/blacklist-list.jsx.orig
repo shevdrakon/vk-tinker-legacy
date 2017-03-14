@@ -1,0 +1,58 @@
+import React, {PropTypes, Component} from 'react'
+import {observer, propTypes as mPropTypes} from 'mobx-react'
+import inject from '../../../utils/inject'
+
+<<<<<<< HEAD
+import {IconButton} from 'react-mdl'
+=======
+import {Badge} from 'react-mdl'
+>>>>>>> navigation
+
+import List from '../../../components/list/list.jsx'
+import ListItem from './blacklist-list-item.jsx'
+
+class BlacklistList extends Component {
+    static propTypes = {
+        list: PropTypes.shape({
+            total: PropTypes.number,
+            loading: PropTypes.bool,
+            fetching: PropTypes.bool,
+            collection: mPropTypes.arrayOrObservableArray,
+            repeat: PropTypes.func
+        })
+    }
+
+    handleRepeatClick = (e) => {
+        this.props.list.repeat()
+    }
+
+    render() {
+        const {loading, fetching, collection, total} = this.props.list
+        const busy = loading || fetching
+
+        const rowTemplate = <ListItem/>
+
+        return <div>
+            <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="uid">
+                <List.Header>
+<<<<<<< HEAD
+                    Members :: Blacklist
+                    <IconButton onClick={this.handleRepeatClick} name="autorenew" className="renew"/>
+=======
+                    <Badge text={total}>Members :: Blacklist</Badge>
+>>>>>>> navigation
+                </List.Header>
+                <List.Column>Name</List.Column>
+                <List.Column>Blocked by</List.Column>
+                <List.Column>Until</List.Column>
+                <List.Column>Comment</List.Column>
+            </List>
+        </div>
+    }
+}
+
+export default inject(({blacklist}) => {
+    return {
+        list: blacklist
+    }
+})(observer(BlacklistList))
