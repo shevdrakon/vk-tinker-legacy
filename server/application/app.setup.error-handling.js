@@ -50,7 +50,10 @@ module.exports = function (app, configuration) {
         if (err.status !== 401)
             return next(err);
 
-        res.status(401);
+        res.status(err.status)
+        res.json({status: err.status, message: err.message})
+
+        //res.status(401);
 
         // var loginUrl = `${configuration.loginUrl}?ReturnUrl=${req.protocol}://${req.get('host')}${req.url}`;
         //
@@ -70,13 +73,13 @@ module.exports = function (app, configuration) {
         // res.redirect(loginUrl);
     });
 
-    app.use(function (err, req, res, next) {
-        // we may use properties of the error object
-        // here and next(err) appropriately, or if
-        // we possibly recovered from the error, simply next().
-        res.sendStatus(err.status || 500);
-
-        Logger.error(err.message);
-        Logger.error(err.stack);
-    });
+    // app.use(function (err, req, res, next) {
+    //     // we may use properties of the error object
+    //     // here and next(err) appropriately, or if
+    //     // we possibly recovered from the error, simply next().
+    //     res.sendStatus(err.status || 500);
+    //
+    //     Logger.error(err.message);
+    //     Logger.error(err.stack);
+    // });
 };

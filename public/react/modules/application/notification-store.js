@@ -13,7 +13,10 @@ export default class NotificationStore extends SmartStore {
             }
             else {
                 if (status === 401) {
-                    this.store.application.logout()
+                    error.response.json().then((err) => {
+                        this.messageProvider.error(err.message || message || 'Authorization failed.')
+                    })
+                    //this.store.application.logout()
                 } else if (status === 400) {
                     this.messageProvider.error(message || 'Oops, something went wrong.')
                 } else if (status === 404) {

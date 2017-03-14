@@ -51,11 +51,6 @@ class BlacklistController extends BaseController {
                     items
                 }
             })
-            .catch((error) => {
-                this.end(null, 500)
-
-                throw error
-            })
     }
 }
 

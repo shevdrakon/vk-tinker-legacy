@@ -18,6 +18,9 @@ module.exports = (configuration) => {
             .then((response) => {
                 res.json(response)
             })
+            .catch((error) => {
+                next(error)
+            })
     })
 
     return router
