@@ -3,6 +3,8 @@ import React, {Component, PropTypes} from 'react'
 export default class ListHeader extends Component {
     static propTypes = {
         children: PropTypes.oneOfType([
+            PropTypes.node,
+            PropTypes.arrayOf(PropTypes.element),
             PropTypes.element,
             PropTypes.string
         ]),

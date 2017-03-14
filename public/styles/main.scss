@@ -2,6 +2,10 @@
 @import './components/ajax-in-progress';
 @import './components/pagination';
 
+.under-navigation {
+  padding-top: 90px;
+}
+
 .equal{
   display: flex;
   flex: 1 0 auto;
@@ -42,7 +46,7 @@
   background-color: #9c27b0;
 }
 
-.navbar{
+.navbar {
   box-shadow: 0 10px 20px -12px rgba(0, 0, 0, 0.42), 0 3px 20px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
   border: none;
   border-radius: 0;
@@ -86,7 +90,7 @@
     }
   }
 
-  .card-short-text{
+  .card-short-text {
     font-size: 14px;
     width: 100%;
     position: absolute;
@@ -96,37 +100,37 @@
     font-weight: 500;
   }
 
-  .card-actions{
+  .card-actions {
     bottom: 0px;
     position: absolute;
     z-index: 1;
     background-color: #fff;
     transition: height 0.3s ease-in-out;
 
-    .mdl-button{
+    .mdl-button {
       color: inherit;
       font-weight: inherit;
     }
 
-    .card-information{
-      color: rgba(0,0,0,.54);
+    .card-information {
+      color: rgba(0, 0, 0, .54);
       font-size: 14px;
       line-height: 18px;
-      border-top: 1px solid rgba(0,0,0,.1);
+      border-top: 1px solid rgba(0, 0, 0, .1);
       margin-top: 10px;
       padding: 20px;
     }
 
-    &.small{
+    &.small {
       height: 53px;
-      .card-information{
+      .card-information {
         display: none;
       }
     }
 
-    &.big{
+    &.big {
       height: 100%;
-      .card-information{
+      .card-information {
         display: block;
       }
     }
@@ -146,21 +150,21 @@
     }
   }
 
-  .card-more{
+  .card-more {
     float: right;
 
-    &:after{
+    &:after {
       clear: both;
     }
   }
 
-  .card-validation{
+  .card-validation {
     position: absolute;
     top: 16px;
     left: 16px;
     height: 32px;
     line-height: 32px;
-    &.done{
+    &.done {
       color: #76FF03;
     }
   }

@@ -1,17 +1,13 @@
 import React, {Component, PropTypes} from 'react'
 import {observer} from 'mobx-react'
-
-import {Navigation} from '../../../components/navigation/navigation-bar.jsx'
-
 import inject from '../../../utils/inject'
 
+import {Navigation} from '../../../components/navigation/navigation-bar.jsx'
+import PhotoCards from './photo-cards.jsx'
 
 export class DashboardPage extends Component {
     static propTypes = {
-        dashboard: PropTypes.shape({
-            collapsibleMenuShown: PropTypes.bool,
-            onMenuClick: PropTypes.func
-        })
+        dashboard: PropTypes.shape({})
     }
 
     static load() {
@@ -20,6 +16,10 @@ export class DashboardPage extends Component {
     render() {
         return <div>
             <Navigation/>
+
+            <div className="under-navigation">
+                <PhotoCards />
+            </div>
         </div>
     }
 }

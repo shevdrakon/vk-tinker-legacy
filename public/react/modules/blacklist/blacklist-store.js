@@ -1,4 +1,4 @@
-import {action, observable} from 'mobx'
+import {action, observable, computed} from 'mobx'
 
 import BanUserModel from './models/ban-user-model'
 import SmartStore from './../../base/smart-store'
@@ -14,12 +14,18 @@ export default class BlacklistStore extends SmartStore {
     @observable loading = true
 
     @observable total = 0
+    @observable activePage = 1
+
     @observable top = 10
     @observable skip = 0
     @observable fetching = false
     @observable nofetch = false
     @observable collection = []
     @observable notAvailable = false
+
+    @computed get pagesCount() {
+        return Math.ceil(this.total / this.top)
+    }
 
     @action load() {
         return this.fetch().then(action(() => {
@@ -47,6 +53,33 @@ export default class BlacklistStore extends SmartStore {
 
         if (this.nofetch)
             return Promise.resolve()
+
+        this.fetching = true
+
+        return this.api.blacklist.get({top, skip})
+            .then(action(response => {
+                this.fetching = false
+
+                this.total = response.count
+                // this.collection = reset ? response.items : [...collection, ...nextCollection]
+                this.collection = response.items.map((user) => new BanUserModel({...user}))
+                this.skip = skip
+                //this.nofetch = nextCollection.length < top
+
+                this.notAvailable = !this.collection.length
+
+            }), action(error => {
+                this.fetching = false
+                this.store.notification.error({error, message: 'Could not retrieve blacklist.'})
+
+                throw error
+            }))
+    }
+
+    @action selectPage({value}) {
+        this.activePage = value
+        const top = this.top
+        const skip = Math.max(value - 1, 0) * this.top
 
         this.fetching = true
 

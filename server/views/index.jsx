@@ -6,12 +6,14 @@ export default class Index extends Component {
             apiUrl,
             assetsRoot,
             stats,
-            vkAppId
+            vkAppId,
+            user
         } = this.props
 
         const config = {
             apiUrl,
-            vkAppId
+            vkAppId,
+            user
         }
 
         return <html lang="en" className="html">

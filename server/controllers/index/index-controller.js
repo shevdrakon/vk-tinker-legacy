@@ -14,7 +14,8 @@ class Controller extends BaseController {
             apiUrl: this.configuration.apiUrl,
             assetsRoot: this.configuration.assetsRoot,
             stats: this.configuration.stats,
-            vkAppId: this.configuration.app_id
+            vkAppId: this.configuration.app_id,
+            user: this.request.user
         })
     }
 }

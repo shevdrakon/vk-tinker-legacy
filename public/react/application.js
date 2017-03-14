@@ -49,6 +49,7 @@ export default {
 
         this.store = new RootStore({
             application: {
+                user: config.user,
                 vkAppId: config.vkAppId
                 // tokenHeader: config.tokenHeader,
                 // token: config.token,
