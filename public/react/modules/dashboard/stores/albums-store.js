@@ -2,34 +2,16 @@ import {action, observable, computed} from 'mobx'
 
 import SmartStore from './../../../base/smart-store'
 
-export default class DashboardStore extends SmartStore {
+export default class AlbumsStore extends SmartStore {
+
     constructor(initialState, environment) {
         super(initialState, environment)
     }
 
     @observable loading = true
-
-    @observable total = 0
-    @observable activePage = 1
-
-    @observable top = 10
-    @observable skip = 0
-    @observable fetching = false
-    @observable nofetch = false
     @observable collection = []
-    @observable notAvailable = false
-
-    @computed get pagesCount() {
-        return Math.ceil(this.total / this.top)
-    }
-
-    get albumsStore() {
-        return this.store.dashboard.albums
-    }
 
     @action load() {
-        this.albumsStore.load()
-
         return this.fetch()
             .then(action(() => {
                 this.loading = false
@@ -42,20 +24,12 @@ export default class DashboardStore extends SmartStore {
         this.fetch()
     }
 
-    @action fetch({reset} = {reset: true}) {
-        const {top} = this
-        const skip = reset ? 0 : this.skip + top
-
-        if (reset)
-            this.nofetch = false
-
-        if (this.nofetch)
-            return Promise.resolve()
-
+    @action fetch() {
         this.fetching = true
 
-        return this.api.photos.get({top, skip})
+        return this.api.photos.getAlbums()
             .then(action(response => {
+                debugger
                 this.fetching = false
 
                 this.total = response.count

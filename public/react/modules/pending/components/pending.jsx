@@ -19,7 +19,6 @@ class Pending extends Component {
     static load({}, {pending}) {
         return pending.load()
     }
-
     /* eslint-enable no-empty-pattern */
 
     render() {

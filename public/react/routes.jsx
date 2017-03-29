@@ -73,10 +73,11 @@ const Routes = (app) => {
             path: 'dashboard',
             getComponent: ensureClient((nextState, cb) => {
                 require.ensure(['./modules/dashboard/index'], require => {
-                    const {Root, Store} = require('./modules/dashboard/index').default
+                    const {Root, Store, Service} = require('./modules/dashboard/index').default
                     loadComponent({
                         rootComponent: Root,
-                        stores: {dashboard: Store}
+                        stores: {dashboard: Store},
+                        services: {photos: Service}
                     }, nextState, cb)
                 })
             })
@@ -93,18 +94,18 @@ const Routes = (app) => {
                 })
             })
         }, {
-                path: 'pending',
-                getComponent: ensureClient((nextState, cb) => {
-                    require.ensure(['./modules/pending/index'], require => {
-                        const {Root, Store, Service} = require('./modules/pending/index').default
-                        loadComponent({
-                            rootComponent: Root,
-                            stores: {pending: Store},
-                            services: {pending: Service}
-                        }, nextState, cb)
-                    })
+            path: 'pending',
+            getComponent: ensureClient((nextState, cb) => {
+                require.ensure(['./modules/pending/index'], require => {
+                    const {Root, Store, Service} = require('./modules/pending/index').default
+                    loadComponent({
+                        rootComponent: Root,
+                        stores: {pending: Store},
+                        services: {pending: Service}
+                    }, nextState, cb)
                 })
-            }, {
+            })
+        }, {
             path: 'sample',
             getComponent: ensureClient((nextState, cb) => {
                 require.ensure(['./modules/sample/index'], require => {
