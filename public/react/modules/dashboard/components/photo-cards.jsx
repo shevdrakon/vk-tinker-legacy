@@ -10,7 +10,7 @@ export default class PhotoCards extends Component {
     }
 
     render() {
-        return <div>
+        return <div className="row equal">
             <Col md={3} sm={6}>
                 <Card imgLink="https://ya.ru" imgSrc="https://pp.userapi.com/c636621/v636621941/4bddc/ZoK2V4JjEzw.jpg"
                       cardText='Test text'>
