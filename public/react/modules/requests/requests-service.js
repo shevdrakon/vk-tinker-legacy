@@ -8,7 +8,7 @@ export default ({ajax, apiUrl}) => {
                 top: top,
                 skip: skip
             }
-            return ajax.get(`${apiUrl}/pending?${qs.stringify(args)}`)
+            return ajax.get(`${apiUrl}/requests?${qs.stringify(args)}`)
         },
     }
 }

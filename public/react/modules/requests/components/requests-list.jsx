@@ -3,35 +3,37 @@ import {observer, propTypes as mPropTypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
 import List from '../../../components/list/list.jsx'
-import ListItem from './pending-list-item.jsx'
+import ListItem from './requests-list-item.jsx'
 
-class PendingList extends Component {
+import PositiveBadge from '../../../components/react-mdl/positive-badge.jsx'
+
+class RequestsList extends Component {
     static propTypes = {
         list: PropTypes.shape({
+            total: PropTypes.number,
             loading: PropTypes.bool,
             fetching: PropTypes.bool,
-            collection: mPropTypes.arrayOrObservableArray
+            collection: mPropTypes.arrayOrObservableArray,
+            repeat: PropTypes.func
         })
     }
 
     render() {
-        const {loading, fetching, collection} = this.props.list
+        const {loading, fetching, collection,total} = this.props.list
         const busy = loading || fetching
-
         const rowTemplate = <ListItem/>
 
         return <div>
             <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="uid">
-                <List.Header>Members :: Requests</List.Header>
+                <List.Header><PositiveBadge count={total}>Members :: Requests</PositiveBadge></List.Header>
                 <List.Column>Name</List.Column>
             </List>
-
         </div>
     }
 }
 
-export default inject(({pending}) => {
+export default inject(({requests}) => {
     return {
-        list: pending
+        list: requests
     }
-})(observer(PendingList))
+})(observer(RequestsList))

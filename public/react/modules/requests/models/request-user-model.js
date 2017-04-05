@@ -18,4 +18,8 @@ export default class RequestUserModel extends UserModel {
     @computed get fullName() {
         return `${this.first_name} ${this.last_name}`
     }
+
+    @computed get userLink() {
+        return `https://vk.com/${this.domain}`
+    }
 }

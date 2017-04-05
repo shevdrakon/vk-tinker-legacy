@@ -1,16 +1,15 @@
 const BaseController = require('../../lib/base-controller')
 const GroupService = require('../vk-api/group-service')
 
-class PendingController extends BaseController {
+class RequestsController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
 
         this.configuration = configuration
     }
 
-    getPending(payload) {
-        let pending = {}
-        debugger
+    getRequests(payload) {
+        let requests = {}
         return new GroupService()
             .getRequests(payload)
         /* .then((response) => {
@@ -32,4 +31,4 @@ class PendingController extends BaseController {
     }
 }
 
-module.exports = PendingController
+module.exports = RequestsController

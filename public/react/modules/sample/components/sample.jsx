@@ -5,12 +5,13 @@ import inject from '../../../utils/inject'
 import {Col} from 'react-bootstrap'
 import Title from './title.jsx'
 
-import {Navigation} from '../../../components/navigation/navigation-bar.jsx'
+import Navigation from '../../../components/navigation/navigation.jsx'
 import SamplePictureCard from './sample-picture-card.jsx'
 import SampleList from './sample-list.jsx'
 import Checkboxes from './checkboxes.jsx'
 import BusyDots from '../../../components/busy-dots.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
+import SampleDropdown from './dropdown.jsx'
 
 class Sample extends Component {
 
@@ -62,6 +63,11 @@ class Sample extends Component {
             <div className="container">
                 <Title>Picture card</Title>
                 <SamplePictureCard/>
+            </div>
+
+            <div className="container">
+                <Title>Dropdown</Title>
+                <SampleDropdown/>
             </div>
         </div>
     }

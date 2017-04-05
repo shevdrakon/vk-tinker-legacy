@@ -7,13 +7,15 @@ export default class Index extends Component {
             assetsRoot,
             stats,
             vkAppId,
-            user
+            user,
+            status
         } = this.props
 
         const config = {
             apiUrl,
             vkAppId,
-            user
+            user,
+            status
         }
 
         return <html lang="en" className="html">

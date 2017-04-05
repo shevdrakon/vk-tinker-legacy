@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer} from 'mobx-react'
 import inject from '../../../utils/inject'
 
-import {Navigation} from '../../../components/navigation/navigation-bar.jsx'
+import UserNavigation from '../../../components/navigation/user-navigation.jsx'
 import PhotoCards from './photo-cards.jsx'
 
 export class DashboardPage extends Component {
@@ -15,7 +15,7 @@ export class DashboardPage extends Component {
 
     render() {
         return <div>
-            <Navigation/>
+            <UserNavigation/>
 
             <div className="under-navigation">
                 <PhotoCards />

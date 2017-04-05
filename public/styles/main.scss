@@ -70,8 +70,14 @@
 }
 
 .navbar .navbar-nav > li {
-  > a.nav-button.active, > a.nav-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+   a.nav-button {
+     margin: 0 3px;
+     &.active,  &:hover {
+       background-color: rgba(255, 255, 255, 0.1);
+     }
+     .mdl-badge {
+       margin-right: 0px;
+     }
   }
 }
 
@@ -168,4 +174,9 @@
       color: #76FF03;
     }
   }
+}
+
+/*count badge*/
+.count-badge{
+  display: initial;
 }

@@ -26,7 +26,7 @@ class GroupService extends VkApiServiceBase {
             group_id: groupId,
             count: top,
             offset: skip,
-            fields: 'photo_50',
+            fields: 'photo_50,domain',
             access_token
         })
 
@@ -37,30 +37,35 @@ class GroupService extends VkApiServiceBase {
                     "id": 185014511,
                     "first_name": "Gendalf",
                     "last_name": "The Gray",
+                    "domain": "id185014511",
                     "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
                 },
                 {
                     "id": 185014512,
                     "first_name": "Gendalf",
                     "last_name": "The Gray",
+                    "domain": "pendalf",
                     "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
                 },
                 {
                     "id": 185014513,
                     "first_name": "Gendalf",
                     "last_name": "The Gray",
+                    "domain": "gendel",
                     "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
                 },
                 {
                     "id": 185014514,
                     "first_name": "Gendalf",
                     "last_name": "The Gray",
+                    "domain": "id185014511",
                     "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
                 },
                 {
                     "id": 185014515,
                     "first_name": "Gendalf",
                     "last_name": "The Gray",
+                    "domain": "id185014511",
                     "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
                 }
             ]

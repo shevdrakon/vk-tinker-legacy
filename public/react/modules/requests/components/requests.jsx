@@ -5,16 +5,15 @@ import inject from '../../../utils/inject'
 import {Col} from 'react-bootstrap'
 
 import UserNavigation from '../../../components/navigation/user-navigation.jsx'
-import List from './blacklist-list.jsx'
+import List from './requests-list.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
 
 import '../styles/_styles.scss'
 
-class Blacklist extends Component {
+class Requests extends Component {
     static propTypes = {
         loading: PropTypes.bool,
-        fetchBlacklist: PropTypes.func,
-
+        fetchRequests: PropTypes.func,
         list: PropTypes.shape({
             pagesCount: PropTypes.number,
             activePage: PropTypes.number,
@@ -23,9 +22,10 @@ class Blacklist extends Component {
     }
 
     /* eslint-disable no-empty-pattern */
-    static load({}, {blacklist}) {
-        return blacklist.load()
+    static load({}, {requests}) {
+        return requests.load()
     }
+
     /* eslint-enable no-empty-pattern */
 
     handlePaginationSelect = ({value}) => {
@@ -38,8 +38,8 @@ class Blacklist extends Component {
         return <div>
             <UserNavigation/>
 
-            <div className="under-navigation blacklist-container">
-                <Col md={10} mdOffset={1}>
+            <div className="under-navigation blacklist-container container">
+                <Col md={8} mdOffset={2}>
                     <List />
                     <Pagination prev next
                                 items={pagesCount}
@@ -52,8 +52,8 @@ class Blacklist extends Component {
     }
 }
 
-export default inject(({blacklist}) => {
+export default inject(({requests}) => {
     return {
-        list: blacklist
+        list: requests
     }
-})(observer(Blacklist))
+})(observer(Requests))
