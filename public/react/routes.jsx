@@ -73,10 +73,11 @@ const Routes = (app) => {
             path: 'dashboard',
             getComponent: ensureClient((nextState, cb) => {
                 require.ensure(['./modules/dashboard/index'], require => {
-                    const {Root, Store} = require('./modules/dashboard/index').default
+                    const {Root, Store, Service} = require('./modules/dashboard/index').default
                     loadComponent({
                         rootComponent: Root,
-                        stores: {dashboard: Store}
+                        stores: {dashboard: Store},
+                        services: {photos: Service}
                     }, nextState, cb)
                 })
             })
@@ -104,7 +105,7 @@ const Routes = (app) => {
                         }, nextState, cb)
                     })
                 })
-            }, {
+        }, {
             path: 'sample',
             getComponent: ensureClient((nextState, cb) => {
                 require.ensure(['./modules/sample/index'], require => {

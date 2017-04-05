@@ -7,11 +7,18 @@ import PhotoCards from './photo-cards.jsx'
 
 export class DashboardPage extends Component {
     static propTypes = {
-        dashboard: PropTypes.shape({})
+        dashboard: PropTypes.shape({
+            loading: PropTypes.bool,
+
+            load: PropTypes.func
+        })
     }
 
-    static load() {
+    /* eslint-disable no-empty-pattern */
+    static load({}, {dashboard}) {
+        dashboard.form.load()
     }
+    /* eslint-enable no-empty-pattern */
 
     render() {
         return <div>

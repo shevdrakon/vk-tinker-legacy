@@ -41,7 +41,7 @@ export default ({app_id = 5737599}, {window}) => {
         + '&display=popup&redirect_uri=blank.html&response_type=token'
 
     // if (settings && parseInt(settings, 10) > 0) {
-    url += '&scope=groups';
+    url += '&scope=groups,photos ';
     // }
 
     UI.popup({
