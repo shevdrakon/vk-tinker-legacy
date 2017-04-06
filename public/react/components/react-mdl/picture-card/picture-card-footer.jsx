@@ -12,6 +12,7 @@ export default class PictureCardFooter extends Component {
             PropTypes.string
         ]),
         className: PropTypes.string,
+        imgLink: PropTypes.string
     }
 
     constructor(props) {
@@ -25,7 +26,7 @@ export default class PictureCardFooter extends Component {
     }
 
     render(){
-        const {children, className,...otherProps} = this.props
+        const {children, className, imgLink, ...otherProps} = this.props
         const {collapsed} = this.state
         const collapsedClass = collapsed ? 'small' : 'big'
         const footerClasses = classNames(className,'card-actions', collapsedClass)
@@ -34,6 +35,9 @@ export default class PictureCardFooter extends Component {
         return  <CardActions className={footerClasses} border>
             <Button ripple><Icon>delete</Icon>Delete</Button>
             <IconButton name={collapseIcon} className="card-more" onClick={this.toggleCollapse}/>
+            <a target="_blank" href={imgLink} className="card-footer-link">
+                <IconButton name="link" className="card-menu-icon"/>
+            </a>
             <div className="card-information" {...otherProps}>{children}</div>
         </CardActions>
     }

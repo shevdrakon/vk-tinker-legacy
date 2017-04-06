@@ -124,6 +124,10 @@
       font-weight: inherit;
     }
 
+    .card-footer-link{
+      transition: opacity 0.3s ease-in-out;
+    }
+
     .card-information {
       color: rgba(0, 0, 0, .54);
       font-size: 14px;
@@ -136,6 +140,12 @@
 
     &.small {
       height: 53px;
+
+      .card-footer-link{
+        visibility: hidden;
+        opacity: 0;
+      }
+
       .card-information {
         opacity: 0;
         overflow: hidden;
@@ -144,6 +154,12 @@
 
     &.big {
         height: 100%;
+
+      .card-footer-link{
+        visibility: visible;
+        opacity: 1;
+      }
+
       .card-information {
         opacity: 1;
         height: calc(100% - 46px);
@@ -166,7 +182,7 @@
     }
   }
 
-  .card-more {
+  .card-more, .card-footer-link {
     float: right;
 
     &:after {
