@@ -180,3 +180,17 @@
 .count-badge{
   display: initial;
 }
+
+/*dropdown*/
+
+.dropdown {
+  &>button.btn.btn-default {
+    &, &:hover, &:focus {
+      background-color: #ffffff;
+      color: inherit;
+    }
+  }
+  &.open>.dropdown-toggle.btn.btn-default{
+    color: inherit;
+  }
+}

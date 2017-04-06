@@ -450,7 +450,7 @@ else {
     var origin = $(this);
     var options = $.extend({}, defaults, option);
 
-    // Dropdown menu
+    // SelectDropdown menu
     var activates = $("#"+ origin.attr('data-activates'));
 
     function updateOptions() {
@@ -483,7 +483,7 @@ else {
       // Check html data attributes
       updateOptions();
 
-      // Set Dropdown state
+      // Set SelectDropdown state
       activates.addClass('active');
 
       // Constrain width
@@ -2803,7 +2803,7 @@ $(document).ready(function(){
       }
 
 
-      // Create Dropdown structure
+      // Create SelectDropdown structure
       selectOptions.each(function () {
         // Add disabled attr if disabled
         options.append($('<li class="' + (($(this).is(':disabled')) ? 'disabled' : '') + '"><span>' + $(this).html() + '</span></li>'));

@@ -61,14 +61,16 @@ class Sample extends Component {
             </div>
 
             <div className="container">
+                <Title>Dropdown</Title>
+                <SampleDropdown/>
+            </div>
+
+            <div className="container">
                 <Title>Picture card</Title>
                 <SamplePictureCard/>
             </div>
 
-            <div className="container">
-                <Title>Dropdown</Title>
-                <SampleDropdown/>
-            </div>
+
         </div>
     }
 }
