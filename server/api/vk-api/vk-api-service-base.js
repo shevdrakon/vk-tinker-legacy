@@ -29,6 +29,8 @@ class VkApiServiceBase extends BaseService {
     }
 
     getUrl(method, payload) {
+        Object.assign(payload, {v: '5.63'})
+
         const query = qs.stringify(payload, {skipNulls: true})
 
         return `${this.vkApiBaseUrl}/${method}?${query}`

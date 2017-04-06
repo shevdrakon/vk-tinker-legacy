@@ -1,4 +1,4 @@
-import {action, observable, computed} from 'mobx'
+import {action, observable} from 'mobx'
 
 import SmartStore from './../../../base/smart-store'
 import PhotoModel from '../models/photo-model'
@@ -9,21 +9,16 @@ export default class PhotosStore extends SmartStore {
     }
 
     @observable loading = true
-
-    @observable total = 0
-    @observable activePage = 1
-
-    @observable top = 10
-    @observable skip = 0
     @observable fetching = false
     @observable fetchingFailed = false
+
+    @observable total = 0
+
+    @observable top = 12
+    @observable skip = 0
     @observable nofetch = false
     @observable collection = []
     @observable notAvailable = false
-
-    @computed get pagesCount() {
-        return Math.ceil(this.total / this.top)
-    }
 
     @action load() {
         return this.fetch()
@@ -56,10 +51,12 @@ export default class PhotosStore extends SmartStore {
                 this.fetching = false
 
                 this.total = response.count
-                // this.collection = reset ? response.items : [...collection, ...nextCollection]
-                this.collection = response.items.map((user) => new PhotoModel({...user}))
+
+                const nextCollection = response.items.map((user) => new PhotoModel({...user}))
+                this.collection = [...this.collection, ...nextCollection]
+
                 this.skip = skip
-                //this.nofetch = nextCollection.length < top
+                this.nofetch = nextCollection.length < top
 
                 this.notAvailable = !this.collection.length
 

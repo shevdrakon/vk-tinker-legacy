@@ -1,4 +1,4 @@
-import React, {Component,PropTypes} from 'react'
+import React, {Component, PropTypes} from 'react'
 import {Card, CardText} from 'react-mdl'
 
 import PictureCardHeader from './picture-card-header.jsx'
@@ -16,15 +16,15 @@ export default class PictureCard extends Component {
         ])
     }
 
-    render(){
+    render() {
         const {imgSrc, cardText, imgLink, imgValidation, children, ...otherProps} = this.props
-        const headerProps = {imgSrc,imgLink, imgValidation}
+        const headerProps = {imgSrc, imgLink, imgValidation}
 
         return <Card shadow={0} className="card-container" {...otherProps}>
-           <PictureCardHeader {...headerProps} />
-           <CardText className="card-short-text">
-               {cardText}
-           </CardText>
+            <PictureCardHeader {...headerProps} />
+            <CardText className="card-short-text">
+                {cardText}
+            </CardText>
             <PictureCardFooter>{children}</PictureCardFooter>
         </Card>
     }
