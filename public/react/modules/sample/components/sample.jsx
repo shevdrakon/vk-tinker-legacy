@@ -6,7 +6,7 @@ import {Col} from 'react-bootstrap'
 import Title from './title.jsx'
 
 import Navigation from '../../../components/navigation/navigation.jsx'
-import SamplePictureCard from './sample-picture-card.jsx'
+import SamplePictureCollection from './sample-picture-collection.jsx'
 import SampleList from './sample-list.jsx'
 import Checkboxes from './checkboxes.jsx'
 import BusyDots from '../../../components/busy-dots.jsx'
@@ -67,7 +67,7 @@ class Sample extends Component {
 
             <div className="container">
                 <Title>Picture card</Title>
-                <SamplePictureCard/>
+                <SamplePictureCollection/>
             </div>
 
 
