@@ -21,7 +21,7 @@ export default class SelectDropdown extends Component {
         this.selectItem = this.selectItem.bind(this)
     }
 
-    selectItem(eventKey, event){
+    selectItem(eventKey){
         this.setState({
             title: eventKey.title
         });
@@ -34,7 +34,9 @@ export default class SelectDropdown extends Component {
         const {children} = this.props
         const {title} = this.state
         return <SplitButton title={title} bsStyle="default" onSelect={this.selectItem}>
-            {children.map(child => <MenuItem eventKey={child}>{child.title}</MenuItem>)}
+            {
+                children.map(child => <MenuItem eventKey={child}>{child.title}</MenuItem>)
+            }
         </SplitButton>
     }
 }

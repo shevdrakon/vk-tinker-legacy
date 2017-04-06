@@ -19,6 +19,7 @@
 .row.equal> [class*='col-'] {
   display: flex;
   flex-direction: column;
+  margin: 0px auto;
 }
 
 .mdl-textfield__label {
