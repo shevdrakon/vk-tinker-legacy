@@ -23,9 +23,9 @@ export class PhotoCards extends Component {
 
     render() {
         const {fetching, fetchingFailed} = this.props.photos
-        return <div className="row equal">
 
-            <div style={{display: 'inline-block'}}>
+        return <div style={{display: 'inline-block'}}>
+            <div className="row equal">
                 <Col md={3} sm={6}>
                     <Card imgLink="https://ya.ru"
                           imgSrc="https://pp.userapi.com/c636621/v636621941/4bddc/ZoK2V4JjEzw.jpg"
