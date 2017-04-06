@@ -1,12 +1,12 @@
 import React, {Component, PropTypes} from 'react'
-import {observer} from 'mobx-react'
+import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
-import {Col} from 'react-bootstrap'
 import BusyDots from '../../../components/busy-dots.jsx'
-import Card from '../../../components/react-mdl/picture-card/picture-card.jsx'
 import TryAgainButton from '../../../components/try-again-button.jsx'
 import InfiniteScroll from '../../../components/infinite-scroll.jsx'
+
+import PhotoCardItem from './photo-card-item.jsx'
 
 export class PhotoCards extends Component {
     static propTypes = {
@@ -14,6 +14,8 @@ export class PhotoCards extends Component {
             loading: PropTypes.bool,
             fetching: PropTypes.bool,
             fetchingFailed: PropTypes.bool,
+
+            collection: mProptypes.arrayOrObservableArray,
 
             repeat: PropTypes.func,
             fetchNext: PropTypes.func
@@ -29,7 +31,7 @@ export class PhotoCards extends Component {
     }
 
     render() {
-        const {fetching, fetchingFailed, loading} = this.props.photos
+        const {fetching, fetchingFailed, loading, collection} = this.props.photos
         const scrolling = !loading && fetching
 
         return <div>
@@ -37,103 +39,7 @@ export class PhotoCards extends Component {
 
             <InfiniteScroll scrolling={scrolling} onScroll={this.handleScroll}>
                 <div className="row equal">
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru"
-                              imgSrc="https://pp.userapi.com/c636621/v636621941/4bddc/ZoK2V4JjEzw.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
-                    <Col md={3} sm={6}>
-                        <Card imgLink="https://ya.ru" imgSrc="http://www.getmdl.io/assets/demos/welcome_card.jpg"
-                              cardText='Test text'>
-                            test 1
-                        </Card>
-                    </Col>
+                    {collection.map(photo => <PhotoCardItem key={photo.id} item={photo}/> )}
                 </div>
             </InfiniteScroll>
 

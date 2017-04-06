@@ -12,11 +12,9 @@ class BlacklistController extends BaseController {
         return new PhotosService()
             .getAll(payload)
             .then((response) => {
-                const [count, ...items] = response
-
                 return {
-                    count: count,
-                    items
+                    count: response.count,
+                    items: response.items
                 }
             })
     }
