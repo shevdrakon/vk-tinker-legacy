@@ -69,8 +69,6 @@ class Sample extends Component {
                 <Title>Picture card</Title>
                 <SamplePictureCollection/>
             </div>
-
-
         </div>
     }
 }

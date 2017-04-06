@@ -72,4 +72,8 @@ export default class PhotosStore extends SmartStore {
                 throw error
             }))
     }
+
+    @action fetchNext() {
+        this.fetch({reset: false})
+    }
 }
