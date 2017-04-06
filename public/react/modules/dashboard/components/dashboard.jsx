@@ -8,8 +8,6 @@ import PhotoCards from './photo-cards.jsx'
 export class DashboardPage extends Component {
     static propTypes = {
         dashboard: PropTypes.shape({
-            loading: PropTypes.bool,
-
             load: PropTypes.func
         })
     }

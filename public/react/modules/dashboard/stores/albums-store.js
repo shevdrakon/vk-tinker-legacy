@@ -1,6 +1,7 @@
-import {action, observable, computed} from 'mobx'
+import {action, observable} from 'mobx'
 
 import SmartStore from './../../../base/smart-store'
+import AlbumModel from '../models/album-model'
 
 export default class AlbumsStore extends SmartStore {
 
@@ -29,20 +30,14 @@ export default class AlbumsStore extends SmartStore {
 
         return this.api.photos.getAlbums()
             .then(action(response => {
-                debugger
                 this.fetching = false
 
-                this.total = response.count
-                // this.collection = reset ? response.items : [...collection, ...nextCollection]
-                this.collection = response.items.map((user) => new BanUserModel({...user}))
-                this.skip = skip
-                //this.nofetch = nextCollection.length < top
-
+                this.collection = response.items.map((album) => new AlbumModel({...album}))
                 this.notAvailable = !this.collection.length
 
             }), action(error => {
                 this.fetching = false
-                this.store.notification.error({error, message: 'Could not retrieve blacklist.'})
+                this.store.notification.error({error, message: 'Could not retrieve albums.'})
 
                 throw error
             }))
