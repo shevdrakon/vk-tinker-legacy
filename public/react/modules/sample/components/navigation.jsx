@@ -1,6 +1,6 @@
 import React from 'react'
 
-import UserNavigation from '../../../components/navigation/user-navigation.jsx'
+import Navigation from '../../../components/navigation/navigation.jsx'
 import NavigationDropdown from '../../../components/navigation/navigation-dropdown.jsx'
 
 const SampleNavigation = () => {
@@ -14,9 +14,9 @@ const SampleNavigation = () => {
         }
     ]
 
-    return <UserNavigation>
+    return <Navigation>
         <NavigationDropdown onSelect={(eventKey) => alert(eventKey.title)}>{optionValues}</NavigationDropdown>
-    </UserNavigation>
+    </Navigation>
 }
 
 export default SampleNavigation

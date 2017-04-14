@@ -94,6 +94,13 @@
   }
 }
 
+@media (max-width: 767px) {
+  [class*="navbar-"] .navbar-nav .dropdown > a:hover .caret {
+    border-bottom-color: #fff;
+    border-top-color: #fff;
+  }
+}
+
 /*picture-card*/
 .card-container {
   width: 100%;

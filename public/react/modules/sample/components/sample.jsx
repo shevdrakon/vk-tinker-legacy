@@ -12,6 +12,7 @@ import Checkboxes from './checkboxes.jsx'
 import BusyDots from '../../../components/busy-dots.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
 import SampleDropdown from './dropdown.jsx'
+import PageContainer from './page-container.jsx'
 
 class Sample extends Component {
 
@@ -33,41 +34,45 @@ class Sample extends Component {
     render() {
         const {collection, activePage} = this.props.sample
 
-        return <div>
+        return <div className="page-container">
             <Navigation/>
 
-            <div className="container">
-                <Title>BusyDots</Title>
-                <BusyDots/>
-            </div>
+            <PageContainer>
+                <div className="container">
+                    <Title>BusyDots</Title>
+                    <BusyDots/>
+                </div>
 
-            <div className="container">
-                <Col sm={3}>
-                    <Title>Checkboxes</Title>
-                    <Checkboxes/>
-                </Col>
-            </div>
+                <div className="container">
+                    <Col sm={3}>
+                        <Title>Checkboxes</Title>
+                        <Checkboxes/>
+                    </Col>
+                </div>
 
-            <div className="container">
-                <Title>Pagination</Title>
-                <Pagination prev next items={10} activePage={activePage} maxButtons={3} onSelect={this.handlePaginationSelect}/>
-                <Pagination prev next items={10} activePage={activePage} maxButtons={5} onSelect={this.handlePaginationSelect}/>
-            </div>
+                <div className="container">
+                    <Title>Pagination</Title>
+                    <Pagination prev next items={10} activePage={activePage} maxButtons={3}
+                                onSelect={this.handlePaginationSelect}/>
+                    <Pagination prev next items={10} activePage={activePage} maxButtons={5}
+                                onSelect={this.handlePaginationSelect}/>
+                </div>
 
-            <div className="container">
-                <Title>List</Title>
-                <SampleList collection={collection}/>
-            </div>
+                <div className="container">
+                    <Title>List</Title>
+                    <SampleList collection={collection}/>
+                </div>
 
-            <div className="container">
-                <Title>Dropdown</Title>
-                <SampleDropdown/>
-            </div>
+                <div className="container">
+                    <Title>Dropdown</Title>
+                    <SampleDropdown/>
+                </div>
 
-            <div className="container">
-                <Title>Picture card</Title>
-                <SamplePictureCollection/>
-            </div>
+                <div className="container">
+                    <Title>Picture card</Title>
+                    <SamplePictureCollection/>
+                </div>
+            </PageContainer>
         </div>
     }
 }

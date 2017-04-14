@@ -30,10 +30,12 @@ export default class Navigation extends Component {
                 <Navbar.Toggle/>
             </Navbar.Header>
             <Navbar.Collapse>
-                <ul className="nav navbar-nav navbar-filters">
-                    {children}
-                </ul>
-            <NavigationMenu requestsCount={requestsCount}>{children}</NavigationMenu>
+                <div className="navbar-right">
+                    <ul className="nav navbar-nav navbar-filterst">
+                        {children}
+                    </ul>
+                    <NavigationMenu requestsCount={requestsCount}/>
+                </div>
             </Navbar.Collapse>
         </Navbar>
     }

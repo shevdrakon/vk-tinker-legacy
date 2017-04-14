@@ -12,7 +12,7 @@ export default class NavigationMenu extends Component {
     render() {
         const {requestsCount} = this.props
 
-        return <ul className="nav navbar-nav navbar-right">
+        return <ul className="nav navbar-nav">
             <li>
                 <Link to="/dashboard" className="nav-button" activeClassName="active">
                     <Icon>dashboard</Icon>Dashboard

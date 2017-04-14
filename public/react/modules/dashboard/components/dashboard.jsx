@@ -16,12 +16,16 @@ export class DashboardPage extends Component {
     static load({}, {dashboard}) {
         dashboard.form.load()
     }
+
     /* eslint-enable no-empty-pattern */
 
     render() {
-        return <PageContainer>
+        return <div className="page-container">
+            <UserNavigation/>
+            <PageContainer>
                 <PhotoCards />
-        </PageContainer>
+            </PageContainer>
+        </div>
     }
 }
 

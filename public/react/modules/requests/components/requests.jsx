@@ -35,16 +35,19 @@ class Requests extends Component {
     render() {
         const {pagesCount, activePage} = this.props.list
 
-        return <PageContainer>
-            <Col md={8} mdOffset={2}>
-                <List />
-                <Pagination prev next
-                            items={pagesCount}
-                            maxButtons={3}
-                            activePage={activePage}
-                            onSelect={this.handlePaginationSelect}/>
-            </Col>
-        </PageContainer>
+        return <div className="page-container">
+            <UserNavigation/>
+            <PageContainer>
+                <Col md={8} mdOffset={2}>
+                    <List />
+                    <Pagination prev next
+                                items={pagesCount}
+                                maxButtons={3}
+                                activePage={activePage}
+                                onSelect={this.handlePaginationSelect}/>
+                </Col>
+            </PageContainer>
+        </div>
     }
 }
 
