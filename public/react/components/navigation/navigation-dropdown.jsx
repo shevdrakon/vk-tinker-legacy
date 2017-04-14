@@ -33,6 +33,7 @@ export default class NavigationDropdown extends Component {
     render() {
         const {children} = this.props
         const {title} = this.state
+
         return <NavDropdown title={title} bsStyle="default" onSelect={this.selectItem}>
             {children.map(child => <MenuItem eventKey={child}>{child.title}</MenuItem>)}
         </NavDropdown>

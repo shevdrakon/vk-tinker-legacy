@@ -2,8 +2,8 @@ import React, {PropTypes} from 'react'
 import UserNavigation from './navigation/user-navigation.jsx'
 
 const PageContainer = (props) => {
-
     const {children} = props
+
     return <div className="page-container">
         <UserNavigation/>
         <div className="under-navigation">

@@ -73,8 +73,6 @@ class GroupService extends VkApiServiceBase {
         })
 */
 
-
-
         return this.get(url)
             .then(this.handleError)
             .then(response => {
