@@ -12,9 +12,9 @@ class RequestsController extends BaseController {
         let requests = {}
         return new GroupService()
             .getRequests(payload)
-        /* .then((response) => {
+         .then((response) => {
 
-                const {count, ...items} = response
+                const {count, items} = response
 
                 return {
                     count,
@@ -26,7 +26,7 @@ class RequestsController extends BaseController {
                 this.end(null, 500)
 
                 throw error
-            })*/
+            })
 
     }
 }

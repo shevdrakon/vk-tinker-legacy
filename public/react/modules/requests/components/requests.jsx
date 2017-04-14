@@ -4,7 +4,7 @@ import inject from '../../../utils/inject'
 
 import {Col} from 'react-bootstrap'
 
-import UserNavigation from '../../../components/navigation/user-navigation.jsx'
+import PageContainer from '../../../components/page-container.jsx'
 import List from './requests-list.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
 
@@ -35,20 +35,16 @@ class Requests extends Component {
     render() {
         const {pagesCount, activePage} = this.props.list
 
-        return <div>
-            <UserNavigation/>
-
-            <div className="under-navigation blacklist-container container">
-                <Col md={8} mdOffset={2}>
-                    <List />
-                    <Pagination prev next
-                                items={pagesCount}
-                                maxButtons={3}
-                                activePage={activePage}
-                                onSelect={this.handlePaginationSelect} />
-                </Col>
-            </div>
-        </div>
+        return <PageContainer>
+            <Col md={8} mdOffset={2}>
+                <List />
+                <Pagination prev next
+                            items={pagesCount}
+                            maxButtons={3}
+                            activePage={activePage}
+                            onSelect={this.handlePaginationSelect}/>
+            </Col>
+        </PageContainer>
     }
 }
 

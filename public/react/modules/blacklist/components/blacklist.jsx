@@ -4,7 +4,7 @@ import inject from '../../../utils/inject'
 
 import {Col} from 'react-bootstrap'
 
-import UserNavigation from '../../../components/navigation/user-navigation.jsx'
+import PageContainer from '../../../components/page-container.jsx'
 import List from './blacklist-list.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
 
@@ -26,6 +26,7 @@ class Blacklist extends Component {
     static load({}, {blacklist}) {
         return blacklist.load()
     }
+
     /* eslint-enable no-empty-pattern */
 
     handlePaginationSelect = ({value}) => {
@@ -35,20 +36,16 @@ class Blacklist extends Component {
     render() {
         const {pagesCount, activePage} = this.props.list
 
-        return <div>
-            <UserNavigation/>
-
-            <div className="under-navigation blacklist-container">
-                <Col md={10} mdOffset={1}>
-                    <List />
-                    <Pagination prev next
-                                items={pagesCount}
-                                maxButtons={3}
-                                activePage={activePage}
-                                onSelect={this.handlePaginationSelect} />
-                </Col>
-            </div>
-        </div>
+        return <PageContainer>
+            <Col md={10} mdOffset={1}>
+                <List />
+                <Pagination prev next
+                            items={pagesCount}
+                            maxButtons={3}
+                            activePage={activePage}
+                            onSelect={this.handlePaginationSelect}/>
+            </Col>
+        </PageContainer>
     }
 }
 

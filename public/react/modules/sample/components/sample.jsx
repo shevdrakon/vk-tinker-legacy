@@ -5,7 +5,7 @@ import inject from '../../../utils/inject'
 import {Col} from 'react-bootstrap'
 import Title from './title.jsx'
 
-import Navigation from '../../../components/navigation/navigation.jsx'
+import Navigation from './navigation.jsx'
 import SamplePictureCollection from './sample-picture-collection.jsx'
 import SampleList from './sample-list.jsx'
 import Checkboxes from './checkboxes.jsx'
@@ -34,7 +34,6 @@ class Sample extends Component {
         const {collection, activePage} = this.props.sample
 
         return <div>
-            <Title>Navigation</Title>
             <Navigation/>
 
             <div className="container">

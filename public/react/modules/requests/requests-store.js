@@ -20,6 +20,7 @@ export default class RequestsStore extends SmartStore {
     @observable nofetch = false
     @observable collection = []
     @observable notAvailable = false
+    @observable activePage = 1
 
     @computed get pagesCount() {
         return Math.ceil(this.total / this.top)

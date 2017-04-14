@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer} from 'mobx-react'
 import inject from '../../../utils/inject'
 
-import UserNavigation from '../../../components/navigation/user-navigation.jsx'
+import PageContainer from '../../../components/page-container.jsx'
 import PhotoCards from './photo-cards.jsx'
 
 export class DashboardPage extends Component {
@@ -19,13 +19,9 @@ export class DashboardPage extends Component {
     /* eslint-enable no-empty-pattern */
 
     render() {
-        return <div>
-            <UserNavigation/>
-
-            <div className="under-navigation">
+        return <PageContainer>
                 <PhotoCards />
-            </div>
-        </div>
+        </PageContainer>
     }
 }
 

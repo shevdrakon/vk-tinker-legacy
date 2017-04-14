@@ -30,6 +30,7 @@ class GroupService extends VkApiServiceBase {
             access_token
         })
 
+        /*
         return Promise.resolve({
             "count": 5,
             "items": [
@@ -70,16 +71,16 @@ class GroupService extends VkApiServiceBase {
                 }
             ]
         })
+*/
 
 
 
-/*
         return this.get(url)
             .then(this.handleError)
             .then(response => {
                 return response.response
             })
-            */
+
     }
 }
 

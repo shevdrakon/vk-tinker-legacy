@@ -1,7 +1,7 @@
 import  React, {Component, PropTypes} from 'react'
-import {SplitButton, MenuItem} from 'react-bootstrap'
+import {NavDropdown, MenuItem} from 'react-bootstrap'
 
-export default class SelectDropdown extends Component {
+export default class NavigationDropdown extends Component {
     static propTypes={
         children: PropTypes.arrayOf(PropTypes.shape(
             {
@@ -33,9 +33,9 @@ export default class SelectDropdown extends Component {
     render() {
         const {children} = this.props
         const {title} = this.state
-        return <SplitButton title={title} bsStyle="default" onSelect={this.selectItem}>
+        return <NavDropdown title={title} bsStyle="default" onSelect={this.selectItem}>
             {children.map(child => <MenuItem eventKey={child}>{child.title}</MenuItem>)}
-        </SplitButton>
+        </NavDropdown>
     }
 }
 

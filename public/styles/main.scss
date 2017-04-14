@@ -1,9 +1,17 @@
 @import 'material-dashboard';
 @import './components/ajax-in-progress';
 @import './components/pagination';
+.page-container{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
 
 .under-navigation {
-  padding-top: 90px;
+  margin-top: 68px;
+  height: calc(100% - 68px);
+  overflow: auto;
+  padding-top: 22px;
 }
 
 .try-again-button-container {
@@ -74,7 +82,7 @@
 }
 
 .navbar .navbar-nav > li {
-   a.nav-button {
+   a.nav-button, a.dropdown-toggle {
      margin: 0 3px;
      &.active,  &:hover {
        background-color: rgba(255, 255, 255, 0.1);
