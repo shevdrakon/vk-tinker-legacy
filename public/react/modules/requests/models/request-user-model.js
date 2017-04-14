@@ -1,4 +1,4 @@
-import {extendObservable, computed} from 'mobx'
+import {extendObservable, computed, observable} from 'mobx'
 
 import UserModel from './user-model'
 import RequestInfoModel from './request-info-model'
@@ -14,6 +14,8 @@ export default class RequestUserModel extends UserModel {
 
         extendObservable(this, rest)
     }
+
+    @observable selected = false
 
     @computed get fullName() {
         return `${this.first_name} ${this.last_name}`

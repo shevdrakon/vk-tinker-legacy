@@ -48,6 +48,7 @@ export default class RequestsStore extends SmartStore {
             return Promise.resolve()
 
         this.fetching = true
+
         return this.api.requests.get({top, skip})
             .then(action(response => {
                 this.fetching = false
@@ -95,8 +96,19 @@ export default class RequestsStore extends SmartStore {
             }))
     }
 
-
     @action fetchNext() {
         return this.fetch({reset: false})
+    }
+
+    @action toggleSelect({item, selected}) {
+        item.selected = selected
+    }
+
+    @computed get isAllSelected() {
+        return this.collection.length === this.selectedCollection.length
+    }
+
+    @computed get selectedCollection() {
+        return this.collection.filter(r => r.selected)
     }
 }

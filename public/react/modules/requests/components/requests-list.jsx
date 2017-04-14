@@ -13,19 +13,35 @@ class RequestsList extends Component {
             total: PropTypes.number,
             loading: PropTypes.bool,
             fetching: PropTypes.bool,
+
             collection: mPropTypes.arrayOrObservableArray,
-            repeat: PropTypes.func
+            selectedCollection: mPropTypes.arrayOrObservableArray,
+
+            repeat: PropTypes.func,
+            toggleSelect: PropTypes.func
         })
     }
 
+    handleToggle = (payload) => {
+        this.props.list.toggleSelect(payload)
+    }
+
     render() {
-        const {loading, fetching, collection,total} = this.props.list
+        const {loading, fetching, collection, total, isAllSelected} = this.props.list
         const busy = loading || fetching
-        const rowTemplate = <ListItem/>
+
+        const rowTemplate = <ListItem onToggle={this.handleToggle} />
 
         return <div>
             <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="uid">
-                <List.Header><PositiveBadge count={total}>Members :: Requests</PositiveBadge></List.Header>
+                <List.Header>
+                    <PositiveBadge count={total}>Members :: Requests</PositiveBadge>
+                </List.Header>
+
+                <List.Column>
+                    <input type="checkbox" checked={isAllSelected}/>
+                </List.Column>
+
                 <List.Column>Name</List.Column>
             </List>
         </div>
