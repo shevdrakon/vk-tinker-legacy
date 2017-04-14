@@ -25,7 +25,7 @@ export default class PictureCard extends Component {
             <CardText className="card-short-text">
                 {cardText}
             </CardText>
-            <PictureCardFooter>{children}</PictureCardFooter>
+            <PictureCardFooter imgLink={imgLink}>{children}</PictureCardFooter>
         </Card>
     }
 }
