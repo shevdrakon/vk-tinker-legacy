@@ -2,6 +2,8 @@ import React, {PropTypes, Component} from 'react'
 import {observer, propTypes as mPropTypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
+import {Checkbox} from 'react-mdl'
+
 import List from '../../../components/list/list.jsx'
 import ListItem from './requests-list-item.jsx'
 
@@ -18,12 +20,18 @@ class RequestsList extends Component {
             selectedCollection: mPropTypes.arrayOrObservableArray,
 
             repeat: PropTypes.func,
-            toggleSelect: PropTypes.func
+            toggleSelect: PropTypes.func,
+            toggleSelectAll: PropTypes.func,
+            isAllSelected: PropTypes.bool
         })
     }
 
     handleToggle = (payload) => {
         this.props.list.toggleSelect(payload)
+    }
+
+    handleToggleAll = () => {
+        this.props.list.toggleSelectAll()
     }
 
     render() {
@@ -33,13 +41,13 @@ class RequestsList extends Component {
         const rowTemplate = <ListItem onToggle={this.handleToggle} />
 
         return <div>
-            <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="uid">
+            <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="id">
                 <List.Header>
                     <PositiveBadge count={total}>Members :: Requests</PositiveBadge>
                 </List.Header>
 
                 <List.Column>
-                    <input type="checkbox" checked={isAllSelected}/>
+                    <Checkbox checked={isAllSelected} onChange={this.handleToggleAll} ripple/>
                 </List.Column>
 
                 <List.Column>Name</List.Column>

@@ -2,6 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer} from 'mobx-react'
 import inject from '../../../utils/inject'
 
+import UserNavigation from '../../../components/navigation/user-navigation.jsx'
 import PageContainer from '../../../components/page-container.jsx'
 import PhotoCards from './photo-cards.jsx'
 

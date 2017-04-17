@@ -1,17 +1,21 @@
 import React, {Component, PropTypes} from 'react'
+import {observer} from 'mobx-react'
+import inject from '../../../utils/inject'
+
+import {Checkbox} from 'react-mdl'
 
 import Avatar from '../../../components/avatar.jsx'
 
-export default class RequestsListItem extends Component {
+class RequestsListItem extends Component {
     static propTypes = {
         item: PropTypes.shape({
             fullName: PropTypes.string,
             photo_50: PropTypes.string,
             userLink: PropTypes.string,
             selected: PropTypes.bool,
-
-            onToggle: PropTypes.func
-        })
+            id: PropTypes.number
+        }),
+        onToggle: PropTypes.func
     }
 
     handleToggle = () => {
@@ -25,7 +29,7 @@ export default class RequestsListItem extends Component {
 
         return <tr>
             <td>
-                <input type="checkbox" checked={selected} onClick={this.handleToggle} />
+                <Checkbox checked={selected} onChange={this.handleToggle} ripple/>
             </td>
             <td>
                 <a href={userLink} target="_blank">
@@ -38,3 +42,9 @@ export default class RequestsListItem extends Component {
         </tr>
     }
 }
+
+export default inject(({requests}) => {
+    return {
+        list: requests
+    }
+})(observer(RequestsListItem))

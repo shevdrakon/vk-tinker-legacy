@@ -4,7 +4,7 @@ import RequestUserModel from './models/request-user-model'
 import SmartStore from './../../base/smart-store'
 
 export default class RequestsStore extends SmartStore {
-    constructor(initialState = {}, environment) {
+    constructor(initialState = {collection: []}, environment) {
         const {collection, ...rest} = initialState
         const items = collection && collection.map((user) => new RequestUserModel({...user}))
 
@@ -104,8 +104,13 @@ export default class RequestsStore extends SmartStore {
         item.selected = selected
     }
 
+    @action toggleSelectAll(){
+        const selected = !this.isAllSelected
+        this.collection.forEach( item => this.toggleSelect({item,selected}))
+    }
+
     @computed get isAllSelected() {
-        return this.collection.length === this.selectedCollection.length
+        return this.collection && this.collection.length === this.selectedCollection.length
     }
 
     @computed get selectedCollection() {

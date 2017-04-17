@@ -30,7 +30,7 @@ class GroupService extends VkApiServiceBase {
             access_token
         })
 
-        /*
+
         return Promise.resolve({
             "count": 5,
             "items": [
@@ -59,26 +59,26 @@ class GroupService extends VkApiServiceBase {
                     "id": 185014514,
                     "first_name": "Gendalf",
                     "last_name": "The Gray",
-                    "domain": "id185014511",
+                    "domain": "id185014514",
                     "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
                 },
                 {
                     "id": 185014515,
                     "first_name": "Gendalf",
                     "last_name": "The Gray",
-                    "domain": "id185014511",
+                    "domain": "id185014515",
                     "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
                 }
             ]
         })
-*/
 
+/*
         return this.get(url)
             .then(this.handleError)
             .then(response => {
                 return response.response
             })
-
+*/
     }
 }
 

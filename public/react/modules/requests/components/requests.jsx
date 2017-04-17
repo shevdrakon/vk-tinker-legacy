@@ -4,6 +4,7 @@ import inject from '../../../utils/inject'
 
 import {Col} from 'react-bootstrap'
 
+import UserNavigation from '../../../components/navigation/user-navigation.jsx'
 import PageContainer from '../../../components/page-container.jsx'
 import List from './requests-list.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
@@ -39,7 +40,7 @@ class Requests extends Component {
             <UserNavigation/>
             <PageContainer>
                 <Col md={8} mdOffset={2}>
-                    <List />
+                    <List/>
                     <Pagination prev next
                                 items={pagesCount}
                                 maxButtons={3}

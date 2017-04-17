@@ -4,6 +4,7 @@ import inject from '../../../utils/inject'
 
 import {Col} from 'react-bootstrap'
 
+import UserNavigation from '../../../components/navigation/user-navigation.jsx'
 import PageContainer from '../../../components/page-container.jsx'
 import List from './blacklist-list.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
