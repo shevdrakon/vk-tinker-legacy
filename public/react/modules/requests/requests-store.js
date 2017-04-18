@@ -13,7 +13,6 @@ export default class RequestsStore extends SmartStore {
 
     @observable loading = true
 
-    @observable total = 0
     @observable top = 10
     @observable skip = 0
     @observable fetching = false
@@ -23,7 +22,8 @@ export default class RequestsStore extends SmartStore {
     @observable activePage = 1
 
     @computed get pagesCount() {
-        return Math.ceil(this.total / this.top)
+        const total = this.store.application.status.requestsCount
+        return Math.ceil(total / this.top)
     }
 
     @action load() {
@@ -53,7 +53,7 @@ export default class RequestsStore extends SmartStore {
             .then(action(response => {
                 this.fetching = false
 
-                this.total = response.count
+                this.store.application.status.requestsCount = response.count
                 // this.collection = reset ? response.items : [...collection, ...nextCollection]
                 this.collection = response.items.map((user) => new RequestUserModel({...user}))
                 this.skip = skip
@@ -80,7 +80,7 @@ export default class RequestsStore extends SmartStore {
             .then(action(response => {
                 this.fetching = false
 
-                this.total = response.count
+                this.store.application.status.requestsCount = response.count
                 // this.collection = reset ? response.items : [...collection, ...nextCollection]
                 this.collection = response.items.map((user) => new RequestUserModel({...user}))
                 this.skip = skip

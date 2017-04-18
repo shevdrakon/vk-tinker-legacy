@@ -28,7 +28,7 @@ class RequestsListItem extends Component {
         const {userLink, fullName, photo_50, selected} = this.props.item
 
         return <tr>
-            <td>
+            <td className="checkbox-column">
                 <Checkbox checked={selected} onChange={this.handleToggle} ripple/>
             </td>
             <td>

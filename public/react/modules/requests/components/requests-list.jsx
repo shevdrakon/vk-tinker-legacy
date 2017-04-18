@@ -3,6 +3,7 @@ import {observer, propTypes as mPropTypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
 import {Checkbox} from 'react-mdl'
+import {Button} from 'react-bootstrap'
 
 import List from '../../../components/list/list.jsx'
 import ListItem from './requests-list-item.jsx'
@@ -23,6 +24,9 @@ class RequestsList extends Component {
             toggleSelect: PropTypes.func,
             toggleSelectAll: PropTypes.func,
             isAllSelected: PropTypes.bool
+        }),
+        status: PropTypes.shape({
+            requestsCount: PropTypes.number
         })
     }
 
@@ -35,18 +39,22 @@ class RequestsList extends Component {
     }
 
     render() {
-        const {loading, fetching, collection, total, isAllSelected} = this.props.list
+        const {loading, fetching, collection, isAllSelected} = this.props.list
+        const {requestsCount} = this.props.status
         const busy = loading || fetching
 
-        const rowTemplate = <ListItem onToggle={this.handleToggle} />
+        const rowTemplate = <ListItem onToggle={this.handleToggle}/>
 
         return <div>
             <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="id">
                 <List.Header>
-                    <PositiveBadge count={total}>Members :: Requests</PositiveBadge>
+                    <PositiveBadge count={requestsCount}>Members :: Requests</PositiveBadge>
+                    <div className="accept-selected-container">
+                        <Button className="btn-white accept-selected">Accept selected</Button>
+                    </div>
                 </List.Header>
 
-                <List.Column>
+                <List.Column className="checkbox-column">
                     <Checkbox checked={isAllSelected} onChange={this.handleToggleAll} ripple/>
                 </List.Column>
 
@@ -56,8 +64,9 @@ class RequestsList extends Component {
     }
 }
 
-export default inject(({requests}) => {
+export default inject(({requests, application}) => {
     return {
-        list: requests
+        list: requests,
+        status: application.status
     }
 })(observer(RequestsList))
