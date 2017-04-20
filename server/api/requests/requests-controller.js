@@ -20,14 +20,31 @@ class RequestsController extends BaseController {
                     count,
                     items
                 }
-                return response
             })
             .catch((error) => {
                 this.end(null, 500)
 
                 throw error
             })
+    }
 
+    approveRequests(payload){
+        return new GroupService()
+            .approveRequests(payload)
+            .then((response) => {
+
+                const {approved, rejected} = response
+
+                return {
+                    approved,
+                    rejected
+                }
+            })
+            .catch((error) => {
+                this.end(null, 500)
+
+                throw error
+            })
     }
 }
 

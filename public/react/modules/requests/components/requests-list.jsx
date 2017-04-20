@@ -23,7 +23,8 @@ class RequestsList extends Component {
             repeat: PropTypes.func,
             toggleSelect: PropTypes.func,
             toggleSelectAll: PropTypes.func,
-            isAllSelected: PropTypes.bool
+            isAllSelected: PropTypes.bool,
+            approveSelected: PropTypes.func
         }),
         status: PropTypes.shape({
             requestsCount: PropTypes.number
@@ -38,10 +39,15 @@ class RequestsList extends Component {
         this.props.list.toggleSelectAll()
     }
 
+    handleApproveSelected = () => {
+        this.props.list.approveSelected()
+    }
+
     render() {
-        const {loading, fetching, collection, isAllSelected} = this.props.list
+        const {loading, fetching, collection, isAllSelected, selectedCollection} = this.props.list
         const {requestsCount} = this.props.status
         const busy = loading || fetching
+        const disableApproveButton = busy || selectedCollection.length === 0
 
         const rowTemplate = <ListItem onToggle={this.handleToggle}/>
 
@@ -50,7 +56,7 @@ class RequestsList extends Component {
                 <List.Header>
                     <PositiveBadge count={requestsCount}>Members :: Requests</PositiveBadge>
                     <div className="accept-selected-container">
-                        <Button className="btn-white accept-selected">Accept selected</Button>
+                        <Button className="btn-white accept-selected" onClick={this.handleApproveSelected} disabled = {disableApproveButton}>Accept selected</Button>
                     </div>
                 </List.Header>
 

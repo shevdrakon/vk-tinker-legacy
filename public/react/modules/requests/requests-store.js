@@ -26,6 +26,14 @@ export default class RequestsStore extends SmartStore {
         return Math.ceil(total / this.top)
     }
 
+    @computed get isAllSelected() {
+        return this.collection && this.collection.length === this.selectedCollection.length
+    }
+
+    @computed get selectedCollection() {
+        return this.collection.filter(r => r.selected)
+    }
+
     @action load() {
         return this.fetch().then(action(() => {
             if (this.collection.length === 1) {
@@ -82,7 +90,7 @@ export default class RequestsStore extends SmartStore {
 
                 this.store.application.status.requestsCount = response.count
                 // this.collection = reset ? response.items : [...collection, ...nextCollection]
-                this.collection = response.items.map((user) => new RequestUserModel({...user}))
+                this.collection = response.items.map(user => new RequestUserModel({...user}))
                 this.skip = skip
                 //this.nofetch = nextCollection.length < top
 
@@ -104,16 +112,18 @@ export default class RequestsStore extends SmartStore {
         item.selected = selected
     }
 
-    @action toggleSelectAll(){
+    @action toggleSelectAll() {
         const selected = !this.isAllSelected
-        this.collection.forEach( item => this.toggleSelect({item,selected}))
+        this.collection.forEach(item => this.toggleSelect({item, selected}))
     }
 
-    @computed get isAllSelected() {
-        return this.collection && this.collection.length === this.selectedCollection.length
-    }
+    @action approveSelected() {
+        const users = this.selectedCollection.map(user => user.id)
+        this.api.requests.approve({users}).then(action(response => {
+            this.store.notification.success(`${response.approved} approved, ${response.rejected} rejected`)
+        }))
 
-    @computed get selectedCollection() {
-        return this.collection.filter(r => r.selected)
+        this.collection = this.collection.filter(r => !r.selected)
+        this.load()
     }
 }

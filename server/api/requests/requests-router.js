@@ -20,5 +20,19 @@ module.exports = (configuration) => {
             })
     })
 
+    router.get('/requests/approve', (req, res, next) => {
+        const payload = {
+            access_token: req.user.access_token,
+            groupId: configuration.groupId,
+            users: req.query.users
+        }
+
+        const controller = new RequestsController(req, res, next, configuration)
+        controller.approveRequests(payload)
+            .then((response) => {
+                res.json(response)
+            })
+    })
+
     return router
 }

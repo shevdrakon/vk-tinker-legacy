@@ -80,6 +80,26 @@ class GroupService extends VkApiServiceBase {
             })
 */
     }
+
+    approveRequests({users = [], groupId, access_token}){
+        const urls = users.map( user => this.getUrl('groups.approveRequest', {
+            group_id: groupId,
+            user_id: user,
+            access_token
+        }));
+
+        let approved = 0
+        let rejected = 0
+
+        const promises = urls.map( url => Promise.resolve(1) //this.get(url)
+            .then(this.handleError)
+            .then( () => { approved++ } )
+            .catch( () =>{ rejected++ } )
+        )
+
+        return Promise.all(promises)
+            .then( () => Promise.resolve({approved, rejected}))
+    }
 }
 
 module.exports = GroupService

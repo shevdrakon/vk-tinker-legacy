@@ -10,5 +10,13 @@ export default ({ajax, apiUrl}) => {
             }
             return ajax.get(`${apiUrl}/requests?${qs.stringify(args)}`)
         },
+        approve: payload => {
+            const {users} = payload
+            const args = {
+                users: users
+            }
+
+            return ajax.get(`${apiUrl}/requests/approve?${qs.stringify(args)}`)
+        }
     }
 }
