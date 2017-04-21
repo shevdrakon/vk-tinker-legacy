@@ -29,11 +29,20 @@ class PhotosService extends VkApiServiceBase {
             access_token
         })
 
-        return this.get(url)
+        return Promise.resolve([
+            {
+                aid: 12345,
+                title: "album1"
+            },
+            {
+                aid: 12346,
+                title: "album 2"
+            }
+        ])/*this.get(url)
             .then(this.handleError)
             .then(response => {
                 return response.response
-            })
+            })*/
     }
 }
 

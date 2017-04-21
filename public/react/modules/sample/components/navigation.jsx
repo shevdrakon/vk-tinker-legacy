@@ -15,7 +15,7 @@ const SampleNavigation = () => {
     ]
 
     return <Navigation>
-        <NavigationDropdown onSelect={(eventKey) => alert(eventKey.title)}>{optionValues}</NavigationDropdown>
+        <NavigationDropdown onSelect={(eventKey) => alert(eventKey.title)} title="Select value">{optionValues}</NavigationDropdown>
     </Navigation>
 }
 

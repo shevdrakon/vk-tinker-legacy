@@ -11,6 +11,10 @@ export default class AlbumsStore extends SmartStore {
 
     @observable loading = true
     @observable collection = []
+    @observable selected = {
+        aid: "all",
+        title: "All albums"
+    }
 
     @action load() {
         return this.fetch()
@@ -31,8 +35,7 @@ export default class AlbumsStore extends SmartStore {
         return this.api.photos.getAlbums()
             .then(action(response => {
                 this.fetching = false
-
-                this.collection = response.items.map((album) => new AlbumModel({...album}))
+                this.collection = response.map((album) => new AlbumModel({...album}))
                 this.notAvailable = !this.collection.length
 
             }), action(error => {
@@ -41,5 +44,9 @@ export default class AlbumsStore extends SmartStore {
 
                 throw error
             }))
+    }
+
+    @action select(album){
+        this.selected = album
     }
 }

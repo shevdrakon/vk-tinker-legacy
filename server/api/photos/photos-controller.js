@@ -20,7 +20,8 @@ class BlacklistController extends BaseController {
     }
 
     getAlbums(payload) {
-        return new PhotosService().getAlbums(payload)
+        return new PhotosService()
+            .getAlbums(payload)
     }
 }
 
