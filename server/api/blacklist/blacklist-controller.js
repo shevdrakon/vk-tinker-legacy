@@ -17,8 +17,7 @@ class BlacklistController extends BaseController {
             .then((response) => {
                 banned = response
 
-                const [, ...items] = response
-                const adminIds = items.reduce((previous, user) => {
+                const adminIds = response.items.reduce((previous, user) => {
                     const adminId = user.ban_info.admin_id
 
                     if (previous.indexOf(adminId) === -1)
@@ -34,12 +33,13 @@ class BlacklistController extends BaseController {
             })
             .then((response) => {
                 const hash = response.reduce((result, current) => {
-                    result[current.uid] = current
+                    result[current.id] = current
 
                     return result
                 }, {})
 
-                const [count, ...items] = banned
+                const count = banned.count
+                const items = banned.items
 
                 items.forEach((user) => {
                     const adminId = user.ban_info.admin_id

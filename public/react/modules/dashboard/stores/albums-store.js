@@ -16,6 +16,10 @@ export default class AlbumsStore extends SmartStore {
         title: "All albums"
     }
 
+    get photosStore() {
+        return this.store.dashboard.photos
+    }
+
     @action load() {
         return this.fetch()
             .then(action(() => {
@@ -25,19 +29,14 @@ export default class AlbumsStore extends SmartStore {
             }))
     }
 
-    @action repeat() {
-        this.fetch()
-    }
-
     @action fetch() {
         this.fetching = true
 
-        return this.api.photos.getAlbums()
+        return this.api.photos
+            .getAlbums()
             .then(action(response => {
                 this.fetching = false
-                this.collection = response.map((album) => new AlbumModel({...album}))
-                this.notAvailable = !this.collection.length
-
+                this.collection = response.items.map((album) => new AlbumModel({...album}))
             }), action(error => {
                 this.fetching = false
                 this.store.notification.error({error, message: 'Could not retrieve albums.'})
@@ -46,7 +45,9 @@ export default class AlbumsStore extends SmartStore {
             }))
     }
 
-    @action select(album){
+    @action select(album) {
         this.selected = album
+
+        this.photosStore.fetch()
     }
 }

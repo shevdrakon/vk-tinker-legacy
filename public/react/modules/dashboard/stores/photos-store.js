@@ -20,6 +20,10 @@ export default class PhotosStore extends SmartStore {
     @observable collection = []
     @observable notAvailable = false
 
+    get albumsStore() {
+        return this.store.dashboard.albums
+    }
+
     @action load() {
         return this.fetch()
             .then(action(() => {
@@ -36,9 +40,12 @@ export default class PhotosStore extends SmartStore {
     @action fetch({reset} = {reset: true}) {
         const {top} = this
         const skip = reset ? 0 : this.skip + top
+        const albumId = this.albumsStore.selected.value
 
-        if (reset)
+        if (reset) {
             this.nofetch = false
+            this.collection = []
+        }
 
         if (this.nofetch)
             return Promise.resolve()
@@ -46,7 +53,7 @@ export default class PhotosStore extends SmartStore {
         this.fetching = true
         this.fetchingFailed = false
 
-        return this.api.photos.get({top, skip})
+        return this.api.photos.get({top, skip, albumId})
             .then(action(response => {
                 this.fetching = false
 

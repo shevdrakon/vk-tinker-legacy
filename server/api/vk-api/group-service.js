@@ -31,54 +31,54 @@ class GroupService extends VkApiServiceBase {
         })
 
 
-        return Promise.resolve({
-            "count": 5,
-            "items": [
-                {
-                    "id": 185014511,
-                    "first_name": "Gendalf",
-                    "last_name": "The Gray",
-                    "domain": "id185014511",
-                    "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
-                },
-                {
-                    "id": 185014512,
-                    "first_name": "Gendalf",
-                    "last_name": "The Gray",
-                    "domain": "pendalf",
-                    "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
-                },
-                {
-                    "id": 185014513,
-                    "first_name": "Gendalf",
-                    "last_name": "The Gray",
-                    "domain": "gendel",
-                    "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
-                },
-                {
-                    "id": 185014514,
-                    "first_name": "Gendalf",
-                    "last_name": "The Gray",
-                    "domain": "id185014514",
-                    "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
-                },
-                {
-                    "id": 185014515,
-                    "first_name": "Gendalf",
-                    "last_name": "The Gray",
-                    "domain": "id185014515",
-                    "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
-                }
-            ]
-        })
+        // return Promise.resolve({
+        //     "count": 5,
+        //     "items": [
+        //         {
+        //             "id": 185014511,
+        //             "first_name": "Gendalf",
+        //             "last_name": "The Gray",
+        //             "domain": "id185014511",
+        //             "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
+        //         },
+        //         {
+        //             "id": 185014512,
+        //             "first_name": "Gendalf",
+        //             "last_name": "The Gray",
+        //             "domain": "pendalf",
+        //             "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
+        //         },
+        //         {
+        //             "id": 185014513,
+        //             "first_name": "Gendalf",
+        //             "last_name": "The Gray",
+        //             "domain": "gendel",
+        //             "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
+        //         },
+        //         {
+        //             "id": 185014514,
+        //             "first_name": "Gendalf",
+        //             "last_name": "The Gray",
+        //             "domain": "id185014514",
+        //             "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
+        //         },
+        //         {
+        //             "id": 185014515,
+        //             "first_name": "Gendalf",
+        //             "last_name": "The Gray",
+        //             "domain": "id185014515",
+        //             "photo_50": "http://avatars.mitosa.net/ring/sm070.jpg"
+        //         }
+        //     ]
+        // })
 
-/*
+
         return this.get(url)
             .then(this.handleError)
             .then(response => {
                 return response.response
             })
-*/
+
     }
 
     approveRequests({users = [], groupId, access_token}){

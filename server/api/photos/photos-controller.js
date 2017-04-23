@@ -1,7 +1,7 @@
 const BaseController = require('../../lib/base-controller')
 const PhotosService = require('../vk-api/photos-service')
 
-class BlacklistController extends BaseController {
+class PhotosController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
 
@@ -9,14 +9,17 @@ class BlacklistController extends BaseController {
     }
 
     getAll(payload) {
-        return new PhotosService()
-            .getAll(payload)
-            .then((response) => {
-                return {
-                    count: response.count,
-                    items: response.items
-                }
-            })
+        const service = new PhotosService()
+        const p = payload.albumId
+            ? service.getByAlbum(payload)
+            : service.getAll(payload)
+
+        return p.then((response) => {
+            return {
+                count: response.count,
+                items: response.items
+            }
+        })
     }
 
     getAlbums(payload) {
@@ -25,4 +28,4 @@ class BlacklistController extends BaseController {
     }
 }
 
-module.exports = BlacklistController
+module.exports = PhotosController

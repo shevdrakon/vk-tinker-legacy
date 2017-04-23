@@ -28,19 +28,15 @@ export default class BlacklistStore extends SmartStore {
     }
 
     @action load() {
-        return this.fetch().then(action(() => {
-            if (this.collection.length === 1) {
-                this.store.routing.push(`${this.collection[0].id}/overview`)
-            }
-            else {
+        return this.fetch()
+            .then(action(() => {
                 this.loading = false
-            }
-        }), action(() => {
-            this.loading = false
-        }))
+            }), action(() => {
+                this.loading = false
+            }))
     }
 
-    @action repeat(){
+    @action repeat() {
         this.fetch()
     }
 

@@ -10,6 +10,7 @@ module.exports = (configuration) => {
             access_token: req.user.access_token,
             skip: Number(req.query.skip),
             top: Number(req.query.top),
+            albumId: req.query.albumId,
             groupId: configuration.groupId
         }
 

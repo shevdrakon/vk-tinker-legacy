@@ -27,11 +27,10 @@ export class DashboardPage extends Component {
         dashboard.form.load()
         dashboard.albums.load()
     }
-
     /* eslint-enable no-empty-pattern */
 
     handleAlbumSelection = (eventKey) => {
-        this.props.albums.select(eventKey);
+        this.props.albums.select(eventKey)
     }
 
     render() {
@@ -43,16 +42,20 @@ export class DashboardPage extends Component {
             },
             ...collection.map((album) => {
                 return {
-                    value: album.aid,
+                    value: album.id,
                     title: album.title
                 }
             })
         ]
 
+        const hasAlbums = collection.length > 0
+
         return <div className="page-container">
             <UserNavigation>
-                {collection.length > 0 &&
-                <NavigationDropdown onSelect={this.handleAlbumSelection} title={selected.title}>{albums}</NavigationDropdown>}
+                {hasAlbums && <NavigationDropdown
+                    onSelect={this.handleAlbumSelection}
+                    title={selected.title}>{albums}</NavigationDropdown>
+                }
             </UserNavigation>
             <PageContainer>
                 <PhotoCards />

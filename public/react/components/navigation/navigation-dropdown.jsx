@@ -2,7 +2,7 @@ import  React, {Component, PropTypes} from 'react'
 import {NavDropdown, MenuItem} from 'react-bootstrap'
 
 export default class NavigationDropdown extends Component {
-    static propTypes={
+    static propTypes = {
         children: PropTypes.arrayOf(PropTypes.shape(
             {
                 value: PropTypes.string.isRequired,
@@ -13,23 +13,17 @@ export default class NavigationDropdown extends Component {
         onSelect: PropTypes.func
     }
 
-    constructor(props) {
-        super(props);
-        this.selectItem = this.selectItem.bind(this)
-    }
-
-    selectItem(eventKey){
-        if(this.props.onSelect)
-            this.props.onSelect(eventKey)
+    selectItem = (eventKey) => {
+        this.props.onSelect && this.props.onSelect(eventKey)
     }
 
     render() {
         const {children, title} = this.props
 
         return <NavDropdown title={title} bsStyle="default" onSelect={this.selectItem}>
-            {children.map(child => <MenuItem eventKey={child}>{child.title}</MenuItem>)}
+            {
+                children.map(child => <MenuItem eventKey={child}>{child.title}</MenuItem>)
+            }
         </NavDropdown>
     }
 }
-
-
