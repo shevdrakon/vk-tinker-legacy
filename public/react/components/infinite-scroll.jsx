@@ -18,11 +18,11 @@ export default class InfiniteScroll extends Component {
     }
 
     componentDidMount() {
-        window.addEventListener('scroll', this.scroll)
+        document.addEventListener('scroll', this.scroll, true)
     }
 
     componentWillUnmount() {
-        window.removeEventListener('scroll', this.scroll)
+        document.removeEventListener('scroll', this.scroll, true)
 
         clearTimeout(this.timeout)
     }

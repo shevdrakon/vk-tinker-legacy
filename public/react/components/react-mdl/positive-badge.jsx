@@ -7,7 +7,8 @@ export default class PositiveBadge extends Component {
         count: PropTypes.number,
         children: PropTypes.oneOfType([
             PropTypes.arrayOf(PropTypes.element),
-            PropTypes.element
+            PropTypes.element,
+            PropTypes.string
         ])
     }
 

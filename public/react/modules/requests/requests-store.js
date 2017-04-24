@@ -27,7 +27,7 @@ export default class RequestsStore extends SmartStore {
     }
 
     @computed get isAllSelected() {
-        return this.collection && this.collection.length === this.selectedCollection.length
+        return this.collection.length > 0 && this.collection.length === this.selectedCollection.length
     }
 
     @computed get selectedCollection() {
