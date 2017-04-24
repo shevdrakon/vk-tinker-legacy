@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 import {Card, CardText} from 'react-mdl'
+import ClassNames from 'classnames'
 
 import PictureCardHeader from './picture-card-header.jsx'
 import PictureCardFooter from './picture-card-footer.jsx'
@@ -10,6 +11,7 @@ export default class PictureCard extends Component {
         cardText: PropTypes.string,
         imgLink: PropTypes.string.isRequired,
         imgValidation: PropTypes.oneOf(['done', 'warning', 'bad']),
+        selected: PropTypes.bool,
         children: PropTypes.oneOfType([
             PropTypes.element,
             PropTypes.string
@@ -17,10 +19,14 @@ export default class PictureCard extends Component {
     }
 
     render() {
-        const {imgSrc, cardText, imgLink, imgValidation, children, ...otherProps} = this.props
+        const {imgSrc, cardText, imgLink, imgValidation, children, selected, ...otherProps} = this.props
         const headerProps = {imgSrc, imgLink, imgValidation}
+        const className = ClassNames({
+            "card-container": true,
+            "selected": selected
+        })
 
-        return <Card shadow={0} className="card-container" {...otherProps}>
+        return <Card shadow={0} className={className} {...otherProps}>
             <PictureCardHeader {...headerProps} />
             <CardText className="card-short-text">
                 {cardText}
