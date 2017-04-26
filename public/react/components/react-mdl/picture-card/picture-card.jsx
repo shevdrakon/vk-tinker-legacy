@@ -12,15 +12,24 @@ export default class PictureCard extends Component {
         imgLink: PropTypes.string.isRequired,
         imgValidation: PropTypes.oneOf(['done', 'warning', 'bad']),
         selected: PropTypes.bool,
+
         children: PropTypes.oneOfType([
             PropTypes.element,
             PropTypes.string
         ])
     }
 
+    static contextTypes = {
+        handleClick: PropTypes.func
+    }
+
+    handleHeaderClick = () => {
+        this.context.handleClick()
+    }
+
     render() {
         const {imgSrc, cardText, imgLink, imgValidation, children, selected, ...otherProps} = this.props
-        const headerProps = {imgSrc, imgLink, imgValidation}
+        const headerProps = {imgSrc, imgLink, imgValidation, onClick: this.handleHeaderClick}
         const className = ClassNames({
             "card-container": true,
             "selected": selected

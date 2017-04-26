@@ -18,7 +18,12 @@ export class PhotoCards extends Component {
             collection: mProptypes.arrayOrObservableArray,
 
             repeat: PropTypes.func,
-            fetchNext: PropTypes.func
+            fetchNext: PropTypes.func,
+            toggleSelect: PropTypes.func
+        }),
+
+        albums: PropTypes.shape({
+            getAlbumById: PropTypes.func
         })
     }
 
@@ -30,16 +35,28 @@ export class PhotoCards extends Component {
         this.props.photos.fetchNext()
     }
 
+    handleCardSelect = (payload) => {
+        this.props.photos.toggleSelect(payload)
+    }
+
+    getAlbumById = (id) => {
+        return this.props.albums.getAlbumById(id)
+    }
+
     render() {
         const {fetching, fetchingFailed, loading, collection} = this.props.photos
         const scrolling = !loading && fetching
 
-        return <div>
-            {loading && <BusyDots/>}
+        if (loading)
+            return <BusyDots/>
 
+        return <div>
             <InfiniteScroll scrolling={scrolling} onScroll={this.handleScroll}>
                 <div className="row equal">
-                    {collection.map(photo => <PhotoCardItem key={photo.id} item={photo}/> )}
+                    {collection.map(photo => <PhotoCardItem key={photo.id}
+                                                            album={this.getAlbumById(photo.album_id)}
+                                                            item={photo}
+                                                            onSelect={this.handleCardSelect}/>)}
                 </div>
             </InfiniteScroll>
 
@@ -50,6 +67,7 @@ export class PhotoCards extends Component {
 
 export default inject(({dashboard}) => {
     return {
-        photos: dashboard.photos
+        photos: dashboard.photos,
+        albums: dashboard.albums
     }
 })(observer(PhotoCards))

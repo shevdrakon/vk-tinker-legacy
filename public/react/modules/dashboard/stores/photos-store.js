@@ -1,4 +1,4 @@
-import {action, observable} from 'mobx'
+import {action, observable, computed} from 'mobx'
 
 import SmartStore from './../../../base/smart-store'
 import PhotoModel from '../models/photo-model'
@@ -22,6 +22,10 @@ export default class PhotosStore extends SmartStore {
 
     get albumsStore() {
         return this.store.dashboard.albums
+    }
+
+    @computed get selectedCollection() {
+        return this.collection.filter(p => p.selected)
     }
 
     @action load() {
@@ -56,10 +60,10 @@ export default class PhotosStore extends SmartStore {
         return this.api.photos.get({top, skip, albumId})
             .then(action(response => {
                 this.fetching = false
-
                 this.total = response.count
 
-                const nextCollection = response.items.map((user) => new PhotoModel({...user}))
+                const nextCollection = response.items.map((photo) => new PhotoModel({...photo}))
+
                 this.collection = [...this.collection, ...nextCollection]
 
                 this.skip = skip
@@ -79,5 +83,9 @@ export default class PhotosStore extends SmartStore {
 
     @action fetchNext() {
         this.fetch({reset: false})
+    }
+
+    @action toggleSelect({item, selected}) {
+        item.selected = selected
     }
 }

@@ -50,4 +50,10 @@ export default class AlbumsStore extends SmartStore {
 
         this.photosStore.fetch()
     }
+
+    getAlbumById(id) {
+        const items = this.collection.filter(a => a.id === id)
+
+        return items && items[0]
+    }
 }

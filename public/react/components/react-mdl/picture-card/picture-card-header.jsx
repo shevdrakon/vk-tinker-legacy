@@ -17,6 +17,10 @@ export default class PictureCardHeader extends Component {
         imgValidation: PropTypes.oneOf(['done', 'warning', 'bad'])
     }
 
+    handleLinkClick = (e) => {
+        e.stopPropagation()
+    }
+
     render() {
         const {imgSrc, imgLink, imgValidation, ...otherProps} = this.props
         const hasValidation = imgValidation && imgValidation.length > 0
@@ -26,7 +30,7 @@ export default class PictureCardHeader extends Component {
         return <CardTitle className="card-title" {...otherProps}>
             <img src={imgSrc} className="card-image"/>
             <CardMenu className="card-menu">
-                <a target="_blank" href={imgLink}>
+                <a target="_blank" href={imgLink} onClick={this.handleLinkClick}>
                     <IconButton name="link" className="card-menu-icon"/>
                 </a>
             </CardMenu>
