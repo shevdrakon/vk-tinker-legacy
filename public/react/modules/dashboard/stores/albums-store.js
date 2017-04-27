@@ -10,11 +10,11 @@ export default class AlbumsStore extends SmartStore {
     }
 
     @observable loading = true
-    @observable collection = []
-    @observable selected = {
-        aid: "all",
+    @observable collection = [{
+        aid: undefined,
         title: "All albums"
-    }
+    }]
+    @observable selected = this.collection[0]
 
     get photosStore() {
         return this.store.dashboard.photos
@@ -36,7 +36,10 @@ export default class AlbumsStore extends SmartStore {
             .getAlbums()
             .then(action(response => {
                 this.fetching = false
-                this.collection = response.items.map((album) => new AlbumModel({...album}))
+                this.collection = [
+                    this.collection[0],
+                    ...response.items.map((album) => new AlbumModel({...album}))
+                ];
             }), action(error => {
                 this.fetching = false
                 this.store.notification.error({error, message: 'Could not retrieve albums.'})

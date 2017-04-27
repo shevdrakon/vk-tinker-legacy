@@ -36,10 +36,6 @@ export class DashboardPage extends Component {
     render() {
         const {collection = [], selected} = this.props.albums
         const albums = [
-            {
-                value: "all",
-                title: "All photos"
-            },
             ...collection.map((album) => {
                 return {
                     value: album.id,

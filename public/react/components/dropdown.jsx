@@ -17,11 +17,9 @@ export default class SelectDropdown extends Component {
         super(props);
 
         this.state = { title: props.children[0].title }
-
-        this.selectItem = this.selectItem.bind(this)
     }
 
-    selectItem(eventKey){
+    selectItem = (eventKey) => {
         this.setState({
             title: eventKey.title
         });

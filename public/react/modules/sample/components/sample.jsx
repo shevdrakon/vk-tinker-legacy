@@ -13,6 +13,8 @@ import BusyDots from '../../../components/busy-dots.jsx'
 import Pagination from '../../../components/pagination/pagination.jsx'
 import SampleDropdown from './dropdown.jsx'
 import PageContainer from './page-container.jsx'
+import SampleModal from './modal.jsx'
+import SampleModalDropdown from './modal-dropdown.jsx'
 
 class Sample extends Component {
 
@@ -71,6 +73,16 @@ class Sample extends Component {
                 <div className="container">
                     <Title>Picture card</Title>
                     <SamplePictureCollection/>
+                </div>
+
+                <div className="container">
+                    <Title>Modal</Title>
+                    <SampleModal/>
+                </div>
+
+                <div className="container">
+                    <Title>ModalDropdown</Title>
+                    <SampleModalDropdown/>
                 </div>
             </PageContainer>
         </div>
