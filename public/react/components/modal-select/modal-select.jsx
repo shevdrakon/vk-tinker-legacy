@@ -52,8 +52,10 @@ export default class ModalSelect extends Component {
                 &nbsp;
                 <span className="caret"/>
             </Button>
-            <Modal show={showModal} onHide={this.closeModal} dialogClassName="modal-select-dialog">
-                <div className="modal-body">
+
+            <Modal show={showModal} onHide={this.closeModal}
+                   header="Select an album"
+                   bsSize="medium" dialogClassName="modal-select-dialog">
                     <ul>
                         {
                             collection.map(item =>
@@ -64,10 +66,10 @@ export default class ModalSelect extends Component {
                             )
                         }
                     </ul>
-                </div>
-                <div className="modal-footer">
-                    <Button onClick={this.closeModal}>Select</Button>
-                </div>
+                <Modal.Footer>
+                    <Button ripple colored onClick={this.closeModal}>Ok</Button>
+                    <Button ripple colored onClick={this.closeModal}>Close</Button>
+                </Modal.Footer>
             </Modal>
         </div>
     }

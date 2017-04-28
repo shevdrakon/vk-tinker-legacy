@@ -32,10 +32,14 @@ export default class SampleModal extends Component {
             <Col md={3} sm={12}>
                 <Button onClick = {this.open}>Launch Modal</Button>
             </Col>
-            <Modal show = {showModal} onHide = {this.close}>
-                <span>
-                    Lorem ipsum tram pam pam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sagittis pellentesque lacus eleifend lacinia leifend lacinia...
-                </span>
+
+            <Modal show={showModal} onHide={this.close} header="About access_token" bsSize="medium">
+                <Modal.Body>
+                    Some modal body text goes here!
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button ripple colored onClick={this.close}>Close</Button>
+                </Modal.Footer>
             </Modal>
         </div>
     }

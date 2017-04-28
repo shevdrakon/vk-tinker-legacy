@@ -287,6 +287,12 @@
   .modal-content {
     padding: 10px;
   }
+
+  ul {
+    padding: 0;
+    overflow-y: auto;
+    max-height: 300px;
+  }
 }
 
   .modal-select-item {

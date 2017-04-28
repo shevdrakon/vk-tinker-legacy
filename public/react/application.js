@@ -15,6 +15,14 @@ import messageProvider from './utils/message-provider'
 
 require('jquery')
 
+// /* eslint-disable no-undef */
+// if (process.env.NODE_ENV !== 'production') {
+//     const {whyDidYouUpdate} = require('why-did-you-update')
+//
+//     whyDidYouUpdate(React, {include: /^BlacklistList/})
+// }
+/* eslint-disable no-undef */
+
 let routerKey = 0
 
 const container = document.getElementById('page-container')
