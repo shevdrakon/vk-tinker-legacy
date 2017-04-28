@@ -3,16 +3,15 @@ import {propTypes as mPropTypes} from 'mobx-react'
 
 import {Button} from 'react-bootstrap'
 
+import ModalSelectItem from './modal-select-item.jsx'
 import Modal from '../modal.jsx'
-import ModalDropdownItem from './modal-dropdown-item.jsx'
-import List from '../list/list.jsx'
 
-export default class ModalDropdown extends Component {
+export default class ModalSelect extends Component {
     static propTypes = {
         collection: mPropTypes.arrayOrObservableArray,
         onSelect: PropTypes.func,
         selectedItem: PropTypes.object,
-        rowTemplate: PropTypes.node
+        itemTemplate: PropTypes.node
     }
 
     constructor(props) {
@@ -45,23 +44,30 @@ export default class ModalDropdown extends Component {
 
     render() {
         const {showModal, selectedItem} = this.state
-        const {children, collection,rowTemplate} = this.props
+        const {collection, itemTemplate} = this.props
 
-        return <div className="modal-dropdown">
+        return <div className="modal-select">
             <Button onClick={this.openModal}>
                 {selectedItem.title}
                 &nbsp;
-                <span className="caret"></span>
+                <span className="caret"/>
             </Button>
-            <Modal show={showModal} onHide={this.closeModal} dialogClassName = "modal-dropdown-dialog">
-                <List collection={collection} rowTemplate={rowTemplate} rowKeySelector="id">
-                {
-                    children.map(item => <ModalDropdownItem item={item}
-                                                            selected={item === selectedItem}
-                                                            onSelect={this.selectItem} key={item.value}/>)
-                }
-                </List>
-                <Button onClick = {this.closeModal}>Select</Button>
+            <Modal show={showModal} onHide={this.closeModal} dialogClassName="modal-select-dialog">
+                <div className="modal-body">
+                    <ul>
+                        {
+                            collection.map(item =>
+                                <ModalSelectItem item={item} onSelect={this.selectItem}
+                                                 selected={item === selectedItem}>
+                                    {React.cloneElement(itemTemplate, {item})}
+                                </ModalSelectItem>
+                            )
+                        }
+                    </ul>
+                </div>
+                <div className="modal-footer">
+                    <Button onClick={this.closeModal}>Select</Button>
+                </div>
             </Modal>
         </div>
     }

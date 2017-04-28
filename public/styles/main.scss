@@ -47,6 +47,9 @@
 .avatar-container {
   display: inline;
   padding: 0 10px 0 0;
+  span{
+    cursor: default;
+  }
 }
 
 .avatar-img {
@@ -272,8 +275,8 @@
   }
 }
 
-/*modal dropdown*/
-.modal-dropdown-dialog {
+/*modal select*/
+.modal-select-dialog {
   @media (min-width: 768px) {
     width: 600px;
     height: auto;
@@ -286,7 +289,7 @@
   }
 }
 
-  .modal-dropdown-item {
+  .modal-select-item {
     font-size: 13px;
     padding: 10px 20px;
     margin: 0 5px;

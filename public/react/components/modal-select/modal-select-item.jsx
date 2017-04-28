@@ -10,7 +10,8 @@ export default class ModalDropdownItem extends Component {
                 title: PropTypes.string.isRequired
             }).isRequired,
         onSelect: PropTypes.func,
-        selected: PropTypes.bool
+        selected: PropTypes.bool,
+        children: PropTypes.node
     }
 
     select = () => {
@@ -19,14 +20,14 @@ export default class ModalDropdownItem extends Component {
     }
 
     render(){
-        const {item, selected} = this.props
+        const {children, selected} = this.props
         const className = classNames({
-            "modal-dropdown-item": true,
+            "modal-select-item": true,
             "selected": selected
         })
 
-        return <div className={className} onClick={this.select}>
-            {item.title}
-        </div>
+        return <li className={className} onClick={this.select}>
+            {children}
+        </li>
     }
 }

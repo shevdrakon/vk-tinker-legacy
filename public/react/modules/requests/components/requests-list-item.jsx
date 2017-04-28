@@ -24,19 +24,24 @@ class RequestsListItem extends Component {
         this.props.onToggle({item: this.props.item, selected: !selected})
     }
 
+
     render() {
         const {userLink, fullName, photo_50, selected} = this.props.item
 
         return <tr>
-            <td className="checkbox-column">
+            <td className="checkbox-column" onClick={this.handleToggle}>
                 <Checkbox checked={selected} onChange={this.handleToggle} ripple/>
+            </td>
+            <td onClick={this.handleToggle}>
+                <div className="avatar-container">
+                    <Avatar src={photo_50}/>
+                    <span>{fullName}</span>
+
+                </div>
             </td>
             <td>
                 <a href={userLink} target="_blank">
-                    <div className="avatar-container">
-                        <Avatar src={photo_50}/>
-                        <span>{fullName}</span>
-                    </div>
+                    <i className="material-icons">link</i>
                 </a>
             </td>
         </tr>

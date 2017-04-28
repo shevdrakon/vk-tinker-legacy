@@ -56,7 +56,7 @@ class RequestsList extends Component {
                 <List.Header>
                     <PositiveBadge count={requestsCount}>Members :: Requests</PositiveBadge>
                     <div className="accept-selected-container">
-                        <Button className="btn-white accept-selected" onClick={this.handleApproveSelected} disabled = {disableApproveButton}>Accept selected</Button>
+                        <Button className="btn-white accept-selected" onClick={this.handleApproveSelected} disabled = {disableApproveButton}><i className="material-icons">done_all</i>Accept</Button>
                     </div>
                 </List.Header>
 
@@ -65,6 +65,7 @@ class RequestsList extends Component {
                 </List.Column>
 
                 <List.Column>Name</List.Column>
+                <List.Column>Link</List.Column>
             </List>
         </div>
     }
