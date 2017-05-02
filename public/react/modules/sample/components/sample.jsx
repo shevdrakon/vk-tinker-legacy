@@ -14,7 +14,6 @@ import Pagination from '../../../components/pagination/pagination.jsx'
 import SampleDropdown from './dropdown.jsx'
 import PageContainer from './page-container.jsx'
 import SampleModal from './modal.jsx'
-import SampleModalDropdown from './modal-select.jsx'
 
 class Sample extends Component {
 
@@ -78,11 +77,6 @@ class Sample extends Component {
                 <div className="container">
                     <Title>Modal</Title>
                     <SampleModal/>
-                </div>
-
-                <div className="container">
-                    <Title>ModalDropdown</Title>
-                    <SampleModalDropdown/>
                 </div>
             </PageContainer>
         </div>

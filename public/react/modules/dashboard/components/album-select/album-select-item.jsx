@@ -2,16 +2,15 @@ import React, {Component, PropTypes} from 'react'
 
 import classNames from 'classnames'
 
-export default class ModalDropdownItem extends Component {
+export default class AlbumSelectItem extends Component {
     static propTypes = {
         item: PropTypes.shape(
             {
-                value: PropTypes.string.isRequired,
-                title: PropTypes.string.isRequired
-            }).isRequired,
+                aid: PropTypes.any,
+                title: PropTypes.string
+            }),
         onSelect: PropTypes.func,
-        selected: PropTypes.bool,
-        children: PropTypes.node
+        selected: PropTypes.bool
     }
 
     select = () => {
@@ -20,14 +19,14 @@ export default class ModalDropdownItem extends Component {
     }
 
     render(){
-        const {children, selected} = this.props
+        const {item, selected} = this.props
         const className = classNames({
             "modal-select-item": true,
             "selected": selected
         })
 
         return <li className={className} onClick={this.select}>
-            {children}
+            <span>{item.title}</span>
         </li>
     }
 }

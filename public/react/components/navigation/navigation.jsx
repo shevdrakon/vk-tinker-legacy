@@ -3,17 +3,12 @@ import {Navbar} from 'react-bootstrap'
 
 import Avatar from '../avatar.jsx'
 import NavigationMenu from './navigation-menu.jsx'
-import NavigationDropdown from './navigation-dropdown.jsx'
 
 export default class Navigation extends Component {
     static propTypes = {
         avatar: PropTypes.string,
         requestsCount: PropTypes.number,
-        children: PropTypes.arrayOf(
-            PropTypes.oneOfType([
-                PropTypes.instanceOf(NavigationDropdown)
-            ])
-        )
+        children: PropTypes.node
     }
 
     render() {

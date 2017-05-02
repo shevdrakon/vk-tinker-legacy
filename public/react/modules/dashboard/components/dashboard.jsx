@@ -1,11 +1,11 @@
 import React, {Component, PropTypes} from 'react'
-import {observer} from 'mobx-react'
+import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
 import UserNavigation from '../../../components/navigation/user-navigation.jsx'
-import NavigationDropdown from '../../../components/navigation/navigation-dropdown.jsx'
 import PageContainer from '../../../components/page-container.jsx'
 import PhotoCards from './photo-cards.jsx'
+import AlbumSelect from './album-select/album-select.jsx'
 
 export class DashboardPage extends Component {
     static propTypes = {
@@ -15,9 +15,10 @@ export class DashboardPage extends Component {
         albums: PropTypes.shape(
             {
                 load: PropTypes.func,
-                collection: PropTypes.arrayOf(PropTypes.object),
+                collection: mProptypes.arrayOrObservableArray,
                 selected: PropTypes.object,
-                select: PropTypes.func
+                select: PropTypes.func,
+                count: PropTypes.number
             }
         )
     }
@@ -29,29 +30,14 @@ export class DashboardPage extends Component {
     }
     /* eslint-enable no-empty-pattern */
 
-    handleAlbumSelection = (eventKey) => {
-        this.props.albums.select(eventKey)
-    }
-
     render() {
-        const {collection = [], selected} = this.props.albums
-        const albums = [
-            ...collection.map((album) => {
-                return {
-                    value: album.id,
-                    title: album.title
-                }
-            })
-        ]
+        const {count} = this.props.albums
 
-        const hasAlbums = collection.length > 0
+        const hasAlbums = count > 0
 
         return <div className="page-container">
             <UserNavigation>
-                {hasAlbums && <NavigationDropdown
-                    onSelect={this.handleAlbumSelection}
-                    title={selected.title}>{albums}</NavigationDropdown>
-                }
+                {hasAlbums && <AlbumSelect/>}
             </UserNavigation>
             <PageContainer>
                 <PhotoCards />

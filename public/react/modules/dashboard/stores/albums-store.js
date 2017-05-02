@@ -14,6 +14,7 @@ export default class AlbumsStore extends SmartStore {
         aid: undefined,
         title: "All albums"
     }]
+    @observable count = 0
     @observable selected = this.collection[0]
 
     get photosStore() {
@@ -40,6 +41,7 @@ export default class AlbumsStore extends SmartStore {
                     this.collection[0],
                     ...response.items.map((album) => new AlbumModel({...album}))
                 ];
+                this.count = response.count
             }), action(error => {
                 this.fetching = false
                 this.store.notification.error({error, message: 'Could not retrieve albums.'})
