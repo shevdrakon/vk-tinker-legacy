@@ -47,7 +47,7 @@
 .avatar-container {
   display: inline;
   padding: 0 10px 0 0;
-  span{
+  span {
     cursor: default;
   }
 }
@@ -89,7 +89,7 @@
 .navbar .navbar-nav > li {
   cursor: pointer;
 
-  .nav-button, .dropdown-toggle  {
+  .nav-button, .dropdown-toggle {
     margin: 0 3px;
     &.active, &:hover {
       background-color: rgba(255, 255, 255, 0.1);
@@ -114,7 +114,7 @@
   display: inline-flex;
   margin: 10px auto;
 
-  &.selected{
+  &.selected {
     box-shadow: 0 1px 38px -12px #7b1fa2, 0 2px 25px 0px #7b1fa2, 0 3px 10px -5px #7b1fa2;
   }
 
@@ -297,20 +297,24 @@
   }
 }
 
-  .modal-select-item {
-    font-size: 13px;
-    padding: 10px 20px;
-    margin: 0 5px;
-    border-radius: 2px;
-    transition: all 150ms linear;
-    display: block;
-    color: #333;
-    white-space: nowrap;
-    cursor: pointer;
+.modal-select-search {
+  padding-left: 10px;
+}
 
-    &:hover, &.selected {
-      background-color: #9c27b0;
-      color: #FFFFFF;
-      box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
-    }
+.modal-select-item {
+  font-size: 13px;
+  padding: 10px 20px;
+  margin: 0 5px;
+  border-radius: 2px;
+  transition: all 150ms linear;
+  display: block;
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover, &.selected {
+    background-color: #9c27b0;
+    color: #FFFFFF;
+    box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
   }
+}

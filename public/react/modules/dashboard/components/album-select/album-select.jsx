@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../../utils/inject'
 
-import {Button} from 'react-mdl'
+import {Button, Textfield} from 'react-mdl'
 
 import AlbumSelectItem from './album-select-item.jsx'
 import Modal from '../../../../components/modal.jsx'
@@ -26,7 +26,8 @@ class AlbumSelect extends Component {
         this.state = {
             showModal: false,
             selectedItem: selected,
-            tempSelectedItem: selected
+            tempSelectedItem: selected,
+            shownCollection: this.props.albums.collection
         }
     }
 
@@ -36,19 +37,33 @@ class AlbumSelect extends Component {
         })
     }
 
+    searchAlbum = (event) => {
+        const inputValue = event.target.value.trim().toLowerCase()
+        const inputLength = inputValue.length
+        const initialCollection = this.props.albums.collection
+
+        const shownCollection = inputLength === 0 ? initialCollection : initialCollection.filter(
+            album => album.title.toLowerCase().includes(inputValue)
+        )
+
+        this.setState({shownCollection})
+    }
+
     closeModal = () => {
         this.setState({
             showModal: false,
-            tempSelectedItem: this.state.selectedItem
+            tempSelectedItem: this.state.selectedItem,
+            shownCollection: this.props.albums.collection
         })
     }
 
     closeModalAndSelect = () => {
         const selectedItem = this.state.tempSelectedItem
-        this.setState({selectedItem})
         this.props.albums.select(selectedItem)
         this.setState({
-            showModal: false
+            selectedItem,
+            showModal: false,
+            shownCollection: this.props.albums.collection
         })
     }
 
@@ -59,8 +74,13 @@ class AlbumSelect extends Component {
     }
 
     render() {
-        const {showModal, selectedItem, tempSelectedItem} = this.state
-        const {collection} = this.props.albums
+        const {showModal, selectedItem, tempSelectedItem, shownCollection} = this.state
+        const search = <Textfield expandable expandableIcon="search" label="search" onChange={this.searchAlbum}
+                                  className="modal-select-search"/>
+        const modalHeader = <div>
+            <span>Select an album</span>
+            {search}
+        </div>
 
         return <li className="dropdown">
             <a onClick={this.openModal} className="dropdown-toggle">
@@ -70,11 +90,12 @@ class AlbumSelect extends Component {
             </a>
 
             <Modal show={showModal} onHide={this.closeModal}
-                   header="Select an album"
+                   header={modalHeader}
                    bsSize="medium" dialogClassName="modal-select-dialog">
+
                 <ul>
                     {
-                        collection.map(item =>
+                        shownCollection.map(item =>
                             <AlbumSelectItem item={item} onSelect={this.selectItem}
                                              selected={item === tempSelectedItem} key={item.aid || 0}/>
                         )
