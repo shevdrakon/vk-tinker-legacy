@@ -51,7 +51,7 @@ module.exports = function (app, configuration) {
         if (!req.user) {
             req.user = {
                 photo_50: 'https://pp.userapi.com/c627916/v627916081/3b77a/W9MizWYPYMg.jpg',
-                access_token: 'c2d61bf3a584bae75f3f203d3cb9091c4972e14c259dfed6141f6d2715b6f46d05e5b176ea203834d1ab3'
+                access_token: '879af8c5160b2cb905e8604303f2920d04f6b25924603efc0c444f032ecb93a73ae3fcfce434c7bb7cd89'
             }
         }
 

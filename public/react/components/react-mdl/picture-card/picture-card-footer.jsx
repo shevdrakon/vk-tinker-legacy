@@ -6,13 +6,14 @@ import Icon from '../icon.jsx'
 
 export default class PictureCardFooter extends Component {
     static propTypes = {
-        collapsed: PropTypes.bool,
         children: PropTypes.oneOfType([
             PropTypes.element,
             PropTypes.string
         ]),
         className: PropTypes.string,
-        imgLink: PropTypes.string
+        imgLink: PropTypes.string,
+        showComments: PropTypes.bool,
+        onCommentsClick: PropTypes.func
     }
 
     constructor(props) {
@@ -26,14 +27,19 @@ export default class PictureCardFooter extends Component {
     }
 
     render(){
-        const {children, className, imgLink, ...otherProps} = this.props
+        const {children, className, imgLink, showComments, onCommentsClick, ...otherProps} = this.props
         const {collapsed} = this.state
         const collapsedClass = collapsed ? 'small' : 'big'
         const footerClasses = classNames(className,'card-actions', collapsedClass)
         const collapseIcon = collapsed ? 'more_vert' : 'close'
+        const commentsButton = <Button ripple onClick={onCommentsClick}>
+                <Icon>comment</Icon>
+            </Button>
 
         return  <CardActions className={footerClasses} border>
-            <Button ripple><Icon>delete</Icon>Delete</Button>
+            {showComments && commentsButton}
+            <Button ripple><Icon>delete</Icon></Button>
+
             <IconButton name={collapseIcon} className="card-more" onClick={this.toggleCollapse}/>
             <a target="_blank" href={imgLink} className="card-footer-link">
                 <IconButton name="link" className="card-menu-icon"/>

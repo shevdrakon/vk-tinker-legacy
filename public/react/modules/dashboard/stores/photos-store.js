@@ -44,7 +44,7 @@ export default class PhotosStore extends SmartStore {
     @action fetch({reset} = {reset: true}) {
         const {top} = this
         const skip = reset ? 0 : this.skip + top
-        const albumId = this.albumsStore.selected.value
+        const albumId = this.albumsStore.selected.id
 
         if (reset) {
             this.nofetch = false

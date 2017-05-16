@@ -97,7 +97,7 @@ class AlbumSelect extends Component {
                     {
                         shownCollection.map(item =>
                             <AlbumSelectItem item={item} onSelect={this.selectItem}
-                                             selected={item === tempSelectedItem} key={item.aid || 0}/>
+                                             selected={item === tempSelectedItem} key={item.id || 0}/>
                         )
                     }
                 </ul>

@@ -11,7 +11,7 @@ export default class AlbumsStore extends SmartStore {
 
     @observable loading = true
     @observable collection = [{
-        aid: undefined,
+        id: undefined,
         title: "All albums"
     }]
     @observable count = 0

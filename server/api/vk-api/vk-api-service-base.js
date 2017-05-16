@@ -19,7 +19,7 @@ class VkApiServiceBase extends BaseService {
 
             error.status = error_code === 5 ? 401 : 500
             error.response = response
-
+            Logger.log('Error', response)
             Logger.log('Error', error)
 
             throw error

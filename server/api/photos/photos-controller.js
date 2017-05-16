@@ -10,11 +10,23 @@ class PhotosController extends BaseController {
 
     getAll(payload) {
         const service = new PhotosService()
-        const p = payload.albumId
-            ? service.getByAlbum(payload)
-            : service.getAll(payload)
+        const p = service.getAll(payload)
 
         return p.then((response) => {
+            response.items.forEach( photo => {
+                const {comments} = photo
+
+                const hash = comments.users.reduce((result,current) =>{
+                    result[current.id] = current
+                    return result
+                },{})
+
+                comments.items.forEach( comment => {
+                    comment.user = hash[comment.from_id]
+                })
+
+            })
+
             return {
                 count: response.count,
                 items: response.items
