@@ -10,7 +10,8 @@ export default class PhotoCardItem extends Component {
             text: PropTypes.string,
             href: PropTypes.string,
             selected: PropTypes.bool,
-            comments: PropTypes.object
+            comments: PropTypes.object,
+            isSoldOut: PropTypes.bool
         }),
 
         album: PropTypes.shape({
@@ -35,7 +36,7 @@ export default class PhotoCardItem extends Component {
     }
 
     render() {
-        const {photo_604, text, href, selected, comments} = this.props.item
+        const {photo_604, text, href, selected, comments, isSoldOut} = this.props.item
         const {title} = this.props.album || {}
 
         return <Col md={3} sm={6}>
@@ -43,7 +44,8 @@ export default class PhotoCardItem extends Component {
                   imgSrc={photo_604}
                   selected={selected}
                   cardText={title}
-                  comments = {comments}>
+                  isSoldOut={isSoldOut}
+                  comments={comments}>
                 {text}
             </Card>
         </Col>

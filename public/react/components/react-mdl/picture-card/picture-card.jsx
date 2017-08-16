@@ -15,6 +15,7 @@ export default class PictureCard extends Component {
         imgValidation: PropTypes.oneOf(['done', 'warning', 'bad']),
         selected: PropTypes.bool,
         comments: PropTypes.object,
+        isSoldOut: PropTypes.bool,
         children: PropTypes.oneOfType([
             PropTypes.element,
             PropTypes.string
@@ -49,12 +50,10 @@ export default class PictureCard extends Component {
         this.context.handleClick()
     }
 
-
-
     render() {
-        const {imgSrc, cardText, imgLink, imgValidation, children, selected, comments, ...otherProps} = this.props
+        const {imgSrc, cardText, imgLink, imgValidation, children, selected, isSoldOut, comments, ...otherProps} = this.props
         const {showModal} = this.state
-        const headerProps = {imgSrc, imgLink, imgValidation, onClick: this.handleHeaderClick}
+        const headerProps = {isSoldOut, imgSrc, imgLink, imgValidation, onClick: this.handleHeaderClick}
         const className = ClassNames({
             "card-container": true,
             "selected": selected

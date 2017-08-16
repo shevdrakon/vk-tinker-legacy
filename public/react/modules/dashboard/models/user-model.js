@@ -2,7 +2,6 @@ import {extendObservable, computed} from 'mobx'
 
 export default class UserModel {
     constructor(attributes) {
-        debugger
         extendObservable(this, attributes)
     }
 

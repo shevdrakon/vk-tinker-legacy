@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 
 import Avatar from '../../../components/avatar.jsx'
-import Icon from '../icon.jsx'
 
 export default class Comment extends Component {
     static propTypes = {
@@ -10,23 +9,25 @@ export default class Comment extends Component {
             text: PropTypes.string,
             user: PropTypes.shape({
                 fullName: PropTypes.string,
-                photo_50: PropTypes.string,
-                userLink: PropTypes.string,
+                photo_50: PropTypes.string
             })
         })
     }
 
     render() {
         const {comment} = this.props
-        const {photo_50, fullName, userLink} = comment.user
+        const {photo_50, fullName} = comment.user
+
+        const date = new Date(comment.date * 1000)
+        const dateDescription = date.toLocaleString('ru')
 
         return <li className="comment">
-            <div className="avatar-container">
-                <Avatar src={photo_50}/>
-                <span>{fullName}</span>
-                <span><a href={userLink}><Icon>link</Icon></a></span>
+            <Avatar src={photo_50}/>
+            <div>
+                <span className="author">{fullName}</span>
+                <span className="date">{dateDescription}</span>
+                <div>{comment.text}</div>
             </div>
-            <span>{comment.text}</span>
         </li>
     }
 }

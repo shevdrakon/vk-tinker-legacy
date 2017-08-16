@@ -36,7 +36,6 @@ class RequestsListItem extends Component {
                 <div className="avatar-container">
                     <Avatar src={photo_50}/>
                     <span>{fullName}</span>
-
                 </div>
             </td>
             <td>

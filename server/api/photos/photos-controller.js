@@ -1,6 +1,8 @@
 const BaseController = require('../../lib/base-controller')
 const PhotosService = require('../vk-api/photos-service')
 
+const {hasSoldOutText} = require('./utils')
+
 class PhotosController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
@@ -13,18 +15,21 @@ class PhotosController extends BaseController {
         const p = service.getAll(payload)
 
         return p.then((response) => {
-            response.items.forEach( photo => {
+            response.items.forEach(photo => {
                 const {comments} = photo
-
-                const hash = comments.users.reduce((result,current) =>{
+                const hash = comments.users.reduce((result, current) => {
                     result[current.id] = current
                     return result
-                },{})
+                }, {})
 
-                comments.items.forEach( comment => {
+                photo.isSoldOut = false
+
+                comments.items.forEach(comment => {
                     comment.user = hash[comment.from_id]
-                })
 
+                    if (!photo.isSoldOut && hasSoldOutText(comment.text))
+                        photo.isSoldOut = true
+                })
             })
 
             return {

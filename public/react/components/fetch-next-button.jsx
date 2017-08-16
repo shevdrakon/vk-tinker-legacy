@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react'
 
 import {Button} from 'react-mdl'
 
-const TryAgainButton = (props) => {
+const FetchNextButton = (props) => {
 
     const handleClick = (e) => {
         e.preventDefault()
@@ -12,13 +12,13 @@ const TryAgainButton = (props) => {
 
     return <div className="center-button-container">
         <Button raised ripple colored onClick={handleClick}>
-            Try again
+            Fetch Next
         </Button>
     </div>
 }
 
-TryAgainButton.propTypes = {
+FetchNextButton.propTypes = {
     onClick: PropTypes.func
 }
 
-export default TryAgainButton
+export default FetchNextButton

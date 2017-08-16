@@ -3,8 +3,8 @@ import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
 import BusyDots from '../../../components/busy-dots.jsx'
+import FetchNextButton from '../../../components/fetch-next-button.jsx'
 import TryAgainButton from '../../../components/try-again-button.jsx'
-import InfiniteScroll from '../../../components/infinite-scroll.jsx'
 
 import PhotoCardItem from './photo-card-item.jsx'
 
@@ -31,7 +31,7 @@ export class PhotoCards extends Component {
         this.props.photos.repeat()
     }
 
-    handleScroll = () => {
+    handleFetchNext = () => {
         this.props.photos.fetchNext()
     }
 
@@ -44,22 +44,20 @@ export class PhotoCards extends Component {
     }
 
     render() {
-        const {fetching, fetchingFailed, loading, collection} = this.props.photos
-        const scrolling = !loading && fetching
+        const {fetchingFailed, loading, collection} = this.props.photos
 
         if (loading)
             return <BusyDots/>
 
         return <div>
-            <InfiniteScroll scrolling={scrolling} onScroll={this.handleScroll}>
-                <div className="row equal">
-                    {collection.map(photo => <PhotoCardItem key={photo.id}
-                                                            album={this.getAlbumById(photo.album_id)}
-                                                            item={photo}
-                                                            onSelect={this.handleCardSelect}/>)}
-                </div>
-            </InfiniteScroll>
+            <div className="row equal">
+                {collection.map(photo => <PhotoCardItem key={photo.id}
+                                                        album={this.getAlbumById(photo.album_id)}
+                                                        item={photo}
+                                                        onSelect={this.handleCardSelect}/>)}
+            </div>
 
+            {!fetchingFailed && <FetchNextButton onClick={this.handleFetchNext}/>}
             {fetchingFailed && <TryAgainButton onClick={this.handleTryAgainClick}/>}
         </div>
     }

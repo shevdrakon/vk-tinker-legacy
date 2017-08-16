@@ -15,8 +15,9 @@
   padding-top: 22px;
 }
 
-.try-again-button-container {
+.center-button-container {
   text-align: center;
+  padding: 4px;
 }
 
 .equal {
@@ -327,5 +328,23 @@
   transition: all 150ms linear;
   display: block;
   color: #333;
-  white-space: nowrap;
+  //white-space: nowrap;
+
+  div.avatar-container {
+    float: left;
+  }
+
+  .author {
+    font-weight: bold;
+  }
+
+  .date{
+    padding-left: 4px;
+    color: #939393;
+  }
+}
+
+.sold-out {
+  color: #9c27b0;
+  font-weight: bold;
 }
