@@ -2,6 +2,8 @@ import React, {Component, PropTypes} from 'react'
 import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
+import Icon from '../../../components/react-mdl/icon.jsx'
+
 import UserNavigation from '../../../components/navigation/user-navigation.jsx'
 import PageContainer from '../../../components/page-container.jsx'
 import PhotoCards from './photo-cards.jsx'
@@ -28,19 +30,22 @@ export class DashboardPage extends Component {
         dashboard.form.load()
         dashboard.albums.load()
     }
+
     /* eslint-enable no-empty-pattern */
 
     render() {
         const {count} = this.props.albums
-
         const hasAlbums = count > 0
 
         return <div className="page-container">
             <UserNavigation>
                 {hasAlbums && <AlbumSelect/>}
+                <li>
+                    <a className="nav-button"><Icon>filter_list</Icon></a>
+                </li>
             </UserNavigation>
             <PageContainer>
-                <PhotoCards />
+                <PhotoCards/>
             </PageContainer>
         </div>
     }

@@ -207,6 +207,16 @@
     .card-menu-icon {
       color: #ffffff
     }
+
+    .card-link {
+      display: block;
+    }
+
+    .sold-out {
+      display: block;
+      color: white;
+      font-size: 32px;
+    }
   }
 
   .card-more, .card-footer-link {
@@ -318,11 +328,6 @@
     color: #FFFFFF;
     box-shadow: 0 12px 20px -10px rgba(156, 39, 176, 0.28), 0 4px 20px 0px rgba(0, 0, 0, 0.12), 0 7px 8px -5px rgba(156, 39, 176, 0.2);
   }
-
-  div {
-  overflow: hidden;
-    text-overflow: ellipsis;
-  }
 }
 
 .comment {
@@ -347,15 +352,29 @@
     padding-left: 4px;
     color: #939393;
   }
-}
 
-.sold-out {
-  color: #9c27b0;
-  font-weight: bold;
+  .comment-highlight {
+    color: white;
+    background-color: #9c27b0;
+  }
 }
 
 .albums-dialog {
   .modal-header {
     padding: 4px;
+  }
+
+  .album-container {
+    display: flex;
+  }
+
+  .album-title {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .album-size {
+    color: #939393;
   }
 }

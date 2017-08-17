@@ -1,9 +1,5 @@
 module.exports.hasSoldOutText = (text) => {
-    if (text.toLowerCase() === 'продан')
-        return true
+    const regexp = /\Bпродан[оа]?\B(?!\s*\?)/gui
 
-    if (text.toLowerCase() === 'продана')
-        return true
-
-    return text.toLowerCase() === 'продано'
+    return regexp.test(text)
 }

@@ -38,10 +38,11 @@ class PhotosService extends VkApiServiceBase {
             
             var count = photosRequest.count;
             var requestItems = photosRequest.items;
+            var length = requestItems.length;
             var items = [];
             var i = 0;
 
-            while( i < ${top} ){
+            while( i < ${top} && i < length){
                 var item = requestItems[i];
                 var comments = API.photos.getComments({
                     "photo_id": item.id,

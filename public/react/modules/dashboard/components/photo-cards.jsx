@@ -14,6 +14,7 @@ export class PhotoCards extends Component {
             loading: PropTypes.bool,
             fetching: PropTypes.bool,
             fetchingFailed: PropTypes.bool,
+            nofetch: PropTypes.bool,
 
             collection: mProptypes.arrayOrObservableArray,
 
@@ -44,7 +45,7 @@ export class PhotoCards extends Component {
     }
 
     render() {
-        const {fetchingFailed, loading, collection} = this.props.photos
+        const {fetchingFailed, loading, nofetch, collection} = this.props.photos
 
         if (loading)
             return <BusyDots/>
@@ -57,7 +58,7 @@ export class PhotoCards extends Component {
                                                         onSelect={this.handleCardSelect}/>)}
             </div>
 
-            {!fetchingFailed && <FetchNextButton onClick={this.handleFetchNext}/>}
+            {!nofetch && !fetchingFailed && <FetchNextButton onClick={this.handleFetchNext}/>}
             {fetchingFailed && <TryAgainButton onClick={this.handleTryAgainClick}/>}
         </div>
     }

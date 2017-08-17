@@ -8,7 +8,8 @@ export default class AlbumSelectItem extends Component {
         item: PropTypes.shape(
             {
                 aid: PropTypes.any,
-                title: PropTypes.string
+                title: PropTypes.string,
+                size: PropTypes.number
             }),
         onSelect: PropTypes.func,
         selected: PropTypes.bool
@@ -19,7 +20,7 @@ export default class AlbumSelectItem extends Component {
         this.props.onSelect(item)
     }
 
-    render(){
+    render() {
         const {item, selected} = this.props
         const className = classNames({
             "modal-select-item": true,
@@ -27,7 +28,10 @@ export default class AlbumSelectItem extends Component {
         })
 
         return <Col className={className} md={5} sm={8} onClick={this.select}>
-            <div>{item.title}</div>
+            <div className="album-container">
+                <div className="album-title">{item.title}</div>
+                <div className="album-size">{item.size}</div>
+            </div>
         </Col>
     }
 }

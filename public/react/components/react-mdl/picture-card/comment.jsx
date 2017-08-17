@@ -1,12 +1,13 @@
 import React, {Component, PropTypes} from 'react'
 
 import Avatar from '../../../components/avatar.jsx'
+import HighlightText from '../../../components/highlight-text.jsx'
 
 export default class Comment extends Component {
     static propTypes = {
         comment: PropTypes.shape({
             id: PropTypes.number,
-            text: PropTypes.string,
+            highlightedText: PropTypes.string,
             user: PropTypes.shape({
                 fullName: PropTypes.string,
                 photo_50: PropTypes.string
@@ -26,7 +27,9 @@ export default class Comment extends Component {
             <div>
                 <span className="author">{fullName}</span>
                 <span className="date">{dateDescription}</span>
-                <div>{comment.text}</div>
+                <div>
+                    <HighlightText searchClassName="comment-highlight" search="Продан">{comment.text}</HighlightText>
+                </div>
             </div>
         </li>
     }

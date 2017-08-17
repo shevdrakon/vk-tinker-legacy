@@ -32,14 +32,14 @@ export default class PictureCardHeader extends Component {
         return <CardTitle className="card-title" {...otherProps}>
             <img src={imgSrc} className="card-image"/>
             <CardMenu className="card-menu">
-                <a target="_blank" href={imgLink} onClick={this.handleLinkClick}>
+                <a className="card-link" target="_blank" href={imgLink} onClick={this.handleLinkClick}>
                     <IconButton name="link" className="card-menu-icon"/>
                 </a>
-                {isSoldOut && <TooltipIcon label="Продано" name="attach_money" className="sold-out"/>}
+                {isSoldOut && <TooltipIcon label="Продано" className="sold-out">monetization_on</TooltipIcon>}
             </CardMenu>
             {hasValidation && <Icon className={validationClass}>{validationIcon}</Icon>}
         </CardTitle>
     }
 }
 
-const TooltipIcon = WithTooltip(IconButton)
+const TooltipIcon = WithTooltip(Icon)
