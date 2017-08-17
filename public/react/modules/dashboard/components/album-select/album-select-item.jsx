@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import {Col} from 'react-bootstrap'
 
 import classNames from 'classnames'
 
@@ -25,8 +26,8 @@ export default class AlbumSelectItem extends Component {
             "selected": selected
         })
 
-        return <li className={className} onClick={this.select}>
-            <span>{item.title}</span>
-        </li>
+        return <Col className={className} md={5} sm={8} onClick={this.select}>
+            <div>{item.title}</div>
+        </Col>
     }
 }

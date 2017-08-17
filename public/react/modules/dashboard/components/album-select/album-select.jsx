@@ -75,11 +75,10 @@ class AlbumSelect extends Component {
 
     render() {
         const {showModal, selectedItem, tempSelectedItem, shownCollection} = this.state
-        const search = <Textfield expandable expandableIcon="search" label="search" onChange={this.searchAlbum}
-                                  className="modal-select-search"/>
+
         const modalHeader = <div>
             <span>Select an album</span>
-            {search}
+            <Textfield label="Search" expandable expandableIcon="search" onChange={this.searchAlbum} className="modal-select-search"/>
         </div>
 
         return <li className="dropdown">
@@ -91,8 +90,7 @@ class AlbumSelect extends Component {
 
             <Modal show={showModal} onHide={this.closeModal}
                    header={modalHeader}
-                   bsSize="medium" dialogClassName="modal-select-dialog">
-
+                   bsSize="medium" dialogClassName="modal-select-dialog albums-dialog">
                 <ul>
                     {
                         shownCollection.map(item =>
