@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-import {Button} from 'react-mdl'
+import Button from './react-mdl/button.jsx'
 
 const FetchNextButton = (props) => {
 

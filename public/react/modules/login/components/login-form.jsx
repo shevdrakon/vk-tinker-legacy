@@ -3,9 +3,10 @@ import {observer} from 'mobx-react'
 
 import inject from '../../../utils/inject'
 
-import {ProgressBar} from 'react-mdl'
 import {Col} from 'react-bootstrap'
-import {TextfieldWithIcon} from '../../../components/react-mdl/textfield-with-icon.jsx'
+
+import LinearProgress from '../../../components/react-mdl/linear-progress.jsx'
+import TextFieldWithIcon from '../../../components/react-mdl/textfield-with-icon.jsx'
 import Icon from '../../../components/react-mdl/icon.jsx'
 
 import AboutAccessTokenModal from './about-access-token-modal.jsx'
@@ -91,14 +92,14 @@ export class LoginForm extends Component {
 
                                 <div className="content">
                                     <div className="input-group">
-                                        <TextfieldWithIcon icon="lock_outline" label="access_token" value={access_token}
+                                        <TextFieldWithIcon icon="lock_outline" label="access_token" value={access_token}
                                                            onChange={this.handleTokenChange}/>
                                     </div>
                                 </div>
                                 <div className="footer text-center">
                                     <a disabled={logging} href="#pablo" className="btn btn-simple btn-primary btn-lg"
                                        onClick={this.handleGetStartedClick}>Get Started</a>
-                                    {logging && <ProgressBar className="login-progress-bar" indeterminate/>}
+                                    {logging && <LinearProgress className="login-progress-bar" />}
                                 </div>
                             </form>
                         </div>

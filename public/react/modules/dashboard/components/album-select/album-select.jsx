@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../../utils/inject'
 
-import {Button, Textfield} from 'react-mdl'
+import {Button, TextField} from 'material-ui'
 
 import AlbumSelectItem from './album-select-item.jsx'
 import Modal from '../../../../components/modal.jsx'
@@ -60,6 +60,7 @@ class AlbumSelect extends Component {
     closeModalAndSelect = () => {
         const selectedItem = this.state.tempSelectedItem
         this.props.albums.select(selectedItem)
+
         this.setState({
             selectedItem,
             showModal: false,
@@ -100,7 +101,7 @@ class AlbumSelect extends Component {
                     }
                 </ul>
                 <Modal.Footer>
-                    <Button ripple colored onClick={this.closeModalAndSelect}>Ok</Button>
+                    <Button raised color="primary" onClick={this.closeModalAndSelect}>Ok</Button>
                 </Modal.Footer>
             </Modal>
         </li>
