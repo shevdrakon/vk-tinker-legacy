@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
-import Icon from '../../../components/react-mdl/icon.jsx'
+import IconToggle from '../../../components/react-mdl/icon-toggle.jsx'
 
 import UserNavigation from '../../../components/navigation/user-navigation.jsx'
 import PageContainer from '../../../components/page-container.jsx'
@@ -12,10 +12,11 @@ import AlbumSelect from './album-select/album-select.jsx'
 export class DashboardPage extends Component {
     static propTypes = {
         dashboard: PropTypes.shape({
-            load: PropTypes.func
+            showSoldOutOnly: PropTypes.bool,
+            load: PropTypes.func,
+            toggleShowSoldOutOnly: PropTypes.func
         }),
-        albums: PropTypes.shape(
-            {
+        albums: PropTypes.shape({
                 load: PropTypes.func,
                 collection: mProptypes.arrayOrObservableArray,
                 selected: PropTypes.object,
@@ -33,15 +34,28 @@ export class DashboardPage extends Component {
 
     /* eslint-enable no-empty-pattern */
 
+    handleShowSoldOutOnlyClick = (e) => {
+        e.preventDefault()
+
+        const checked = this.props.dashboard.showSoldOutOnly
+        this.props.dashboard.toggleShowSoldOutOnly({value: !checked})
+    }
+
     render() {
+        const {showSoldOutOnly} = this.props.dashboard
         const {count} = this.props.albums
         const hasAlbums = count > 0
 
         return <div className="page-container">
             <UserNavigation>
                 {hasAlbums && <AlbumSelect/>}
-                <li>
-                    <a className="nav-button"><Icon>filter_list</Icon></a>
+                <li className="nav-toggler">
+                    <a className="nav-button" onClick={this.handleShowSoldOutOnlyClick}>
+                        <IconToggle checked={showSoldOutOnly}>attach_money</IconToggle>
+                    </a>
+                    {/*<a className="nav-button">*/}
+                    {/*<Icon>attach_money</Icon>*/}
+                    {/*</a>*/}
                 </li>
             </UserNavigation>
             <PageContainer>

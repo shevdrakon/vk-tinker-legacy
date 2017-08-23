@@ -3,11 +3,12 @@ import qs from 'qs'
 export default ({ajax, apiUrl}) => {
     return {
         get: (payload) => {
-            const {top, skip, albumId} = payload
+            const {top, skip, albumId, soldOutOnly} = payload
             const args = {
                 top: top,
                 skip: skip,
-                albumId: albumId
+                albumId: albumId,
+                soldOutOnly
             }
 
             return ajax.get(`${apiUrl}/photos?${qs.stringify(args)}`)

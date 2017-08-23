@@ -15,6 +15,7 @@ export default class PositiveBadge extends Component {
     render(){
         const {count, children,...otherProps} = this.props
         const output = count && count>0 ? <Badge text={count} {...otherProps}>{children}</Badge> : children
+
         return (
             <div className="count-badge">
                 {output}

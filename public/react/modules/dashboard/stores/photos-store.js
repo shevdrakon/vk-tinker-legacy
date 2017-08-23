@@ -20,6 +20,10 @@ export default class PhotosStore extends SmartStore {
     @observable collection = []
     @observable notAvailable = false
 
+    get dashboardStore() {
+        return this.store.dashboard.form
+    }
+
     get albumsStore() {
         return this.store.dashboard.albums
     }
@@ -45,6 +49,7 @@ export default class PhotosStore extends SmartStore {
         const {top} = this
         const skip = reset ? 0 : this.skip + top
         const albumId = this.albumsStore.selected.id
+        const showSoldOutOnly = this.dashboardStore.showSoldOutOnly
 
         if (reset) {
             this.nofetch = false
@@ -57,7 +62,9 @@ export default class PhotosStore extends SmartStore {
         this.fetching = true
         this.fetchingFailed = false
 
-        return this.api.photos.get({top, skip, albumId})
+        const payload = {top, skip, albumId, soldOutOnly: showSoldOutOnly}
+
+        return this.api.photos.get(payload)
             .then(action(response => {
                 this.fetching = false
                 this.total = response.count

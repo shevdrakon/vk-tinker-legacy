@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react'
 import {observer} from 'mobx-react'
 import inject from '../../utils/inject'
+
 import Navigation from './navigation.jsx'
 
 const UserNavigation = (props) => {

@@ -1,4 +1,5 @@
 const VkApiServiceBase = require('./vk-api-service-base')
+const Logger = require('../../utils/logger')
 
 class PhotosService extends VkApiServiceBase {
     constructor() {
@@ -73,19 +74,31 @@ class PhotosService extends VkApiServiceBase {
             access_token
         })
 
-        const Logger = require('../../utils/logger')
-
-        Logger.log("exec: "+url)
+        Logger.log("exec: " + url)
 
         return this.get(url)
             .then(this.handleError)
             .then(response => {
-                Logger.log("resp: "+JSON.stringify(response.response))
+                Logger.log("resp: " + JSON.stringify(response.response))
                 return response.response
             })
     }
 
+    getByCommentsBatch({skip, albumId, access_token}) {
+        const url = this.getUrl('execute.photosCommentsBatch', {
+            offset: skip,
+            album_id: albumId,
+            access_token
+        })
 
+        Logger.log("exec: " + url)
+
+        return this.get(url)
+            .then(this.handleError)
+            .then(response => {
+                return response.response
+            })
+    }
 
     getAlbums({groupId, top, skip, access_token}) {
         const url = this.getUrl('photos.getAlbums', {
@@ -110,6 +123,28 @@ class PhotosService extends VkApiServiceBase {
         //             }
         //         ]
         //     })
+
+        return this.get(url)
+            .then(this.handleError)
+            .then(response => {
+                return response.response
+            })
+    }
+
+    getById({groupId, access_token, ids}) {
+        const photos = ids.reduce((str, id) => {
+            if (str.length)
+                str += ','
+
+            str += `-${groupId}_${id}`
+
+            return str
+        }, '')
+
+        const url = this.getUrl('photos.getById', {
+            photos,
+            access_token
+        })
 
         return this.get(url)
             .then(this.handleError)

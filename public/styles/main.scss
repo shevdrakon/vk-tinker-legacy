@@ -99,6 +99,17 @@
       margin-right: 0px;
     }
   }
+
+  &.nav-toggler {
+    > a {
+      color: #757575;
+      float: left;
+
+      > .checked {
+        color: white;
+      }
+    }
+  }
 }
 
 @media (max-width: 767px) {

@@ -11,19 +11,21 @@ module.exports = (configuration) => {
             skip: Number(req.query.skip),
             top: Number(req.query.top),
             albumId: req.query.albumId,
-            groupId: configuration.groupId
+            groupId: configuration.groupId,
+            soldOutOnly: req.query.soldOutOnly === 'true'
         }
 
         const controller = new PhotosController(req, res, next, configuration)
 
-        controller
-            .getAll(payload)
-            .then((response) => {
-                res.json(response)
-            })
-            .catch((error) => {
-                next(error)
-            })
+        const p = payload.soldOutOnly
+            ? controller.getAllSoldOutOnly(payload)
+            : controller.getAll(payload)
+
+        p.then((response) => {
+            res.json(response)
+        }).catch((error) => {
+            next(error)
+        })
     })
 
     router.get('/albums', (req, res, next) => {
