@@ -1,6 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 
-import {Tooltip} from 'react-mdl'
+import {Tooltip} from 'material-ui'
 
 const getDisplayName = (WrappedComponent) => {
     return WrappedComponent.displayName || WrappedComponent.name || 'Component';

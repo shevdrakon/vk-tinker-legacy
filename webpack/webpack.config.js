@@ -10,7 +10,7 @@ module.exports = (config) => {
         cache: true,
         devtool: config.devtool,
         entry: {
-            'vendor': ['babel-polyfill', 'jquery', 'react', 'react-mdl', 'mobx', 'mobx-react'],
+            'vendor': ['babel-polyfill', 'jquery', 'react', 'material-ui', 'mobx', 'mobx-react'],
             'main': ['./public/react/entry']
         },
         output: {

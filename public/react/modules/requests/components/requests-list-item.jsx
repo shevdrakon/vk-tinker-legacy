@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer} from 'mobx-react'
 import inject from '../../../utils/inject'
 
-import {Checkbox} from 'react-mdl'
+import Checkbox from '../../../components/react-mdl/checkbox.jsx'
 
 import Avatar from '../../../components/avatar.jsx'
 
@@ -30,7 +30,7 @@ class RequestsListItem extends Component {
 
         return <tr>
             <td className="checkbox-column" onClick={this.handleToggle}>
-                <Checkbox checked={selected} onChange={this.handleToggle} ripple/>
+                <Checkbox checked={selected} onCheck={this.handleToggle} />
             </td>
             <td onClick={this.handleToggle}>
                 <div className="avatar-container">

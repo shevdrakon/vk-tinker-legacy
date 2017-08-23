@@ -1,7 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 
-import {Button} from 'react-mdl'
-
+import Button from '../../../components/react-mdl/button.jsx'
 import Modal from '../../../components/modal.jsx'
 
 export default class AboutAccessToken extends Component {
@@ -24,7 +23,7 @@ export default class AboutAccessToken extends Component {
                 <a target="_blank" href="https://vk.com/dev/implicit_flow_user">Read here on vk page</a>
             </Modal.Body>
             <Modal.Footer>
-                <Button ripple colored onClick={this.handleClose}>Close</Button>
+                <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
         </Modal>
     }

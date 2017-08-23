@@ -1,6 +1,5 @@
 import React, {Component, PropTypes} from 'react'
-import {Badge} from 'react-mdl'
-
+import {Badge} from 'material-ui'
 
 export default class PositiveBadge extends Component {
     static propTypes = {
@@ -13,15 +12,13 @@ export default class PositiveBadge extends Component {
     }
 
     render(){
-        const {count, children,...otherProps} = this.props
-        const output = count && count>0 ? <Badge text={count} {...otherProps}>{children}</Badge> : children
+        const {count, children, ...rest} = this.props
+        const positive = count && count> 0
 
-        return (
-            <div className="count-badge">
-                {output}
-            </div>
-        )
+        if (positive)
+            return <Badge badgeContent={count} {...rest}>{children}</Badge>
+
+        return <div className="count-badge">{children}</div>
+
     }
 }
-
-

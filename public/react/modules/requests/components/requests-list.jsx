@@ -2,8 +2,9 @@ import React, {PropTypes, Component} from 'react'
 import {observer, propTypes as mPropTypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
-import {Checkbox} from 'react-mdl'
 import {Button} from 'react-bootstrap'
+
+import Checkbox from '../../../components/react-mdl/checkbox.jsx'
 
 import List from '../../../components/list/list.jsx'
 import ListItem from './requests-list-item.jsx'
@@ -61,7 +62,7 @@ class RequestsList extends Component {
                 </List.Header>
 
                 <List.Column className="checkbox-column">
-                    <Checkbox checked={isAllSelected} onChange={this.handleToggleAll} ripple/>
+                    <Checkbox checked={isAllSelected} oncheck={this.handleToggleAll} />
                 </List.Column>
 
                 <List.Column>Name</List.Column>

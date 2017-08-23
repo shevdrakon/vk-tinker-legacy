@@ -1,12 +1,12 @@
 import React from 'react'
-import {Checkbox} from 'react-mdl'
+
+import Checkbox from '../../../components/react-mdl/checkbox.jsx'
 
 const Checkboxes = () => {
     return <div>
-        <Checkbox label="With ripple" ripple defaultChecked />
-        <Checkbox label="Without ripple" />
+        <Checkbox label="With ripple" ripple checked />
         <Checkbox label="Disabled Unchecked" disabled />
-        <Checkbox label="Disabled Checked" defaultChecked disabled />
+        <Checkbox label="Disabled Checked" checked disabled />
     </div>
 }
 

@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react'
 
-import {Button} from 'react-mdl'
+import Button from './react-mdl/button.jsx'
 
 const TryAgainButton = (props) => {
 
@@ -11,9 +11,7 @@ const TryAgainButton = (props) => {
     }
 
     return <div className="center-button-container">
-        <Button raised ripple colored onClick={handleClick}>
-            Try again
-        </Button>
+        <Button onClick={handleClick}>Try again</Button>
     </div>
 }
 
