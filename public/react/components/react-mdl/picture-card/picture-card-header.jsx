@@ -3,7 +3,6 @@ import {CardTitle, IconButton, CardMenu} from 'react-mdl'
 import classNames from 'classnames'
 
 import Icon from '../icon.jsx'
-import WithTooltip from '../with-tooltip.jsx'
 
 const validationIcons = {
     'done': 'check_circle',
@@ -35,11 +34,9 @@ export default class PictureCardHeader extends Component {
                 <a className="card-link" target="_blank" href={imgLink} onClick={this.handleLinkClick}>
                     <IconButton name="link" className="card-menu-icon"/>
                 </a>
-                {isSoldOut && <TooltipIcon label="Продано" className="sold-out">monetization_on</TooltipIcon>}
+                {isSoldOut && <Icon className="sold-out">monetization_on</Icon>}
             </CardMenu>
             {hasValidation && <Icon className={validationClass}>{validationIcon}</Icon>}
         </CardTitle>
     }
 }
-
-const TooltipIcon = WithTooltip(Icon)

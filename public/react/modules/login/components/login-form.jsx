@@ -6,7 +6,7 @@ import inject from '../../../utils/inject'
 import {Col} from 'react-bootstrap'
 
 import LinearProgress from '../../../components/react-mdl/linear-progress.jsx'
-import TextFieldWithIcon from '../../../components/react-mdl/textfield-with-icon.jsx'
+import InputWithIcon from '../../../components/react-mdl/input-with-icon.jsx'
 import Icon from '../../../components/react-mdl/icon.jsx'
 
 import AboutAccessTokenModal from './about-access-token-modal.jsx'
@@ -25,7 +25,7 @@ export class LoginForm extends Component {
             onLogin: PropTypes.func,
             validateAndLogin: PropTypes.func,
             openAboutAccessToken: PropTypes.func,
-            closeAboutAccessToken:PropTypes.func
+            closeAboutAccessToken: PropTypes.func
         })
     };
 
@@ -92,14 +92,15 @@ export class LoginForm extends Component {
 
                                 <div className="content">
                                     <div className="input-group">
-                                        <TextFieldWithIcon icon="lock_outline" label="access_token" value={access_token}
-                                                           onChange={this.handleTokenChange}/>
+                                        <InputWithIcon icon="lock_outline" label="access_token"
+                                                       value={access_token}
+                                                       onChange={this.handleTokenChange}/>
                                     </div>
                                 </div>
                                 <div className="footer text-center">
                                     <a disabled={logging} href="#pablo" className="btn btn-simple btn-primary btn-lg"
                                        onClick={this.handleGetStartedClick}>Get Started</a>
-                                    {logging && <LinearProgress className="login-progress-bar" />}
+                                    {logging && <LinearProgress/>}
                                 </div>
                             </form>
                         </div>

@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../../utils/inject'
 
-import {Button, TextField} from 'material-ui'
+import Button from '../../../../components/react-mdl/button.jsx'
 
 import AlbumSelectItem from './album-select-item.jsx'
 import Modal from '../../../../components/modal.jsx'
@@ -37,17 +37,17 @@ class AlbumSelect extends Component {
         })
     }
 
-    searchAlbum = (event) => {
-        const inputValue = event.target.value.trim().toLowerCase()
-        const inputLength = inputValue.length
-        const initialCollection = this.props.albums.collection
-
-        const shownCollection = inputLength === 0 ? initialCollection : initialCollection.filter(
-            album => album.title.toLowerCase().includes(inputValue)
-        )
-
-        this.setState({shownCollection})
-    }
+    // searchAlbum = (event) => {
+    //     const inputValue = event.target.value.trim().toLowerCase()
+    //     const inputLength = inputValue.length
+    //     const initialCollection = this.props.albums.collection
+    //
+    //     const shownCollection = inputLength === 0 ? initialCollection : initialCollection.filter(
+    //         album => album.title.toLowerCase().includes(inputValue)
+    //     )
+    //
+    //     this.setState({shownCollection})
+    // }
 
     closeModal = () => {
         this.setState({
@@ -79,7 +79,6 @@ class AlbumSelect extends Component {
 
         const modalHeader = <div>
             <span>Select an album</span>
-            <Textfield label="Search" expandable expandableIcon="search" onChange={this.searchAlbum} className="modal-select-search"/>
         </div>
 
         return <li className="dropdown">

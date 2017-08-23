@@ -5,7 +5,7 @@ import {LinearProgress as LinearProgressMaterial} from 'material-ui'
 const LinearProgress = (props) => {
     const {mode, ...rest} = props
 
-    return <LinearProgressMaterial mode {...rest} />
+    return <LinearProgressMaterial mode={mode} {...rest} />
 }
 
 LinearProgress.defaultProps = {
@@ -13,7 +13,7 @@ LinearProgress.defaultProps = {
 }
 
 LinearProgress.propTypes = {
-    mode: PropTypes.oneOf(['indeterminate', 'determinate'])
+    mode: PropTypes.oneOf(['indeterminate', 'determinate', 'buffer', 'query'])
 }
 
 export default LinearProgress
