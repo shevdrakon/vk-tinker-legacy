@@ -7,7 +7,7 @@ import {Col} from 'react-bootstrap'
 
 import LinearProgress from '../../../components/react-mdl/linear-progress.jsx'
 import InputWithIcon from '../../../components/react-mdl/input-with-icon.jsx'
-import Icon from '../../../components/react-mdl/icon.jsx'
+import Button from '../../../components/react-mdl/button.jsx'
 
 import AboutAccessTokenModal from './about-access-token-modal.jsx'
 
@@ -33,17 +33,13 @@ export class LoginForm extends Component {
         e.preventDefault()
 
         this.props.login.openVkPopup()
-
-        // $('form').animate({height: "toggle", opacity: "toggle"}, "slow")
     }
 
     handleTokenChange = (e) => {
         this.props.login.onTokenChange({value: e.target.value})
     }
 
-    handleGetStartedClick = (e) => {
-        e.preventDefault()
-
+    handleGetStartedClick = () => {
         const {logging} = this.props.login
         if (logging)
             return
@@ -51,25 +47,17 @@ export class LoginForm extends Component {
         this.props.login.validateAndLogin()
     }
 
-    handleHelpIconClick = (e) => {
-        e.preventDefault()
-
-        this.props.login.openAboutAccessToken()
-    }
-
-    handleCloseAboutAccessToken = () => {
-        this.props.login.closeAboutAccessToken()
-    }
+    // handleCloseAboutAccessToken = () => {
+    //     this.props.login.closeAboutAccessToken()
+    // }
 
     static load() {
     }
 
     render() {
-        const {access_token, logging, showAboutAccessToken} = this.props.login
+        const {access_token, logging} = this.props.login
 
         return <div className="header header-filter">
-            <AboutAccessTokenModal show={showAboutAccessToken} onHide={this.handleCloseAboutAccessToken}/>
-
             <div className="container">
                 <div className="row">
                     <Col md={4} mdOffset={4} sm={6} smOffset={3}>
@@ -87,19 +75,18 @@ export class LoginForm extends Component {
 
                                 <p className="text-divider">
                                     <a href="#" onClick={this.handleClick}>Click to request vk access_token</a>
-                                    <Icon className="access-token-info" onClick={this.handleHelpIconClick}>info</Icon>
+                                    <AboutAccessTokenModal/>
                                 </p>
 
                                 <div className="content">
-                                    <div className="input-group">
-                                        <InputWithIcon icon="lock_outline" label="access_token"
-                                                       value={access_token}
-                                                       onChange={this.handleTokenChange}/>
-                                    </div>
+                                    <InputWithIcon icon="lock_outline" label="access_token"
+                                                   placeholder="access_token"
+                                                   value={access_token}
+                                                   onChange={this.handleTokenChange}/>
                                 </div>
                                 <div className="footer text-center">
-                                    <a disabled={logging} href="#pablo" className="btn btn-simple btn-primary btn-lg"
-                                       onClick={this.handleGetStartedClick}>Get Started</a>
+                                    <Button className="get-started-button" disabled={logging}
+                                            onClick={this.handleGetStartedClick}>Get Started</Button>
                                     {logging && <LinearProgress/>}
                                 </div>
                             </form>

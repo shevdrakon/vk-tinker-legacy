@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 
+import Palette from '../components/react-mdl/palette.jsx'
 // import GlobalNavigation from './global-navigation.jsx'
 // import HubNavigation from './hub-navigation.jsx'
 
@@ -9,7 +10,7 @@ export default class Layout extends Component {
     }
 
     render() {
-        return <div>
+        return <Palette>
             {/*<GlobalNavigation />*/}
             {/*<HubNavigation />*/}
             <section className="body">
@@ -17,6 +18,6 @@ export default class Layout extends Component {
                     {this.props.children}
                 </div>
             </section>
-        </div>
+        </Palette>
     }
 }

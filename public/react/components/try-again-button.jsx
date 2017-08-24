@@ -4,9 +4,7 @@ import Button from './react-mdl/button.jsx'
 
 const TryAgainButton = (props) => {
 
-    const handleClick = (e) => {
-        e.preventDefault()
-
+    const handleClick = () => {
         props.onClick && props.onClick()
     }
 

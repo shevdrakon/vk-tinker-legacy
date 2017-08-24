@@ -1,30 +1,34 @@
 import React, {Component, PropTypes} from 'react'
 
+import Icon from '../../../components/react-mdl/icon.jsx'
 import Button from '../../../components/react-mdl/button.jsx'
-import Modal from '../../../components/modal.jsx'
+import Modal from '../../../components/react-mdl/modal.jsx'
 
 export default class AboutAccessToken extends Component {
-    static propTypes = {
-        show: PropTypes.bool,
-        onHide: PropTypes.func
+    state = {
+        show: false
     }
 
-    handleClose = (e) => {
-        e.preventDefault()
+    handleShowClick = () => {
+        this.setState({show: true})
+    }
 
-        this.props.onHide()
+    handleRequestClose = () => {
+        this.setState({show: false})
     }
 
     render() {
-        const {show, onHide} = this.props
+        return <span>
+            <Icon className="access-token-info" onClick={this.handleShowClick}>info</Icon>
 
-        return <Modal show={show} onHide={onHide} header="About access_token" bsSize="medium">
-            <Modal.Body>
-                <a target="_blank" href="https://vk.com/dev/implicit_flow_user">Read here on vk page</a>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Footer>
-        </Modal>
+            <Modal show={this.state.show} onRequestClose={this.handleRequestClose} header="About access_token">
+                <Modal.Body>
+                    <a target="_blank" href="https://vk.com/dev/implicit_flow_user">Read here on vk page</a>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button onClick={this.handleRequestClose}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        </span>
     }
 }

@@ -5,7 +5,7 @@ import {LinearProgress as LinearProgressMaterial} from 'material-ui'
 const LinearProgress = (props) => {
     const {mode, ...rest} = props
 
-    return <LinearProgressMaterial mode={mode} {...rest} />
+    return <LinearProgressMaterial color="accent" mode={mode} {...rest} />
 }
 
 LinearProgress.defaultProps = {

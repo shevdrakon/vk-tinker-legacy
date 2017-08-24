@@ -4,14 +4,12 @@ import Button from './react-mdl/button.jsx'
 
 const FetchNextButton = (props) => {
 
-    const handleClick = (e) => {
-        e.preventDefault()
-
+    const handleClick = () => {
         props.onClick && props.onClick()
     }
 
     return <div className="center-button-container">
-        <Button raised ripple colored onClick={handleClick}>
+        <Button onClick={handleClick}>
             Fetch Next
         </Button>
     </div>
