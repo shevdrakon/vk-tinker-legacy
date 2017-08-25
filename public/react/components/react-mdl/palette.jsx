@@ -10,6 +10,18 @@ const theme = createMuiTheme({
         primary: indigo,
         accent: deepPurple
     }),
+    overrides: {
+        MuiBadge: {
+            badge: {
+                width: '20px',
+                height: '20px',
+                'font-size': '9px',
+            },
+            colorPrimary: {
+                'background-color': '#f44336'
+            }
+        }
+    }
 })
 
 const Palette = (props) => {

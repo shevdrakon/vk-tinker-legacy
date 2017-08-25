@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 
 import Icon from '../../../components/react-mdl/icon.jsx'
 import Button from '../../../components/react-mdl/button.jsx'

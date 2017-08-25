@@ -2,14 +2,17 @@ import React, {PropTypes, Component} from 'react'
 import {observer, propTypes as mPropTypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
-import {Button} from 'react-bootstrap'
+import cn from 'classnames'
 
+import Icon from '../../../components/react-mdl/icon.jsx'
+import Button from '../../../components/react-mdl/button.jsx'
 import Checkbox from '../../../components/react-mdl/checkbox.jsx'
 
 import List from '../../../components/list/list.jsx'
 import ListItem from './requests-list-item.jsx'
 
 import PositiveBadge from '../../../components/react-mdl/positive-badge.jsx'
+import BusyDots from "../../../components/busy-dots";
 
 class RequestsList extends Component {
     static propTypes = {
@@ -51,18 +54,22 @@ class RequestsList extends Component {
         const disableApproveButton = busy || selectedCollection.length === 0
 
         const rowTemplate = <ListItem onToggle={this.handleToggle}/>
+        const classes = cn({'list-busy': busy})
 
-        return <div>
-            <List busy={busy} collection={collection} rowTemplate={rowTemplate} rowKeySelector="id">
+        return <div className="list">
+            {busy && <div className="cover"><BusyDots/></div>}
+            <List className={classes} collection={collection} rowTemplate={rowTemplate} rowKeySelector="id">
                 <List.Header>
                     <PositiveBadge count={requestsCount}>Members :: Requests</PositiveBadge>
                     <div className="accept-selected-container">
-                        <Button className="btn-white accept-selected" onClick={this.handleApproveSelected} disabled = {disableApproveButton}><i className="material-icons">done_all</i>Accept</Button>
+                        <Button onClick={this.handleApproveSelected} disabled={disableApproveButton}>
+                            <Icon>done_all</Icon>Accept
+                        </Button>
                     </div>
                 </List.Header>
 
                 <List.Column className="checkbox-column">
-                    <Checkbox checked={isAllSelected} oncheck={this.handleToggleAll} />
+                    <Checkbox checked={isAllSelected} onChange={this.handleToggleAll}/>
                 </List.Column>
 
                 <List.Column>Name</List.Column>

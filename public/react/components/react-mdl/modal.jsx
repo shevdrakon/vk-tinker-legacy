@@ -24,14 +24,6 @@ export default class Modal extends Component {
         this.props.onRequestClose && this.props.onRequestClose()
     }
 
-    // componentWillUnmount() {
-    //     this.hide()
-    // }
-    //
-    // hide = () => {
-    //     this.shown = false
-    // }
-
     render() {
         const {header, children, show} = this.props
 
@@ -45,19 +37,19 @@ export default class Modal extends Component {
             .filter((child) => child.type === DialogActions)
             .map(child => child.props.children)
 
-        return <Dialog open={show} transition={Slide} onRequestClose={this.handleRequestClose}>
-            {header && <DialogTitle>
+        return <Dialog className="about-access-token-modal" open={show} transition={Slide} onRequestClose={this.handleRequestClose}>
+            {header && <DialogTitle disableTypography className="dialog-title">
                 <button type="button" className="close" onClick={this.handleRequestClose}>
                     <Icon>clear</Icon>
                 </button>
-                {header}
+                <h4>{header}</h4>
             </DialogTitle>}
-            <DialogContent>
+            <DialogContent className="dialog-content">
                 <DialogContentText>
                     {ContentText}
                 </DialogContentText>
             </DialogContent>
-            <DialogActions>
+            <DialogActions className="dialog-actions">
                 {Actions}
             </DialogActions>
         </Dialog>

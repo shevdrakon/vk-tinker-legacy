@@ -30,7 +30,7 @@ class RequestsListItem extends Component {
 
         return <tr>
             <td className="checkbox-column" onClick={this.handleToggle}>
-                <Checkbox checked={selected} onCheck={this.handleToggle} />
+                <Checkbox checked={selected} />
             </td>
             <td onClick={this.handleToggle}>
                 <div className="avatar-container">

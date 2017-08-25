@@ -294,9 +294,10 @@
 
 .accept-selected-container {
   display: inline;
-  &:after {
-    height: 41px;
-    display: inline-block;
+
+  > button {
+    float: right;
+    margin: -8px;
   }
 }
 
@@ -388,5 +389,23 @@
 
   .album-size {
     color: #939393;
+  }
+}
+
+.list {
+  .cover {
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 90%
+  }
+  .busy {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+  }
+
+  .list-busy{
+    opacity: 0.5;
   }
 }

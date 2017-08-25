@@ -4,7 +4,6 @@ import classnames from 'classnames'
 import ListHeader from './list-header.jsx'
 import ListContent from './list-content.jsx'
 import ListContentColumn from './list-content-column.jsx'
-// import ListContentFooter from './list-content-footer.jsx'
 
 const parseHeader = (children) => {
     const clones = React.Children.toArray(children)

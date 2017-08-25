@@ -23,9 +23,7 @@ export class LoginForm extends Component {
             openVkPopup: PropTypes.func,
             onTokenChange: PropTypes.func,
             onLogin: PropTypes.func,
-            validateAndLogin: PropTypes.func,
-            openAboutAccessToken: PropTypes.func,
-            closeAboutAccessToken: PropTypes.func
+            validateAndLogin: PropTypes.func
         })
     };
 
@@ -46,10 +44,6 @@ export class LoginForm extends Component {
 
         this.props.login.validateAndLogin()
     }
-
-    // handleCloseAboutAccessToken = () => {
-    //     this.props.login.closeAboutAccessToken()
-    // }
 
     static load() {
     }

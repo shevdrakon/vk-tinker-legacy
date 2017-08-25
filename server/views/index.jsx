@@ -60,8 +60,8 @@ export default class Index extends Component {
         <script src="https://code.getmdl.io/1.3.0/material.js"></script>
         {/*<script src="/js/material.min.js" type="text/javascript"></script>*/}
         {/*<script src="/js/jquery.min.js" type="text/javascript"></script>*/}
-        <script src="/js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="/js/bootstrap-datepicker.js" type="text/javascript"></script>
+        {/*<script src="/js/bootstrap.min.js" type="text/javascript"></script>*/}
+        {/*<script src="/js/bootstrap-datepicker.js" type="text/javascript"></script>*/}
         {/*<script src="/js/nouislider.min.js" type="text/javascript"></script>*/}
         {/*<script src="/js/material-kit.js" type="text/javascript"></script>*/}
 

@@ -16,7 +16,7 @@ export default class PositiveBadge extends Component {
         const positive = count && count> 0
 
         if (positive)
-            return <Badge badgeContent={count} {...rest}>{children}</Badge>
+            return <Badge color="primary" badgeContent={count} {...rest}>{children}</Badge>
 
         return <div className="count-badge">{children}</div>
 

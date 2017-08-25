@@ -40,6 +40,7 @@ export default class ListContent extends Component {
         busy: PropTypes.bool,
         collection: mPropTypes.arrayOrObservableArray,
         hover: PropTypes.bool,
+        className: PropTypes.string,
         headerClassName: PropTypes.string,
         rowTemplate: PropTypes.node,
         rowKeySelector: PropTypes.oneOfType([
@@ -61,14 +62,16 @@ export default class ListContent extends Component {
     }
 
     render() {
-        const {headerClassName = 'text-primary', children, hover, collection = [], rowTemplate, busy} = this.props
+        const {headerClassName = 'text-primary', children, hover, collection = [], rowTemplate, busy, className} = this.props
         const columns = parseColumns(children)
 
         const tableClasses = cn({
             'table-hover': hover
         }, 'table')
 
-        return <div className="card-content">
+        const contentClasses = cn('card-content', className)
+
+        return <div className={contentClasses}>
             <table className={tableClasses}>
                 <colgroup>
                     {columns.map((column, index) => {

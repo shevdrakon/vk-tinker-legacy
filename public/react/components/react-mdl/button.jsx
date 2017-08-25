@@ -21,7 +21,7 @@ Button.defaultProps = {
 }
 
 Button.propTypes = {
-    color: PropTypes.oneOf(["primary", "accent"]),
+    color: PropTypes.oneOf(["primary", "accent", "default"]),
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func
 }

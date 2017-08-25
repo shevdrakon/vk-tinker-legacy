@@ -1,7 +1,7 @@
 import React, {Component, PropTypes} from 'react'
 import cn from 'classnames'
 
-import {Button} from 'react-mdl'
+import Button from '../../components/react-mdl/button.jsx'
 
 export default class PaginationButton extends Component {
     static propTypes = {
@@ -28,7 +28,7 @@ export default class PaginationButton extends Component {
         })
 
         return <li className={classes}>
-            <Button ripple onClick={this.handleClick}>
+            <Button color="default" fab onClick={this.handleClick}>
                 {children}
             </Button>
         </li>
