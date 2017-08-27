@@ -12,7 +12,7 @@ import List from '../../../components/list/list.jsx'
 import ListItem from './requests-list-item.jsx'
 
 import PositiveBadge from '../../../components/react-mdl/positive-badge.jsx'
-import BusyDots from "../../../components/busy-dots";
+import BusyDots from '../../../components/busy-dots.jsx'
 
 class RequestsList extends Component {
     static propTypes = {

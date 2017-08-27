@@ -14,7 +14,7 @@ export default class PhotosStore extends SmartStore {
 
     @observable total = 0
 
-    @observable top = 12
+    @observable top = 4//12
     @observable skip = 0
     @observable nofetch = false
     @observable collection = []

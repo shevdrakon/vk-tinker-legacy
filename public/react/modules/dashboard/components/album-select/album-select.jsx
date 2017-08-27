@@ -5,7 +5,7 @@ import inject from '../../../../utils/inject'
 import Button from '../../../../components/react-mdl/button.jsx'
 
 import AlbumSelectItem from './album-select-item.jsx'
-import Modal from '../../../../components/modal.jsx'
+import Modal from '../../../../components/react-mdl/modal.jsx'
 
 class AlbumSelect extends Component {
     static propTypes = {

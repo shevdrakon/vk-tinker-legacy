@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import {Col, Button} from 'react-bootstrap'
 
-import Modal from '../../../components/modal.jsx'
+import Modal from '../../../components/react-mdl/modal.jsx'
 
 export default class SampleModal extends Component {
     constructor(props){

@@ -9,18 +9,20 @@ const Button = (props) => {
         props.onClick && props.onClick()
     }
 
-    const {children, color, ...rest} = props
+    const {children, ...rest} = props
 
-    return <ButtonMaterial raised color={color} {...rest} onClick={handleClick}>
+    return <ButtonMaterial raised {...rest} onClick={handleClick}>
         {children}
     </ButtonMaterial>
 }
 
 Button.defaultProps = {
+    raised: true,
     color: "primary"
 }
 
 Button.propTypes = {
+    raised: PropTypes.bool,
     color: PropTypes.oneOf(["primary", "accent", "default"]),
     children: PropTypes.node.isRequired,
     onClick: PropTypes.func

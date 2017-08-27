@@ -122,45 +122,70 @@
 
 /*picture-card*/
 .card-container {
+  position: relative;
   width: 100%;
   height: 100%;
-  display: inline-flex;
   margin: 10px auto;
+  min-height: 200px;
+  max-height: 400px;
 
   &.selected {
     box-shadow: 0 1px 38px -12px #7b1fa2, 0 2px 25px 0px #7b1fa2, 0 3px 10px -5px #7b1fa2;
   }
 
-  .card-title {
-    padding: 0px;
-    height: calc(100% - 53px);
-    cursor: pointer;
+  .card-media-container {
+    .card-media {
+      padding: 0px;
+      //height: calc(100% - 52px);
+      cursor: pointer;
+      align-items: center;
+      display: flex;
 
-    .card-image {
-      width: 100%;
+      .card-image {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 
-  .card-short-text {
+  .card-menu-actions {
+    position: absolute;
+    right: 18px;
+    top: 16px;
+
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.2);
+
+    button {
+      font-size: 14px;
+      color: #fff;
+    }
+  }
+
+  .card-album-title {
+    line-height: 18px;
+    overflow: hidden;
+    padding: 16px;
+
     font-size: 14px;
     width: 100%;
     position: absolute;
-    bottom: 50px;
+    bottom: 52px;
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
     font-weight: 500;
   }
 
   .card-actions {
+    width: 100%;
     bottom: 0px;
     position: absolute;
     z-index: 1;
     background-color: #fff;
     transition: height 0.3s ease-in-out;
 
-    .mdl-button {
-      color: inherit;
-      font-weight: inherit;
+    button.card-more {
+      float: right;
     }
 
     .card-footer-link {
@@ -178,7 +203,6 @@
     }
 
     &.small {
-      height: 53px;
 
       .card-footer-link {
         visibility: hidden;
