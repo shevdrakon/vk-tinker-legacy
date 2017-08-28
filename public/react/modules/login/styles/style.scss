@@ -38,33 +38,9 @@
   margin: 10px 1px;
 }
 
-.about-access-token-modal {
+.dialog-modal {
 
   > div {
     min-width: 400px;
-  }
-
-  .dialog-title {
-    border-bottom: none;
-    padding: 24px 24px 0;
-
-    button.close {
-      color: #555;
-      float: right;
-      opacity: .9;
-      margin-top: -2px;
-    }
-
-    h4 {
-      margin: 0px;
-    }
-  }
-
-  .dialog-content {
-    padding: 24px 24px 16px;
-  }
-
-  .dialog-actions {
-
   }
 }

@@ -1,0 +1,26 @@
+.dialog-modal {
+
+  .dialog-title {
+    border-bottom: none;
+    padding: 24px 24px 0;
+
+    button.close {
+      color: #555;
+      float: right;
+      opacity: .9;
+      margin-top: -2px;
+    }
+
+    h4 {
+      margin: 0px;
+    }
+  }
+
+  .dialog-content {
+    padding: 24px 24px 16px;
+  }
+
+  .dialog-actions {
+
+  }
+}

@@ -2,6 +2,7 @@
 @import './components/ajax-in-progress';
 @import './components/pagination';
 @import './components/textfields';
+@import './components/modal';
 
 .page-container {
   height: 100%;
@@ -351,7 +352,7 @@
 
 .modal-select-item {
   font-size: 13px;
-  padding: 10px 20px;
+  padding: 5px 10px;
   margin: 0 5px;
   border-radius: 2px;
   transition: all 150ms linear;
@@ -397,22 +398,28 @@
 }
 
 .albums-dialog {
+  min-width: 400px;
+
   .modal-header {
     padding: 4px;
   }
 
+  .dialog-content {
+    max-height: 500px;
+  }
+
   .album-container {
     display: flex;
-  }
 
-  .album-title {
-    flex-grow: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
+    .album-title {
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
 
-  .album-size {
-    color: #939393;
+    .album-size {
+      color: #939393;
+    }
   }
 }
 
@@ -432,4 +439,9 @@
   .list-busy{
     opacity: 0.5;
   }
+}
+
+.highlight-found-text {
+  color: white;
+  background-color: #9c27b0;
 }

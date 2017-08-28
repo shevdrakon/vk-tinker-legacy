@@ -3,6 +3,7 @@ import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../../utils/inject'
 
 import Button from '../../../../components/react-mdl/button.jsx'
+import InputWithIcon from '../../../../components/react-mdl/input-with-icon.jsx'
 
 import AlbumSelectItem from './album-select-item.jsx'
 import Modal from '../../../../components/react-mdl/modal.jsx'
@@ -23,92 +24,98 @@ class AlbumSelect extends Component {
         super(props)
 
         const {selected} = this.props.albums
+
         this.state = {
             showModal: false,
-            selectedItem: selected,
-            tempSelectedItem: selected,
-            shownCollection: this.props.albums.collection
+            search: '',
+            selected
         }
     }
 
     openModal = () => {
+        const {selected} = this.props.albums
+
         this.setState({
-            showModal: true
+            showModal: true,
+            selected
         })
     }
 
-    // searchAlbum = (event) => {
-    //     const inputValue = event.target.value.trim().toLowerCase()
-    //     const inputLength = inputValue.length
-    //     const initialCollection = this.props.albums.collection
-    //
-    //     const shownCollection = inputLength === 0 ? initialCollection : initialCollection.filter(
-    //         album => album.title.toLowerCase().includes(inputValue)
-    //     )
-    //
-    //     this.setState({shownCollection})
-    // }
+    handleSearchChange = (e) => {
+        const search = e.target.value.trim().toLowerCase()
+
+        this.setState({search})
+    }
 
     closeModal = () => {
-        this.setState({
-            showModal: false,
-            tempSelectedItem: this.state.selectedItem,
-            shownCollection: this.props.albums.collection
-        })
+        this.setState({showModal: false})
     }
 
     closeModalAndSelect = () => {
-        const selectedItem = this.state.tempSelectedItem
-        this.props.albums.select(selectedItem)
+        const selected = this.state.selected
 
-        this.setState({
-            selectedItem,
-            showModal: false,
-            shownCollection: this.props.albums.collection
-        })
+        this.props.albums.select(selected)
+
+        this.setState({showModal: false})
     }
 
     selectItem = (eventKey) => {
-        this.setState({
-            tempSelectedItem: eventKey
-        })
+        this.setState({selected: eventKey})
+    }
+
+    getFilterCollection = () => {
+        const {search} = this.state
+        const {albums: {collection}} = this.props
+
+        return search.length
+            ? collection.filter(album => album.title.toLowerCase().includes(search))
+            : collection
     }
 
     render() {
-        const {showModal, selectedItem, tempSelectedItem, shownCollection} = this.state
+        const {selected: selectedAlbum} = this.props.albums
+        const {showModal, selected, search} = this.state
+        const filterCollection = this.getFilterCollection()
 
-        const modalHeader = <div>
+        const header = <div>
             <span>Select an album</span>
+            <InputWithIcon fullWidth icon="search" value={search} onChange={this.handleSearchChange}/>
         </div>
 
         return <li className="dropdown">
             <a onClick={this.openModal} className="dropdown-toggle">
-                {selectedItem.title}
+                {selectedAlbum.title}
                 &nbsp;
                 <span className="caret"/>
             </a>
 
-            <Modal show={showModal} onHide={this.closeModal}
-                   header={modalHeader}
-                   bsSize="medium" dialogClassName="modal-select-dialog albums-dialog">
-                <ul>
+            <Modal show={showModal} onRequestClose={this.closeModal}
+                   header={header}
+                   className="albums-dialog">
+                <Modal.Body>
                     {
-                        shownCollection.map(item =>
+                        filterCollection.map(item =>
                             <AlbumSelectItem item={item} onSelect={this.selectItem}
-                                             selected={item === tempSelectedItem} key={item.id || 0}/>
+                                             search={search}
+                                             selected={item === selected} key={item.id || 0}/>
                         )
                     }
-                </ul>
+                </Modal.Body>
                 <Modal.Footer>
-                    <Button raised color="primary" onClick={this.closeModalAndSelect}>Ok</Button>
+                    <Button onClick={this.closeModalAndSelect}>Ok</Button>
                 </Modal.Footer>
             </Modal>
         </li>
     }
 }
 
-export default inject(({dashboard}) => {
-    return {
-        albums: dashboard.albums
+export default inject(
+    ({
+         dashboard
+     }) => {
+        return {
+            albums: dashboard.albums
+        }
     }
-})(observer(AlbumSelect))
+)
+(observer(AlbumSelect))

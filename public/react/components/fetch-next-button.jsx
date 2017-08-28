@@ -10,7 +10,7 @@ const FetchNextButton = (props) => {
 
     return <div className="center-button-container">
         <Button onClick={handleClick}>
-            Fetch Next
+            Load More
         </Button>
     </div>
 }

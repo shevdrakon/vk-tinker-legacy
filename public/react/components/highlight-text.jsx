@@ -16,7 +16,8 @@ const HighlightText = ({search, children, className, searchClassName}) => {
 
 HighlightText.defaultProps = {
     search: '',
-    children: ''
+    children: '',
+    searchClassName: 'highlight-found-text'
 }
 
 HighlightText.propTypes = {

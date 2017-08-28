@@ -1,5 +1,6 @@
 import React, {Component, PropTypes} from 'react'
 
+import Icon from './icon.jsx'
 import Input from './input.jsx'
 
 export default class InputWithIcon extends Component {
@@ -8,8 +9,8 @@ export default class InputWithIcon extends Component {
 
         return (
             <div className="input-with-icon">
-                <i className="material-icons">{icon}</i>
-                <Input fullWidth {...rest}/>
+                <Icon>{icon}</Icon>
+                <Input {...rest}/>
             </div>
         )
     }

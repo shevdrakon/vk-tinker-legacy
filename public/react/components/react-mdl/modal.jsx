@@ -1,9 +1,9 @@
 import React, {Component, PropTypes} from 'react'
+import cn from 'classnames'
 
 import Dialog, {
     DialogActions,
     DialogContent,
-    DialogContentText,
     DialogTitle
 } from 'material-ui/Dialog/'
 
@@ -17,7 +17,8 @@ export default class Modal extends Component {
         header: PropTypes.node,
         onRequestClose: PropTypes.func,
         children: PropTypes.node,
-        show: PropTypes.bool
+        show: PropTypes.bool,
+        className: PropTypes.string
     }
 
     handleRequestClose = () => {
@@ -25,7 +26,7 @@ export default class Modal extends Component {
     }
 
     render() {
-        const {header, children, show} = this.props
+        const {header, children, show, className} = this.props
 
         const ContentText = React.Children
             .toArray(children)
@@ -37,7 +38,11 @@ export default class Modal extends Component {
             .filter((child) => child.type === DialogActions)
             .map(child => child.props.children)
 
-        return <Dialog className="about-access-token-modal" open={show} transition={Slide} onRequestClose={this.handleRequestClose}>
+        return <Dialog className="dialog-modal"
+                       classes={{paper: className}}
+                       open={show}
+                       transition={Slide}
+                       onRequestClose={this.handleRequestClose}>
             {header && <DialogTitle disableTypography className="dialog-title">
                 <button type="button" className="close" onClick={this.handleRequestClose}>
                     <Icon>clear</Icon>
@@ -45,9 +50,7 @@ export default class Modal extends Component {
                 <h4>{header}</h4>
             </DialogTitle>}
             <DialogContent className="dialog-content">
-                <DialogContentText>
-                    {ContentText}
-                </DialogContentText>
+                {ContentText}
             </DialogContent>
             <DialogActions className="dialog-actions">
                 {Actions}

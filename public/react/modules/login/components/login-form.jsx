@@ -75,6 +75,7 @@ export class LoginForm extends Component {
                                 <div className="content">
                                     <InputWithIcon icon="lock_outline" label="access_token"
                                                    placeholder="access_token"
+                                                   fullWidth
                                                    value={access_token}
                                                    onChange={this.handleTokenChange}/>
                                 </div>
