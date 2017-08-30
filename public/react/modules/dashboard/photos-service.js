@@ -20,5 +20,14 @@ export default ({ajax, apiUrl}) => {
 
             return ajax.get(`${apiUrl}/albums?${qs.stringify(args)}`)
         },
+
+        // tmp here!!!
+        getUsersGroups: ({userIds}) => {
+            const args = {
+                userIds
+            }
+
+            return ajax.get(`${apiUrl}/users/groups?${qs.stringify(args)}`)
+        }
     }
 }

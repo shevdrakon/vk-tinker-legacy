@@ -39,12 +39,31 @@ class PhotosController extends BaseController {
 
         return service
             .getAll(payload)
-            .then((response) => {
-                response.items.forEach((photo, index) => this.fillUpPhoto(photo, index, payload.skip))
+            .then(({photos, photosCount, photoUsers, commentsUsers}) => {
+                const photoUsersHash = photoUsers.reduce((prev, current) => {
+                    prev[current.id] = current
+
+                    return prev
+                }, {})
+
+                const commentsUsersHash = commentsUsers.reduce((prev, current) => {
+                    prev[current.id] = current
+
+                    return prev
+                }, {})
+
+                photos.forEach((p) => {
+                    p.user = photoUsersHash[p.user_id]
+
+                    p.comments.forEach((c) => {
+                        c.user = commentsUsersHash[c.from_id]
+                        c.hasSoldOutText = hasSoldOutText(c.text)
+                    })
+                })
 
                 return {
-                    count: response.count,
-                    items: response.items
+                    count: photosCount,
+                    items: photos
                 }
             })
     }

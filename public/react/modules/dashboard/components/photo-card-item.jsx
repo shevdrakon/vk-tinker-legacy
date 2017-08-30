@@ -10,7 +10,7 @@ export default class PhotoCardItem extends Component {
             text: PropTypes.string,
             href: PropTypes.string,
             selected: PropTypes.bool,
-            comments: PropTypes.object,
+            comments: PropTypes.array,
             isSoldOut: PropTypes.bool
         }),
 
@@ -36,12 +36,18 @@ export default class PhotoCardItem extends Component {
     }
 
     render() {
-        const {photo_604, text, href, selected, comments, isSoldOut} = this.props.item
+        const {
+            photo_604, text, href, selected, comments, isSoldOut,
+            user: {photo_50: userPhoto, hasGroupWithAdminRights}
+        } = this.props.item
+
         const {title} = this.props.album || {}
 
         return <Col md={3} sm={6}>
+            {hasGroupWithAdminRights && <span>HERE</span>}
             <Card imgLink={href}
                   imgSrc={photo_604}
+                  userPhoto={userPhoto}
                   selected={selected}
                   cardText={title}
                   isSoldOut={isSoldOut}

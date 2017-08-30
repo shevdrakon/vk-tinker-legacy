@@ -3,6 +3,8 @@ import {action, observable, computed} from 'mobx'
 import SmartStore from './../../../base/smart-store'
 import PhotoModel from '../models/photo-model'
 
+import GroupModel from '../models/group-model'
+
 export default class PhotosStore extends SmartStore {
     constructor(initialState, environment) {
         super(initialState, environment)
@@ -28,11 +30,13 @@ export default class PhotosStore extends SmartStore {
         return this.store.dashboard.albums
     }
 
-    @computed get selectedCollection() {
+    @computed
+    get selectedCollection() {
         return this.collection.filter(p => p.selected)
     }
 
-    @action load() {
+    @action
+    load() {
         return this.fetch()
             .then(action(() => {
                 this.loading = false
@@ -41,11 +45,13 @@ export default class PhotosStore extends SmartStore {
             }))
     }
 
-    @action repeat() {
+    @action
+    repeat() {
         this.fetch()
     }
 
-    @action fetch({reset} = {reset: true}) {
+    @action
+    fetch({reset} = {reset: true}) {
         const {top} = this
         const skip = reset ? 0 : this.skip + top
         const albumId = this.albumsStore.selected.id
@@ -64,35 +70,82 @@ export default class PhotosStore extends SmartStore {
 
         const payload = {top, skip, albumId, soldOutOnly: showSoldOutOnly}
 
-        return this.api.photos.get(payload)
+        return new Promise((resolve, reject) => {
+            this.api.photos.get(payload)
+                .then(action(response => {
+                    this.fetching = false
+                    this.total = response.count
+
+                    const nextCollection = response.items.map((photo) => new PhotoModel({...photo}))
+
+                    this.collection = [...this.collection, ...nextCollection]
+
+                    this.skip = skip
+                    this.nofetch = nextCollection.length < top
+
+                    this.notAvailable = !this.collection.length
+
+                    resolve(response.items)
+
+                    return response.items
+
+                }), action(error => {
+                    this.fetching = false
+                    this.fetchingFailed = true
+
+                    this.store.notification.error({error, message: 'Could not retrieve photos.'})
+
+                    reject(error)
+
+                    throw error
+                }))
+                .then((collection) => {
+                    const userIds = collection.reduce((previous, photo) => {
+                        const userId = photo.user_id
+
+                        if (previous.indexOf(userId) === -1)
+                            previous.push(userId)
+
+                        return [...previous]
+                    }, [])
+
+                    return this.loadUsersGroups(userIds)
+                })
+        })
+    }
+
+    @action
+    loadUsersGroups(userIds) {
+
+        return this.api.photos.getUsersGroups({userIds})
             .then(action(response => {
-                this.fetching = false
-                this.total = response.count
 
-                const nextCollection = response.items.map((photo) => new PhotoModel({...photo}))
+                const hash = response.reduce((prev, current) => {
+                    prev[Number(current.userId)] = current.groups
 
-                this.collection = [...this.collection, ...nextCollection]
+                    return prev
+                }, {})
 
-                this.skip = skip
-                this.nofetch = nextCollection.length < top
-
-                this.notAvailable = !this.collection.length
+                this.collection.forEach(p => {
+                    const userId = p.user_id
+                    //p.user.groups.push(new GroupModel({}))
+                    p.user.groups = hash[userId].map(g => new GroupModel(g))
+                })
 
             }), action(error => {
-                this.fetching = false
-                this.fetchingFailed = true
-
-                this.store.notification.error({error, message: 'Could not retrieve photos.'})
+                this.store.notification.error({error, message: 'Could not retrieve users groups.'})
 
                 throw error
             }))
     }
 
-    @action fetchNext() {
+    @action
+    fetchNext() {
         this.fetch({reset: false})
     }
 
-    @action toggleSelect({item, selected}) {
+    @action
+    toggleSelect({item, selected}) {
         item.selected = selected
     }
 }

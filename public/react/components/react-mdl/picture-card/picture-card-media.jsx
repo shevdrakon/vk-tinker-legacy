@@ -4,9 +4,7 @@ import {CardMedia} from 'material-ui/Card'
 
 export default class PictureCardMedia extends Component {
     static propTypes = {
-        title: PropTypes.element,
         image: PropTypes.string.isRequired,
-        imgLink: PropTypes.string.isRequired,
         isSoldOut: PropTypes.bool
     }
 

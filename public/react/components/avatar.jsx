@@ -1,10 +1,10 @@
 import React, {PropTypes} from 'react'
 
 const Avatar = (props) => {
-        const {src, alt, ...otherProps} = props
+        const {src, alt, ...rest} = props
 
         return <div className="avatar-container">
-                <img className="avatar-img" src={src} alt={alt} {...otherProps}/>
+                <img className="avatar-img" src={src} alt={alt} {...rest}/>
             </div>
 }
 

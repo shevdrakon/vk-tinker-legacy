@@ -149,17 +149,31 @@
     }
   }
 
+  .card-info {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    display: flex;
+    flex-direction: column;
+
+    .avatar-container {
+      .avatar-img {
+        border: 1px solid white;
+      }
+    }
+  }
+
   .card-menu-actions {
     position: absolute;
     right: 18px;
     top: 16px;
-
-    border-radius: 50%;
-    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
 
     button {
-      font-size: 14px;
       color: #fff;
+      background-color: rgba(0, 0, 0, 0.2);
+      font-size: 14px;
     }
   }
 

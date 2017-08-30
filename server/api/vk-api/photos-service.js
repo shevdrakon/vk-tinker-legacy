@@ -23,63 +23,19 @@ class PhotosService extends VkApiServiceBase {
             })
     }
 
-    getAll({top, skip, groupId, albumId, access_token}) {
-        const method = albumId ? "get" : "getAll"
-        const album_id = albumId ? `"album_id": ${albumId},` : ``
-
-        const parameters = `{
-                "owner_id": -${groupId},
-                ${album_id}
-                "count": ${top},
-                "offset": ${skip}
-            }`
-
-        const script = `           
-            var photosRequest = API.photos.${method}(${parameters});
-            
-            var count = photosRequest.count;
-            var requestItems = photosRequest.items;
-            var length = requestItems.length;
-            var items = [];
-            var i = 0;
-
-            while( i < ${top} && i < length){
-                var item = requestItems[i];
-                var comments = API.photos.getComments({
-                    "photo_id": item.id,
-                    "owner_id": item.owner_id
-                });
-                
-                var users = API.users.get({
-                    "user_ids": comments.items@.from_id,
-                    "fields": ["photo_50", "domain"]
-                });
-                               
-                comments.users = users;
-                
-                item.comments = comments;
-                items = items + [item];
-                i=i+1;
-            }
-
-            var resp = {
-                "count": count,
-                "items": items
-            };
-            
-            return resp;
-        `
-        const url = this.getUrl('execute', {
-            code: script,
+    getAll({top, skip, albumId, access_token}) {
+        const url = this.getUrl('execute.photosWithMeta', {
+            offset: skip,
+            count: top,
+            album_id: albumId,
             access_token
         })
 
-        Logger.log("exec: " + url)
+        Logger.log(`exec: ${url}.`)
 
         return this.get(url)
             .then(this.handleError)
             .then(response => {
-                Logger.log("resp: " + JSON.stringify(response.response))
                 return response.response
             })
     }

@@ -31,6 +31,19 @@ class UserSevice extends VkApiServiceBase {
                 return response.response
             })
     }
+
+    getUsersGroups({userIds, access_token}) {
+        const url = this.getUrl('execute.usersGroups', {
+            user_ids: userIds,
+            access_token
+        })
+
+        return this.get(url)
+            .then(this.handleError)
+            .then(response => {
+                return response.response
+            })
+    }
 }
 
 module.exports = UserSevice

@@ -12,14 +12,13 @@ export default class CommentModel {
         extendObservable(this, rest)
     }
 
-    @computed get highlightedText() {
+    @computed
+    get highlightedText() {
         const regexp = /\Bпродан[оа]?\B/gui
         //regexp.unicode = true
 
-        const tt =  this.text.replace(regexp, (args) => {
+        return this.text.replace(regexp, (args) => {
             return `<b>${args}</b>`
         })
-
-        return tt
     }
 }

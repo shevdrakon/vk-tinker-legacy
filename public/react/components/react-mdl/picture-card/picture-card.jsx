@@ -4,6 +4,7 @@ import ClassNames from 'classnames'
 import Card, {CardHeader, CardMedia, CardContent} from 'material-ui/Card'
 
 import PictureCardMedia from './picture-card-media.jsx'
+import PictureCardInfo from './picture-card-info.jsx'
 import PictureCardMenuActions from './picture-card-menu-actions.jsx'
 import PictureCardAlbumTitle from './picture-card-aldum-title.jsx'
 import PictureCardActions from './picture-card-actions.jsx'
@@ -14,11 +15,12 @@ import PictureCardActions from './picture-card-actions.jsx'
 export default class PictureCard extends Component {
     static propTypes = {
         imgSrc: PropTypes.string.isRequired,
+        userPhoto: PropTypes.string,
         cardText: PropTypes.string,
         imgLink: PropTypes.string.isRequired,
         imgValidation: PropTypes.oneOf(['done', 'warning', 'bad']),
         selected: PropTypes.bool,
-        comments: PropTypes.object,
+        comments: PropTypes.array,
         isSoldOut: PropTypes.bool,
         children: PropTypes.oneOfType([
             PropTypes.element,
@@ -51,9 +53,8 @@ export default class PictureCard extends Component {
     }
 
     render() {
-        const {imgSrc, cardText, imgLink, imgValidation, children, selected, isSoldOut, comments, ...otherProps} = this.props
+        const {userPhoto, imgSrc, cardText, imgLink, children, selected, isSoldOut, comments, ...otherProps} = this.props
         //const {showModal} = this.state
-        const headerProps = {isSoldOut, imgSrc, imgLink, imgValidation, onClick: this.handleHeaderClick}
         const classes = ClassNames('card-container', {'selected': selected})
 
         const hasComments = comments && comments.count > 0
@@ -63,8 +64,9 @@ export default class PictureCard extends Component {
 
         return <Card raised className={classes} {...otherProps}>
             <div className="card-media-container">
-                <PictureCardMedia image={imgSrc} {...headerProps} />
-                <PictureCardMenuActions imageLink={imgLink} isSoldOut={isSoldOut}/>
+                <PictureCardMedia image={imgSrc} onClick={this.handleHeaderClick}/>
+                <PictureCardInfo userPhoto={userPhoto} isSoldOut={isSoldOut}/>
+                <PictureCardMenuActions imageLink={imgLink}/>
                 <PictureCardAlbumTitle title={cardText}/>
             </div>
 
