@@ -4,7 +4,7 @@ import inject from '../../../utils/inject'
 
 import Checkbox from '../../../components/react-mdl/checkbox.jsx'
 
-import Avatar from '../../../components/avatar.jsx'
+import UserAvatarWithInfo from '../../../components/user-avatar-with-info.jsx'
 
 class RequestsListItem extends Component {
     static propTypes = {
@@ -26,15 +26,15 @@ class RequestsListItem extends Component {
 
 
     render() {
-        const {userLink, fullName, photo_50, selected} = this.props.item
+        const {userLink, fullName, selected} = this.props.item
 
         return <tr>
             <td className="checkbox-column" onClick={this.handleToggle}>
-                <Checkbox checked={selected} />
+                <Checkbox checked={selected}/>
             </td>
             <td onClick={this.handleToggle}>
                 <div className="avatar-container">
-                    <Avatar src={photo_50}/>
+                    <UserAvatarWithInfo user={this.props.item}/>
                     <span>{fullName}</span>
                 </div>
             </td>

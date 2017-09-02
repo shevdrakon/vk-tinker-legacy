@@ -1,7 +1,9 @@
 import React, {PropTypes, Component} from 'react'
+import {PropTypes as mPropTypes} from 'mobx-react'
 
 import {Col} from 'react-bootstrap'
 import Card from '../../../components/react-mdl/picture-card/picture-card.jsx'
+
 
 export default class PhotoCardItem extends Component {
     static propTypes = {
@@ -10,7 +12,7 @@ export default class PhotoCardItem extends Component {
             text: PropTypes.string,
             href: PropTypes.string,
             selected: PropTypes.bool,
-            comments: PropTypes.array,
+            comments: mPropTypes.arrayOrObservableArray,
             isSoldOut: PropTypes.bool
         }),
 
@@ -38,16 +40,15 @@ export default class PhotoCardItem extends Component {
     render() {
         const {
             photo_604, text, href, selected, comments, isSoldOut,
-            user: {photo_50: userPhoto, hasGroupWithAdminRights}
+            user
         } = this.props.item
 
         const {title} = this.props.album || {}
 
         return <Col md={3} sm={6}>
-            {hasGroupWithAdminRights && <span>HERE</span>}
             <Card imgLink={href}
                   imgSrc={photo_604}
-                  userPhoto={userPhoto}
+                  user={user}
                   selected={selected}
                   cardText={title}
                   isSoldOut={isSoldOut}

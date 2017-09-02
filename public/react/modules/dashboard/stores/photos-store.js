@@ -3,7 +3,7 @@ import {action, observable, computed} from 'mobx'
 import SmartStore from './../../../base/smart-store'
 import PhotoModel from '../models/photo-model'
 
-import GroupModel from '../models/group-model'
+import GroupModel from '../../users/group-model'
 
 export default class PhotosStore extends SmartStore {
     constructor(initialState, environment) {
@@ -70,53 +70,46 @@ export default class PhotosStore extends SmartStore {
 
         const payload = {top, skip, albumId, soldOutOnly: showSoldOutOnly}
 
-        return new Promise((resolve, reject) => {
-            this.api.photos.get(payload)
-                .then(action(response => {
-                    this.fetching = false
-                    this.total = response.count
+        return this.api.photos.get(payload)
+            .then(action(response => {
+                this.fetching = false
+                this.total = response.count
 
-                    const nextCollection = response.items.map((photo) => new PhotoModel({...photo}))
+                const nextCollection = response.items.map((photo) => new PhotoModel({...photo}))
 
-                    this.collection = [...this.collection, ...nextCollection]
+                this.collection = [...this.collection, ...nextCollection]
 
-                    this.skip = skip
-                    this.nofetch = nextCollection.length < top
+                this.skip = skip
+                this.nofetch = nextCollection.length < top
 
-                    this.notAvailable = !this.collection.length
+                this.notAvailable = !this.collection.length
 
-                    resolve(response.items)
+                return response.items
 
-                    return response.items
+            }), action(error => {
+                this.fetching = false
+                this.fetchingFailed = true
 
-                }), action(error => {
-                    this.fetching = false
-                    this.fetchingFailed = true
+                this.store.notification.error({error, message: 'Could not retrieve photos.'})
 
-                    this.store.notification.error({error, message: 'Could not retrieve photos.'})
+                throw error
+            }))
+            .then((collection) => {
+                const userIds = collection.reduce((previous, photo) => {
+                    const userId = photo.user_id
 
-                    reject(error)
+                    if (previous.indexOf(userId) === -1)
+                        previous.push(userId)
 
-                    throw error
-                }))
-                .then((collection) => {
-                    const userIds = collection.reduce((previous, photo) => {
-                        const userId = photo.user_id
+                    return [...previous]
+                }, [])
 
-                        if (previous.indexOf(userId) === -1)
-                            previous.push(userId)
-
-                        return [...previous]
-                    }, [])
-
-                    return this.loadUsersGroups(userIds)
-                })
-        })
+                this.loadUsersGroups(userIds)
+            })
     }
 
     @action
     loadUsersGroups(userIds) {
-
         return this.api.photos.getUsersGroups({userIds})
             .then(action(response => {
 
@@ -128,8 +121,8 @@ export default class PhotosStore extends SmartStore {
 
                 this.collection.forEach(p => {
                     const userId = p.user_id
-                    //p.user.groups.push(new GroupModel({}))
-                    p.user.groups = hash[userId].map(g => new GroupModel(g))
+                    if (hash[userId])
+                        p.user.groups = hash[userId].map(g => new GroupModel(g))
                 })
 
             }), action(error => {

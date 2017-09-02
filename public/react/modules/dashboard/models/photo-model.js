@@ -1,7 +1,7 @@
 import {extendObservable, computed, observable} from 'mobx'
 
-import UserModel from './user-model.js'
-import CommentModel from './comment-model.js'
+import UserModel from '../../users/user-model'
+import CommentModel from './comment-model'
 
 export default class PhotoModel {
     constructor(attributes) {
@@ -13,7 +13,11 @@ export default class PhotoModel {
         extendObservable(this, rest)
     }
 
+    @observable id = undefined
+    @observable owner_id = undefined
     @observable selected = false
+    @observable user = {}
+    @observable comments = []
 
     @computed get href() {
         return `https://vk.com/photo${this.owner_id}_${this.id}`

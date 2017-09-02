@@ -1,19 +1,20 @@
 import React, {Component, PropTypes} from 'react'
+import {PropTypes as mPropTypes} from 'mobx-react'
 
 import Icon from '../icon.jsx'
-import Avatar from '../../../components/avatar.jsx'
+import UserAvatarWithInfo from '../../user-avatar-with-info'
 
 export default class PictureCardInfo extends Component {
     static propTypes = {
-        userPhoto: PropTypes.string,
+        user: mPropTypes.objectOrObservableObject,
         isSoldOut: PropTypes.bool
     }
 
     render() {
-        const {userPhoto, isSoldOut, ...rest} = this.props
+        const {user, isSoldOut, ...rest} = this.props
 
         return <div className="card-info" {...rest}>
-            <Avatar src={userPhoto}/>
+            <UserAvatarWithInfo user={user}/>
             {isSoldOut && <Icon>monetization_on</Icon>}
         </div>
     }

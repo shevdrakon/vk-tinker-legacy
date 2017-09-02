@@ -1,6 +1,6 @@
 import {extendObservable, computed} from 'mobx'
 
-import UserModel from './user-model.js'
+import UserModel from '../../users/user-model'
 
 export default class CommentModel {
     constructor(attributes) {

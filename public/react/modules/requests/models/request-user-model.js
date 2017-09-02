@@ -1,6 +1,6 @@
 import {extendObservable, computed, observable} from 'mobx'
 
-import UserModel from './user-model'
+import UserModel from '../../users/user-model'
 import RequestInfoModel from './request-info-model'
 
 export default class RequestUserModel extends UserModel {

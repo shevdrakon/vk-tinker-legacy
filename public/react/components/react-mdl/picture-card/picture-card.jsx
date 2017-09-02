@@ -1,4 +1,5 @@
 import React, {Component, PropTypes} from 'react'
+import {PropTypes as mPropTypes} from 'mobx-react'
 import ClassNames from 'classnames'
 
 import Card, {CardHeader, CardMedia, CardContent} from 'material-ui/Card'
@@ -14,13 +15,14 @@ import PictureCardActions from './picture-card-actions.jsx'
 
 export default class PictureCard extends Component {
     static propTypes = {
+        user: mPropTypes.objectOrObservableObject,
+
         imgSrc: PropTypes.string.isRequired,
-        userPhoto: PropTypes.string,
         cardText: PropTypes.string,
         imgLink: PropTypes.string.isRequired,
         imgValidation: PropTypes.oneOf(['done', 'warning', 'bad']),
         selected: PropTypes.bool,
-        comments: PropTypes.array,
+        comments: mPropTypes.arrayOrObservableArray,
         isSoldOut: PropTypes.bool,
         children: PropTypes.oneOfType([
             PropTypes.element,
@@ -53,7 +55,12 @@ export default class PictureCard extends Component {
     }
 
     render() {
-        const {userPhoto, imgSrc, cardText, imgLink, children, selected, isSoldOut, comments, ...otherProps} = this.props
+        const {
+            user,
+            imgSrc, cardText, imgLink,
+            children, selected,
+            isSoldOut, comments, ...otherProps
+        } = this.props
         //const {showModal} = this.state
         const classes = ClassNames('card-container', {'selected': selected})
 
@@ -65,7 +72,7 @@ export default class PictureCard extends Component {
         return <Card raised className={classes} {...otherProps}>
             <div className="card-media-container">
                 <PictureCardMedia image={imgSrc} onClick={this.handleHeaderClick}/>
-                <PictureCardInfo userPhoto={userPhoto} isSoldOut={isSoldOut}/>
+                <PictureCardInfo user={user} isSoldOut={isSoldOut} />
                 <PictureCardMenuActions imageLink={imgLink}/>
                 <PictureCardAlbumTitle title={cardText}/>
             </div>

@@ -3,6 +3,8 @@ import {action, observable, computed} from 'mobx'
 import RequestUserModel from './models/request-user-model'
 import SmartStore from './../../base/smart-store'
 
+import GroupModel from '../users/group-model'
+
 export default class RequestsStore extends SmartStore {
     constructor(initialState = {collection: []}, environment) {
         const {collection, ...rest} = initialState
@@ -21,27 +23,32 @@ export default class RequestsStore extends SmartStore {
     @observable notAvailable = false
     @observable activePage = 1
 
-    @computed get pagesCount() {
+    @computed
+    get pagesCount() {
         const total = this.store.application.status.requestsCount
         return Math.ceil(total / this.top)
     }
 
-    @computed get isAllSelected() {
+    @computed
+    get isAllSelected() {
         return this.collection.length > 0 && this.collection.length === this.selectedCollection.length
     }
 
-    @computed get selectedCollection() {
+    @computed
+    get selectedCollection() {
         return this.collection.filter(r => r.selected)
     }
 
-    @action load() {
+    @action
+    load() {
         return this.fetch()
             .then(action(() => {
                 this.loading = false
             }))
     }
 
-    @action fetch({reset} = {reset: true}) {
+    @action
+    fetch({reset} = {reset: true}) {
         const {top} = this
         const skip = reset ? 0 : this.skip + top
 
@@ -65,15 +72,46 @@ export default class RequestsStore extends SmartStore {
 
                 this.notAvailable = !this.collection.length
 
+                return response.items
             }), action(error => {
                 this.fetching = false
                 this.store.notification.error({error, message: 'Could not retrieve requests.'})
 
                 throw error
             }))
+            .then(collection => {
+                const userIds = collection.map(u => u.id)
+
+                //this.loadUsersGroups(userIds)
+            })
     }
 
-    @action selectPage({value}) {
+    @action
+    loadUsersGroups(userIds) {
+        return this.api.photos.getUsersGroups({userIds})
+            .then(action(response => {
+
+                const hash = response.reduce((prev, current) => {
+                    prev[Number(current.userId)] = current.groups
+
+                    return prev
+                }, {})
+
+                this.collection.forEach(u => {
+                    const userId = u.id
+                    if (hash[userId])
+                        u.groups = hash[userId].map(g => new GroupModel(g))
+                })
+
+            }), action(error => {
+                this.store.notification.error({error, message: 'Could not retrieve users groups.'})
+
+                throw error
+            }))
+    }
+
+    @action
+    selectPage({value}) {
         this.activePage = value
         const top = this.top
         const skip = Math.max(value - 1, 0) * this.top
@@ -100,20 +138,24 @@ export default class RequestsStore extends SmartStore {
             }))
     }
 
-    @action fetchNext() {
+    @action
+    fetchNext() {
         return this.fetch({reset: false})
     }
 
-    @action toggleSelect({item, selected}) {
+    @action
+    toggleSelect({item, selected}) {
         item.selected = selected
     }
 
-    @action toggleSelectAll() {
+    @action
+    toggleSelectAll() {
         const selected = !this.isAllSelected
         this.collection.forEach(item => this.toggleSelect({item, selected}))
     }
 
-    @action approveSelected() {
+    @action
+    approveSelected() {
         const users = this.selectedCollection.map(user => user.id)
         this.api.requests.approve({users}).then(action(response => {
             this.store.notification.success(`${response.approved} approved, ${response.rejected} rejected`)
