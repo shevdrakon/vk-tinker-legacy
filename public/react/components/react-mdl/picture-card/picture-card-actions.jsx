@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 import {CardActions} from 'material-ui/Card'
@@ -28,7 +29,8 @@ export default class PictureCardActions extends Component {
     }
 
     render() {
-        const {children, className, imgLink, showComments, onCommentsClick, ...otherProps} = this.props
+
+        const {className} = this.props
         const {collapsed} = this.state
 
         const classes = classNames(className, 'card-actions', {

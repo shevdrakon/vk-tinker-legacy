@@ -1,4 +1,5 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
 
 import {Col} from 'react-bootstrap'
 import PictureCard from './picture-card.jsx'
@@ -6,7 +7,7 @@ import PictureCard from './picture-card.jsx'
 const PictureCollection = (props) => {
     return <div className="row equal">
         {
-            props.children.map( child => <Col md={3} sm={6}>{child}</Col> )
+            props.children.map((child, index) => <Col key={index} md={3} sm={6}>{child}</Col> )
         }
     </div>
 }

@@ -26,4 +26,15 @@ if(!args.env)
 
 const app = new Application(args, process.env.PORT)
 
+// const webpack = require('webpack');
+// const webpackDevMiddleware = require('webpack-dev-middleware');
+// const config = require('../webpack/webpack.development');
+// const compiler = webpack(config);
+//
+// // Tell express to use the webpack-dev-middleware and use the webpack.config.js
+// // configuration file as a base.
+// app.app.use(webpackDevMiddleware(compiler, {
+//     publicPath: config.output.publicPath
+// }));
+
 app.init().listen()

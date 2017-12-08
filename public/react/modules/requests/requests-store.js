@@ -79,11 +79,11 @@ export default class RequestsStore extends SmartStore {
 
                 throw error
             }))
-            .then(collection => {
-                const userIds = collection.map(u => u.id)
-
-                //this.loadUsersGroups(userIds)
-            })
+            // .then(collection => {
+            //     const userIds = collection.map(u => u.id)
+            //
+            //     //this.loadUsersGroups(userIds)
+            // })
     }
 
     @action

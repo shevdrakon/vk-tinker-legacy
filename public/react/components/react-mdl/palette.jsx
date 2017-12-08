@@ -1,15 +1,16 @@
-import React, {PropTypes} from 'react'
+import React from 'react'
+import PropTypes from 'prop-types'
+
 import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
-import createPalette from 'material-ui/styles/palette'
 
 import indigo from 'material-ui/colors/indigo'
 import deepPurple from 'material-ui/colors/deepPurple'
 
 const theme = createMuiTheme({
-    palette: createPalette({
+    palette: {
         primary: indigo,
         accent: deepPurple
-    }),
+    },
     overrides: {
         MuiBadge: {
             badge: {

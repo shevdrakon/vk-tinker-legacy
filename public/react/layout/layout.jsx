@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 import Palette from '../components/react-mdl/palette.jsx'
 // import GlobalNavigation from './global-navigation.jsx'

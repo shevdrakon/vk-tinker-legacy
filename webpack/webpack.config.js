@@ -126,6 +126,7 @@ module.exports = (config) => {
             }),
         ].concat(config.plugins || []),
         devServer: {
+            headers: { 'Access-Control-Allow-Origin': '*' },
             stats: {
                 assets: false,
                 chunks: false,

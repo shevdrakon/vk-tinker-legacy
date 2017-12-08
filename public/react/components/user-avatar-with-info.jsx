@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {observer, PropTypes as mPropTypes} from 'mobx-react'
 
 import Icon from './react-mdl/icon.jsx'

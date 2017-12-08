@@ -1,8 +1,9 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {PropTypes as mPropTypes} from 'mobx-react'
 
 import Icon from '../icon.jsx'
-import UserAvatarWithInfo from '../../user-avatar-with-info'
+import UserAvatarWithInfo from '../../user-avatar-with-info.jsx'
 
 export default class PictureCardInfo extends Component {
     static propTypes = {

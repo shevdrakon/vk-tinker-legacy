@@ -1,8 +1,10 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+
 import {PropTypes as mPropTypes} from 'mobx-react'
 import ClassNames from 'classnames'
 
-import Card, {CardHeader, CardMedia, CardContent} from 'material-ui/Card'
+import Card from 'material-ui/Card'
 
 import PictureCardMedia from './picture-card-media.jsx'
 import PictureCardInfo from './picture-card-info.jsx'

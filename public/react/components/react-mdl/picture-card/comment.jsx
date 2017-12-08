@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 import Avatar from '../../../components/avatar.jsx'
 import HighlightText from '../../../components/highlight-text.jsx'

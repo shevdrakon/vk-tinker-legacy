@@ -1,4 +1,5 @@
-import  React, {Component, PropTypes} from 'react'
+import  React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {NavDropdown, MenuItem} from 'react-bootstrap'
 
 export default class NavigationDropdown extends Component {
@@ -22,7 +23,7 @@ export default class NavigationDropdown extends Component {
 
         return <NavDropdown title={title} bsStyle="default" onSelect={this.selectItem}>
             {
-                children.map(child => <MenuItem eventKey={child}>{child.title}</MenuItem>)
+                children.map(child => <MenuItem key={child.value} eventKey={child}>{child.title}</MenuItem>)
             }
         </NavDropdown>
     }

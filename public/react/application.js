@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Mobx from 'mobx'
 import {Provider} from 'mobx-react'
-import {browserHistory, createRoutes, Router} from 'react-router'
+import {BrowserRouter as Router} from 'react-router-dom'
 
 import curryServices from './utils/curry-services'
 import Ajax from './utils/ajax'
@@ -23,17 +23,19 @@ require('jquery')
 // }
 /* eslint-disable no-undef */
 
-let routerKey = 0
-
 const container = document.getElementById('page-container')
+
+let routerKey = 0
 
 const mount = (app) => {
     const Layout = require('./layout/layout').default
-    const routes = require('./routes')
+    const Routes = require('./routes-new').default
 
-    const provider = <Provider store={app.store}>
+    const provider = <Provider store={app.store} app={app}>
         <Layout>
-            <Router key={routerKey} history={browserHistory} routes={createRoutes(routes(app))}/>
+            <Router>
+                <Routes key={routerKey} app={app}/>
+            </Router>
         </Layout>
     </Provider>
 
@@ -64,9 +66,7 @@ export default {
                 // token: config.token,
             }
         }, {
-            browserHistory,
             location,
-            localStorage: localStorage,
             messageProvider,
             window: window,
             getStore,
@@ -82,7 +82,7 @@ export default {
             if (module.hot) {
                 module.hot.accept([
                     './layout/layout',
-                    './routes'
+                    './routes-new'
                 ], () => {
                     routerKey++
                     mount(this)

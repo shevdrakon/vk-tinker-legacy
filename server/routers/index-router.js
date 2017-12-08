@@ -1,27 +1,29 @@
 const express = require('express')
-const {match, createRoutes} = require('react-router')
+const {matchPath} = require('react-router')
 
-const routes = require('../../public/react/routes.jsx')
 const IndexController = require('../controllers/index/index-controller')
+
+const routes = [
+    '/',
+    '/login',
+    '/dashboard',
+    '/blacklist',
+    '/requests',
+    '/sample'
+];
 
 module.exports = function (configuration) {
     const router = express.Router()
 
     router.get('*', (req, res, next) => {
-        match({
-            routes: createRoutes(routes()),
-            location: req.url
-        }, (error, redirectLocation, renderProps) => {
-            if (error && error.statusCode !== 404) {
-                next(error)
-            } else if (redirectLocation) {
-                res.redirect(302, redirectLocation.pathname + redirectLocation.search)
-            } else if (renderProps) {
-                new IndexController(req, res, next, configuration).index()
-            } else {
-                next()
-            }
-        })
+        const match = routes.reduce((acc, route) => matchPath(req.url, route, {exact: true}) || acc, null);
+
+        if (match) {
+            new IndexController(req, res, next, configuration).index()
+        }
+        else {
+            res.status(404);
+        }
     })
 
     return router

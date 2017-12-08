@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {observer, propTypes as mProptypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 

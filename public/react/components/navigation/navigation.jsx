@@ -1,4 +1,5 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {Navbar} from 'react-bootstrap'
 
 import Avatar from '../avatar.jsx'
@@ -19,7 +20,7 @@ export default class Navigation extends Component {
                 <Navbar.Brand>
                     <div className="title-container">
                         <Avatar src={avatar || "http://avatars.mitosa.net/ring/sm070.jpg"}/>
-                        <div className="site-name">Mommy's Treasure</div>
+                        <div className="site-name">{'Mommy\'s Treasure'}</div>
                     </div>
                 </Navbar.Brand>
                 <Navbar.Toggle/>

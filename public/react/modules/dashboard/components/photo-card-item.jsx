@@ -1,4 +1,5 @@
-import React, {PropTypes, Component} from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {PropTypes as mPropTypes} from 'mobx-react'
 
 import {Col} from 'react-bootstrap'
@@ -8,6 +9,7 @@ import Card from '../../../components/react-mdl/picture-card/picture-card.jsx'
 export default class PhotoCardItem extends Component {
     static propTypes = {
         item: PropTypes.shape({
+            user: PropTypes.object,
             photo_604: PropTypes.string,
             text: PropTypes.string,
             href: PropTypes.string,

@@ -1,7 +1,6 @@
-import React, {Component, PropTypes} from 'react'
-import {observer} from 'mobx-react'
-
-import inject from '../../../utils/inject'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {observer, inject} from 'mobx-react'
 
 import {Col} from 'react-bootstrap'
 
@@ -45,9 +44,6 @@ export class LoginForm extends Component {
         this.props.login.validateAndLogin()
     }
 
-    static load() {
-    }
-
     render() {
         const {access_token, logging} = this.props.login
 
@@ -58,9 +54,9 @@ export class LoginForm extends Component {
                         <div className="card card-signup">
                             <form className="form" method="" action="">
                                 <div className="header header-primary text-center">
-                                    <h3>Mommy's Treasure</h3>
+                                    <h3>{'Mommy\'s Treasure'}</h3>
                                     <div className="social-line">
-                                        <a target="_blank" href="https://vk.com/maminsklad2015"
+                                        <a target="_blank" rel="noopener noreferrer" href="https://vk.com/maminsklad2015"
                                            className="btn btn-simple btn-just-icon">
                                             <i className="fa icon-vk"></i>
                                         </a>
@@ -93,7 +89,7 @@ export class LoginForm extends Component {
     }
 }
 
-export default inject(({loginForm}) => {
+export default inject(({store: {loginForm}}) => {
     return {
         login: loginForm
     }

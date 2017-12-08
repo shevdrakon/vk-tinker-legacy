@@ -1,14 +1,14 @@
-//import {extendObservable} from 'mobx'
-
 export default class SmartStore {
-    constructor(initialState = {}, {api, getStore, messageProvider, browserHistory, window, localStorage}) {
+    constructor(initialState = {}, {api, getStore, messageProvider, browserHistory, window}) {
         Object.defineProperties(this, {
             api: {
                 value: api,
                 enumerable: false
             },
             store: {
-                get() { return getStore() },
+                get() {
+                    return getStore()
+                },
                 enumerable: false
             },
             messageProvider: {
@@ -22,16 +22,9 @@ export default class SmartStore {
             window: {
                 value: window,
                 enumerable: false
-            },
-            localStorage: {
-                value: localStorage,
-                enumerable: false
             }
         })
 
         Object.assign(this, initialState)
-
-        // trick: make props observable as soon as object created (used in tests)
-       // extendObservable(this, {})
     }
 }
