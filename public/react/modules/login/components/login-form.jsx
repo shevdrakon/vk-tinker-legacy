@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {observer, inject} from 'mobx-react'
 
-import {Col} from 'react-bootstrap'
+import {Grid} from 'material-ui'
 
 import LinearProgress from '../../../components/react-mdl/linear-progress.jsx'
 import InputWithIcon from '../../../components/react-mdl/input-with-icon.jsx'
@@ -21,7 +21,6 @@ export class LoginForm extends Component {
             logging: PropTypes.bool,
             openVkPopup: PropTypes.func,
             onTokenChange: PropTypes.func,
-            onLogin: PropTypes.func,
             validateAndLogin: PropTypes.func
         })
     };
@@ -50,13 +49,14 @@ export class LoginForm extends Component {
         return <div className="header header-filter">
             <div className="container">
                 <div className="row">
-                    <Col md={4} mdOffset={4} sm={6} smOffset={3}>
-                        <div className="card card-signup">
-                            <form className="form" method="" action="">
+                    <Grid container justify="center">
+                        <Grid item xs={4}>
+                            <div className="card card-signup">
                                 <div className="header header-primary text-center">
                                     <h3>{'Mommy\'s Treasure'}</h3>
                                     <div className="social-line">
-                                        <a target="_blank" rel="noopener noreferrer" href="https://vk.com/maminsklad2015"
+                                        <a target="_blank" rel="noopener noreferrer"
+                                           href="https://vk.com/maminsklad2015"
                                            className="btn btn-simple btn-just-icon">
                                             <i className="fa icon-vk"></i>
                                         </a>
@@ -68,21 +68,23 @@ export class LoginForm extends Component {
                                     <AboutAccessTokenModal/>
                                 </p>
 
-                                <div className="content">
-                                    <InputWithIcon icon="lock_outline" label="access_token"
-                                                   placeholder="access_token"
-                                                   fullWidth
-                                                   value={access_token}
-                                                   onChange={this.handleTokenChange}/>
-                                </div>
-                                <div className="footer text-center">
-                                    <Button className="get-started-button" disabled={logging}
-                                            onClick={this.handleGetStartedClick}>Get Started</Button>
-                                    {logging && <LinearProgress/>}
-                                </div>
-                            </form>
-                        </div>
-                    </Col>
+                                <Grid container justify="center" spacing={0}>
+                                    <Grid item xs={10}>
+                                        <InputWithIcon icon="lock_outline" label="access_token"
+                                                       placeholder="access_token"
+                                                       fullWidth
+                                                       value={access_token}
+                                                       onChange={this.handleTokenChange}/>
+                                    </Grid>
+                                    <Grid item>
+                                        <Button className="get-started-button" disabled={logging}
+                                                onClick={this.handleGetStartedClick}>Get Started</Button>
+                                    </Grid>
+                                </Grid>
+                                {logging && <LinearProgress/>}
+                            </div>
+                        </Grid>
+                    </Grid>
                 </div>
             </div>
         </div>

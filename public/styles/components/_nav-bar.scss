@@ -1,0 +1,42 @@
+.navbar .navbar-nav > li {
+  cursor: pointer;
+
+  .nav-button {
+    display: flex;
+    align-items: center;
+
+    > i {
+      margin-right: 10px;
+    }
+  }
+
+  .nav-button,
+  .dropdown-toggle {
+    margin: 0 3px;
+    &.active, &:hover {
+      color: white;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    .mdl-badge {
+      margin-right: 0px;
+    }
+  }
+
+  &.nav-toggler {
+    > a {
+      color: #757575;
+      float: left;
+
+      > .checked {
+        color: white;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) {
+  [class*="navbar-"] .navbar-nav .dropdown > a:hover .caret {
+    border-bottom-color: #fff;
+    border-top-color: #fff;
+  }
+}

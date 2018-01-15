@@ -46,4 +46,3 @@ export default class List extends Component {
 
 List.Header = ListHeader
 List.Column = ListContentColumn
-// List.Footer = ListContentFooter

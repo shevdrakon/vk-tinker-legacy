@@ -1,4 +1,6 @@
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import cn from 'classnames'
 
 const BusyDots = ({className, ...rest}) => {
@@ -15,7 +17,7 @@ const BusyDots = ({className, ...rest}) => {
 }
 
 BusyDots.propTypes = {
-    className: React.PropTypes.string
+    className: PropTypes.string
 }
 
 export default BusyDots

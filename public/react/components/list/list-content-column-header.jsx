@@ -1,12 +1,14 @@
-import React from 'react'
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+
 import classnames from 'classnames'
 
-export default class ListColumnHeader extends React.Component {
+export default class ListColumnHeader extends Component {
     static propTypes = {
-        column: React.PropTypes.shape({
-            colSpan: React.PropTypes.string,
-            className: React.PropTypes.string,
-            name: React.PropTypes.node
+        column: PropTypes.shape({
+            colSpan: PropTypes.string,
+            className: PropTypes.string,
+            name: PropTypes.node
         })
     }
 

@@ -1,8 +1,9 @@
-import React from 'react'
+import {Component} from 'react'
+import PropTypes from 'prop-types'
 
-export default class ListColumn extends React.Component {
+export default class ListColumn extends Component {
     static propTypes = {
-        name: React.PropTypes.string,
-        width: React.PropTypes.string
+        name: PropTypes.string,
+        width: PropTypes.string
     };
 }

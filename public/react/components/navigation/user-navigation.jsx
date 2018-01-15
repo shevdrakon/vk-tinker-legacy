@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {observer} from 'mobx-react'
-import inject from '../../utils/inject'
+
+import {inject, observer} from 'mobx-react'
 
 import Navigation from './navigation.jsx'
 
@@ -23,7 +23,7 @@ UserNavigation.propTypes = {
     requests:PropTypes.object
 }
 
-export default inject(({application}) => {
+export default inject(({store: {application}}) => {
     return {
         user: application.user,
         status: application.status

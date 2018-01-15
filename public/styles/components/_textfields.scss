@@ -1,4 +1,10 @@
-.input-with-icon {
-  display: flex;
-  flex-direction: row;
+.input-with-adornment {
+  .icon {
+    position: relative;
+    top: 4px;
+  }
+}
+
+input[type="text"] {
+  font-size: 14px;
 }

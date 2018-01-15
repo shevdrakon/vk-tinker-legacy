@@ -1,9 +1,13 @@
-@import 'material-dashboard';
+//@import 'material-dashboard';
+@import 'material-dashboard/variables';
+@import 'material-dashboard/shadows';
 @import './components/ajax-in-progress';
 @import './components/pagination';
 @import './components/textfields';
 @import './components/modal';
 @import './components/icons';
+@import './components/nav-bar';
+@import './components/app-bar';
 
 .page-container {
   height: 100%;
@@ -63,6 +67,9 @@
 }
 
 /*bootstrap navigation*/
+.nav-header {
+  margin-top: 100px;
+}
 .nav-header.navbar.navbar-default.navbar-inverse {
   background-color: #9c27b0;
 }
@@ -77,49 +84,15 @@
   float: right;
   display: inline;
   font-size: 16px;
-  color: #FFFFFF;
+  color: white;
   line-height: 18px;
-  margin-top: 7px;
   width: 70px;
-  height: 40px;
   text-align: left;
 }
 
 .title-container.navbar-brand {
   padding: 0;
   cursor: default;
-}
-
-.navbar .navbar-nav > li {
-  cursor: pointer;
-
-  .nav-button, .dropdown-toggle {
-    margin: 0 3px;
-    &.active, &:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    .mdl-badge {
-      margin-right: 0px;
-    }
-  }
-
-  &.nav-toggler {
-    > a {
-      color: #757575;
-      float: left;
-
-      > .checked {
-        color: white;
-      }
-    }
-  }
-}
-
-@media (max-width: 767px) {
-  [class*="navbar-"] .navbar-nav .dropdown > a:hover .caret {
-    border-bottom-color: #fff;
-    border-top-color: #fff;
-  }
 }
 
 /*picture-card*/
@@ -451,7 +424,7 @@
     position: absolute;
   }
 
-  .list-busy{
+  .list-busy {
     opacity: 0.5;
   }
 }

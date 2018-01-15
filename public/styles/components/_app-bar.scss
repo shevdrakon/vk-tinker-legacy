@@ -1,0 +1,8 @@
+.app-bar-toolbar {
+  justify-content: space-between;
+
+  &__left, &__right {
+    display: flex;
+    align-items: center;
+  }
+}

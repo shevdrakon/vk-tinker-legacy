@@ -4,12 +4,19 @@ import PropTypes from 'prop-types'
 import {MuiThemeProvider, createMuiTheme} from 'material-ui/styles'
 
 import indigo from 'material-ui/colors/indigo'
-import deepPurple from 'material-ui/colors/deepPurple'
+import purple from 'material-ui/colors/purple'
 
 const theme = createMuiTheme({
     palette: {
         primary: indigo,
-        accent: deepPurple
+        secondary: Object.assign(purple, {
+            A200: '#9C27B0'
+        }),
+    },
+    typography: {
+        button: {
+            fontSize: '12px',
+        },
     },
     overrides: {
         MuiBadge: {

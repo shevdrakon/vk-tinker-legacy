@@ -36,26 +36,18 @@ export default class LoginFormStore extends SmartStore {
     }
 
     @action tryToLogin() {
-        const service = this.api.loginForm
+        const service = this.api.login
 
         this.logging = true
 
         return service.tryToLogin({access_token: this.access_token})
             .then(action(() => {
                 this.logging = false
-
-                // this.mainStore.updateHub({
-                //     ...this.hub
-                // })
             }), action(error => {
                 this.logging = false
 
                 this.messageProvider.error(`Could not retrieve account info. Is access_token valid? (status code: ${error.status})`)
                 throw error
             }))
-    }
-
-    @action onLogin() {
-
     }
 }

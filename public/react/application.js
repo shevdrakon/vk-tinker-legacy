@@ -1,7 +1,7 @@
 import fetch from 'isomorphic-fetch'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Mobx from 'mobx'
+import {useStrict} from 'mobx'
 import {Provider} from 'mobx-react'
 import {BrowserRouter as Router} from 'react-router-dom'
 
@@ -29,7 +29,7 @@ let routerKey = 0
 
 const mount = (app) => {
     const Layout = require('./layout/layout').default
-    const Routes = require('./routes-new').default
+    const Routes = require('./routes').default
 
     const provider = <Provider store={app.store} app={app}>
         <Layout>
@@ -51,7 +51,7 @@ export default {
             application: ApplicationService
         }, {ajax: this.ajax, apiUrl: this.apiUrl})
 
-        Mobx.useStrict(true)
+        useStrict(true)
 
         const getStore = () => {
             return this.store
@@ -82,7 +82,7 @@ export default {
             if (module.hot) {
                 module.hot.accept([
                     './layout/layout',
-                    './routes-new'
+                    './routes'
                 ], () => {
                     routerKey++
                     mount(this)

@@ -1,11 +1,9 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-import {observer} from 'mobx-react'
-import inject from '../../../utils/inject'
+import {inject, observer} from 'mobx-react'
 
-import {Col} from 'react-bootstrap'
-
+import AppBar from '../../../components/app-bar/app-bar.jsx'
 import UserNavigation from '../../../components/navigation/user-navigation.jsx'
 import PageContainer from '../../../components/page-container.jsx'
 import List from './blacklist-list.jsx'
@@ -25,38 +23,41 @@ class Blacklist extends Component {
         })
     }
 
-    /* eslint-disable no-empty-pattern */
-    static load({}, {blacklist}) {
-        return blacklist.load()
-    }
-
-    /* eslint-enable no-empty-pattern */
+    // /* eslint-disable no-empty-pattern */
+    // static load({}, {blacklist}) {
+    //     return blacklist.load()
+    // }
+    //
+    // /* eslint-enable no-empty-pattern */
 
     handlePaginationSelect = ({value}) => {
         this.props.list.selectPage({value})
     }
 
     render() {
-        const {pagesCount, activePage} = this.props.list
+        //const {pagesCount, activePage} = this.props.list
 
         return <div className="page-container">
+            <AppBar/>
             <UserNavigation/>
-            <PageContainer>
-                <Col md={10} mdOffset={1}>
-                    <List />
-                    <Pagination prev next
-                                items={pagesCount}
-                                maxButtons={3}
-                                activePage={activePage}
-                                onSelect={this.handlePaginationSelect}/>
-                </Col>
-            </PageContainer>
+            {/*<PageContainer>*/}
+            {/*<Col md={10} mdOffset={1}>*/}
+            {/*<List />*/}
+            {/*<Pagination prev next*/}
+            {/*items={pagesCount}*/}
+            {/*maxButtons={3}*/}
+            {/*activePage={activePage}*/}
+            {/*onSelect={this.handlePaginationSelect}/>*/}
+            {/*</Col>*/}
+            {/*</PageContainer>*/}
         </div>
     }
 }
 
 export default inject(({blacklist}) => {
-    return {
-        list: blacklist
-    }
+    return {}
+
+    // return {
+    //     list: blacklist
+    // }
 })(observer(Blacklist))
