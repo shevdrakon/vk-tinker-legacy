@@ -1,19 +1,19 @@
-require('babel-polyfill')
+import 'babel-polyfill'
+import minimist from 'minimist'
 
-const minimist = require('minimist')
-const Logger = require('./utils/logger')
-const Application = require('./application/app.js')
+import Logger from './utils/logger'
+import Application from './application/app'
 
 process.on('uncaughtException', (err) => {
-    let request, error;
-
-    if (err instanceof Error) {
-        error = err
-        request = {}
-    } else if (err.headers) {
-        error = {}
-        request = err
-    }
+    // let request, error;
+    //
+    // if (err instanceof Error) {
+    //     error = err
+    //     request = {}
+    // } else if (err.headers) {
+    //     error = {}
+    //     request = err
+    // }
 
     Logger.error(err.message)
     Logger.error(err.stack)

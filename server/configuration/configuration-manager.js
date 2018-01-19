@@ -1,9 +1,7 @@
-'use strict';
+import fs from 'fs'
+import path from 'path'
 
-const fs = require('fs')
-const path = require('path')
-
-module.exports = class ConfigurationManager {
+export default class ConfigurationManager {
     static get defaults() {
         return {
             // app_id: 5653171, // vk application Id
@@ -23,10 +21,10 @@ module.exports = class ConfigurationManager {
 
     load() {
         const configurationFilePath = this.getConfigurationFilePath()
-        if (fs.existsSync(configurationFilePath))
-            return this.loadDefaults(require(configurationFilePath))
+        if (!fs.existsSync(configurationFilePath))
+            throw new Error('Could not find the configuration file.')
 
-        throw new Error('Could not find the configuration file.')
+        return this.loadDefaults(require(configurationFilePath))
     }
 
     loadDefaults(config) {
@@ -45,4 +43,4 @@ module.exports = class ConfigurationManager {
 
         return path.join(__dirname, fileName)
     }
-};
+}
