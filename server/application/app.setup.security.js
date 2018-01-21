@@ -1,10 +1,8 @@
-'use strict';
+import cookieParser from 'cookie-parser'
+import Logger from 'morgan'
 
-const cookieParser = require('cookie-parser')
-const logger = require('morgan');
-
-module.exports = function (app, configuration) {
-    app.use(logger('dev'))
+export default (app, configuration) => {
+    app.use(Logger('dev'))
     app.use(cookieParser())
 
     // Disable reporting of framework information

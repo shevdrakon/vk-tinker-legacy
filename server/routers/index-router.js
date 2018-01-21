@@ -1,7 +1,7 @@
-const express = require('express')
-const {matchPath} = require('react-router')
+import express from 'express'
+import {matchPath} from 'react-router'
 
-const IndexController = require('../controllers/index/index-controller')
+import IndexController from '../controllers/index/index-controller'
 
 const routes = [
     '/',
@@ -12,7 +12,7 @@ const routes = [
     '/sample'
 ];
 
-module.exports = function (configuration) {
+export default (configuration) => {
     const router = express.Router()
 
     router.get('*', (req, res, next) => {

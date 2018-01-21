@@ -1,15 +1,15 @@
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import {NavLink} from 'react-router-dom'
 
-import Icon from '../react-mdl/icon'
+import Icon from '../react-mdl/icon.jsx'
 import PositiveBadge from '../react-mdl/positive-badge.jsx'
 
 const AppBarMenu = (props) => {
     const {requestsCount} = props
 
-    return <ul className="nav navbar-nav">
+    return <ul className="app-bar-menu">
         <li>
             <NavLink to="/dashboard" className="nav-button">
                 <Icon>dashboard</Icon>
@@ -31,6 +31,8 @@ const AppBarMenu = (props) => {
     </ul>
 }
 
-AppBarMenu.propTypes = {}
+AppBarMenu.propTypes = {
+    requestsCount: PropTypes.number
+}
 
 export default AppBarMenu

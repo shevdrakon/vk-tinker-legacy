@@ -3,7 +3,5 @@
 
   "assetsRoot": "/assets",
   "siteRoot" : "/",
-  "apiUrl": "/api",
-
-  "logDirPath": "./logs"
+  "apiUrl": "/api"
 }

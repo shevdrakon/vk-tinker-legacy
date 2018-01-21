@@ -4,6 +4,5 @@
   "assetsRoot": "/assets",
   "siteRoot": "/",
   "siteFullUrl": "http://localhost:1338",
-  "apiUrl": "/api",
-  "logDirPath": "./logs"
+  "apiUrl": "/api"
 }

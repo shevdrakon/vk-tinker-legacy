@@ -1,7 +1,7 @@
-const path = require('path')
-const glob = require('glob')
+import path from 'path'
+import glob from 'glob'
 
-module.exports = (app, configuration) => {
+export default (app, configuration) => {
 
     const options = {
         cwd: path.join(__dirname, '../api'),

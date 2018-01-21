@@ -6,11 +6,9 @@ import {inject, observer} from 'mobx-react'
 import Navigation from './navigation.jsx'
 
 const UserNavigation = (props) => {
-    const {user, status, ...otherProps} = props
-    const {photo_50} = user
-    const {requestsCount} = status
+    const {user: {photo_50}, status: {requestsCount}, ...rest} = props
 
-    return <Navigation avatar={photo_50} requestsCount = {requestsCount} {...otherProps}/>
+    return <Navigation avatar={photo_50} requestsCount={requestsCount} {...rest}/>
 }
 
 UserNavigation.propTypes = {
@@ -20,7 +18,7 @@ UserNavigation.propTypes = {
     status: PropTypes.shape({
         requestsCount: PropTypes.number
     }),
-    requests:PropTypes.object
+    requests: PropTypes.object
 }
 
 export default inject(({store: {application}}) => {

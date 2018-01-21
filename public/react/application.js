@@ -45,7 +45,7 @@ const mount = (app) => {
 export default {
     initialize(config) {
         this.apiUrl = config.apiUrl
-        this.ajax = new Ajax({fetch})
+        this.ajax = Ajax({fetch})
 
         const api = this.api = curryServices({
             application: ApplicationService

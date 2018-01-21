@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 
-import {observer, propTypes as mPropTypes} from 'mobx-react'
+import {observer, PropTypes as mPropTypes} from 'mobx-react'
 import inject from '../../../utils/inject'
 
 import IconButton from '../../../components/react-mdl/icon-button.jsx'

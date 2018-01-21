@@ -1,22 +1,21 @@
-'use strict'
+import Session from 'express-session'
+import Passport from 'passport'
 
-const session = require('express-session')
-const passport = require('passport')
-const CustomStrategy = require('passport-custom').Strategy
+import {Strategy as CustomStrategy} from 'passport-custom'
 
 const LoginController = require('../api/login/login-controller')
 
 const configureStrategy = () => {
 
-    passport.serializeUser(function (user, done) {
+    Passport.serializeUser(function (user, done) {
         done(null, user)
     })
 
-    passport.deserializeUser(function (obj, done) {
+    Passport.deserializeUser(function (obj, done) {
         done(null, obj)
     })
 
-    passport.use('custom', new CustomStrategy(
+    Passport.use('custom', new CustomStrategy(
         function (req, callback) {
             const controller = new LoginController(req)
 
@@ -33,10 +32,10 @@ const configureStrategy = () => {
     ))
 }
 
-module.exports = function (app, configuration) {
+export default (app, configuration) => {
     configureStrategy(configuration)
 
-    app.use(session({
+    app.use(Session({
         resave: false,
         saveUninitialized: false,
         secret: 'keyboard cat'
@@ -44,14 +43,14 @@ module.exports = function (app, configuration) {
 
 // Initialize Passport!  Also use passport.session() middleware, to support
 // persistent login sessions (recommended).
-    app.use(passport.initialize())
-    app.use(passport.session())
+    app.use(Passport.initialize())
+    app.use(Passport.session())
 
     app.use(function (req, res, next) {
         if (!req.user) {
             req.user = {
                 photo_50: 'https://pp.userapi.com/c627916/v627916081/3b77a/W9MizWYPYMg.jpg',
-                access_token: '68f5679b107dacf348d9bdb5e4861077aa36b5c82f31cd3b2f70d44dcc88a7c7236e06c45a695ae209717'
+                access_token: ''
             }
         }
 

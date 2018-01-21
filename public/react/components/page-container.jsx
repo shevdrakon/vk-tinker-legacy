@@ -5,9 +5,7 @@ const PageContainer = (props) => {
     const {children} = props
 
     return <div className="under-navigation">
-        <div className="container">
-            {children}
-        </div>
+        {children}
     </div>
 }
 

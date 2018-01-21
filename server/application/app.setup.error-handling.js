@@ -1,8 +1,6 @@
-'use strict';
-
 const Logger = require('../utils/logger')
 
-module.exports = function (app, configuration) {
+export default (app, configuration) => {
 // Error handlers
 
 // Since this is the last non-error-handling

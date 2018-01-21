@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import {NavLink} from 'react-router-dom'
 
-import Icon from '../react-mdl/icon'
+import Icon from '../react-mdl/icon.jsx'
 import PositiveBadge from '../react-mdl/positive-badge.jsx'
 
 export default class NavigationMenu extends Component {

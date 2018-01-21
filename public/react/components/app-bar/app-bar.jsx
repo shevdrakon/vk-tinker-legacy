@@ -1,33 +1,45 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import {inject, observer} from 'mobx-react'
 
-import {AppBar as MuiAppBar, Toolbar} from 'material-ui'
+import {AppBar as MuiAppBar, Toolbar as MuiToolbar} from 'material-ui'
 
 import IconButton from '../react-mdl/icon-button.jsx'
 import Icon from '../react-mdl/icon.jsx'
 import Avatar from '../avatar.jsx'
 import Menu from './app-bar-menu.jsx'
 
-export default class AppBar extends Component {
-    static propTypes = {}
+class AppBar extends Component {
+    static propTypes = {
+        user: PropTypes.shape({
+            photo_50: PropTypes.string
+        }),
+        status: PropTypes.shape({
+            requestsCount: PropTypes.number
+        })
+    }
 
     render() {
-        const avatar = undefined
+        const {user: {photo_50}, status: {requestsCount}} = this.props
 
         return <MuiAppBar position="fixed" color="accent">
-            <Toolbar className="app-bar-toolbar">
+            <MuiToolbar className="app-bar-toolbar">
                 <div className="app-bar-toolbar__left">
-                    <Avatar src={avatar || "http://avatars.mitosa.net/ring/sm070.jpg"}/>
+                    <Avatar src={photo_50}/>
                     <div className="site-name">{'Mommy\'s Treasure'}</div>
                 </div>
 
                 <div className="app-bar-toolbar__right">
-                    <Menu/>
+                    <Menu requestsCount={requestsCount}/>
                     <IconButton color="contrast" aria-label="Menu">
                         <Icon>menu</Icon>
                     </IconButton>
                 </div>
-            </Toolbar>
+            </MuiToolbar>
         </MuiAppBar>
     }
 }
+
+export default inject(({store: {application: {user, status}}}) => {
+    return {user, status}
+})(observer(AppBar))

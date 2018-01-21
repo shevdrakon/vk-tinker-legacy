@@ -1,10 +1,8 @@
-'use strict'
-
-const path = require('path');
+import path from 'path'
 // const React = require('react')
 // const ReactDOMServer = require('react-dom/server')
 
-module.exports = app => {
+export default (app) => {
     app.set('views', path.resolve(__dirname, '../views'))
     app.engine('jsx', require('express-react-views').createEngine());
 

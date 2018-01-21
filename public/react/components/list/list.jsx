@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import classnames from 'classnames'
+import cn from 'classnames'
 
 import ListHeader from './list-header.jsx'
 import ListContent from './list-content.jsx'
@@ -31,9 +31,7 @@ export default class List extends Component {
         const header = parseHeader(children)
         const restChildren = clones.length > 0 && clones.filter(x => x.type !== ListHeader)
 
-        const classes = classnames({
-            'card-plain': plain
-        }, 'card')
+        const classes = cn({'card-plain': plain}, 'card')
 
         return <div className={classes}>
             {header}

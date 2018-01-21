@@ -12,11 +12,11 @@ export default class ConfigurationManager {
         }
     }
 
-    constructor(args) {
+    constructor(args, port) {
         this.env = args.env
         this.assetsRoot = args.assetsRoot
         //this.statsPath = args.statsPath
-        this.configuration = this.load()
+        this.configuration = this.load(port)
     }
 
     load() {
