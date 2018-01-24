@@ -1,13 +1,12 @@
-const BaseController = require('../../lib/base-controller')
+import BaseController from '../../lib/base-controller'
+import Logger from '../../utils/logger'
 
-const Logger = require('../../utils/logger')
+import PhotosService from '../vk-api/photos-service'
+// const UserService = require('../vk-api/user-service')
 
-const PhotosService = require('../vk-api/photos-service')
-const UserService = require('../vk-api/user-service')
+import {hasSoldOutText} from './utils'
 
-const {hasSoldOutText} = require('./utils')
-
-class PhotosController extends BaseController {
+export default class PhotosController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
 
@@ -142,5 +141,3 @@ class PhotosController extends BaseController {
             .getAlbums(payload)
     }
 }
-
-module.exports = PhotosController

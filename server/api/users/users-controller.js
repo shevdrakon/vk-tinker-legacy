@@ -1,8 +1,7 @@
-const BaseController = require('../../lib/base-controller')
+import BaseController from '../../lib/base-controller'
+import UserService from '../vk-api/user-service'
 
-const UserService = require('../vk-api/user-service')
-
-class PhotosController extends BaseController {
+export default class PhotosController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
 
@@ -13,5 +12,3 @@ class PhotosController extends BaseController {
         return new UserService().getUsersGroups(payload)
     }
 }
-
-module.exports = PhotosController

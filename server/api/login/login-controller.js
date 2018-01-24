@@ -1,7 +1,7 @@
-const BaseController = require('../../lib/base-controller')
-const UserService = require('../vk-api/user-service')
+import BaseController from '../../lib/base-controller'
+import UserService from '../vk-api/user-service'
 
-class LoginController extends BaseController {
+export default class LoginController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
 
@@ -15,5 +15,3 @@ class LoginController extends BaseController {
             .getCurrentUserInfo({access_token})
     }
 }
-
-module.exports = LoginController

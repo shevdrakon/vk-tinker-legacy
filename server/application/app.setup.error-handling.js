@@ -1,5 +1,3 @@
-const Logger = require('../utils/logger')
-
 export default (app, configuration) => {
 // Error handlers
 

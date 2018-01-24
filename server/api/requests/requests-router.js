@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
 //const passport = require('passport')
-const RequestsController = require('./requests-controller')
+import RequestsController from './requests-controller'
 
 module.exports = (configuration) => {
     const router = express.Router()

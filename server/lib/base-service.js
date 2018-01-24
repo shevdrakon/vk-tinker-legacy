@@ -1,7 +1,5 @@
-'use strict';
-
-const fetch = require('isomorphic-fetch')
-const Logger = require('../utils/logger')
+import fetch from 'isomorphic-fetch'
+import Logger from '../utils/logger'
 
 const handleStatus = (response) => {
     if (response.status >= 200 && response.status < 300)
@@ -20,8 +18,8 @@ const parseJSON = (response) => {
     return response.json()
 }
 
-class BaseService {
-    constructor(options) {
+export default class BaseService {
+    constructor(options = {}) {
         this.options = options
         // this.apis = apis
     }
@@ -69,5 +67,3 @@ class BaseService {
         return this.json(url, 'GET')
     }
 }
-
-module.exports = BaseService

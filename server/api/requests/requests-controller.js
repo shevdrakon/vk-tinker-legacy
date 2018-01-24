@@ -1,7 +1,7 @@
-const BaseController = require('../../lib/base-controller')
-const GroupService = require('../vk-api/group-service')
+import BaseController from '../../lib/base-controller'
+import GroupService from '../vk-api/group-service'
 
-class RequestsController extends BaseController {
+export default class RequestsController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
 
@@ -47,5 +47,3 @@ class RequestsController extends BaseController {
             })
     }
 }
-
-module.exports = RequestsController

@@ -1,13 +1,9 @@
-const qs = require('qs')
+import qs from 'qs'
 
-const Logger = require('../../utils/logger')
-const BaseService = require('../../lib/base-service')
+import Logger from '../../utils/logger'
+import BaseService from '../../lib/base-service'
 
-class VkApiServiceBase extends BaseService {
-    constructor() {
-        super({})
-    }
-
+export default class VkApiServiceBase extends BaseService {
     get vkApiBaseUrl() {
         return 'https://api.vk.com/method'
     }
@@ -36,5 +32,3 @@ class VkApiServiceBase extends BaseService {
         return `${this.vkApiBaseUrl}/${method}?${query}`
     }
 }
-
-module.exports = VkApiServiceBase

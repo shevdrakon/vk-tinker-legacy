@@ -1,10 +1,6 @@
-const VkApiServiceBase = require('./vk-api-service-base')
+import VkApiServiceBase from './vk-api-service-base'
 
-class GroupService extends VkApiServiceBase {
-    constructor() {
-        super({})
-    }
-
+export default class GroupService extends VkApiServiceBase {
     getBanned({top, skip, groupId, access_token}) {
         const url = this.getUrl('groups.getBanned', {
             group_id: groupId,
@@ -101,5 +97,3 @@ class GroupService extends VkApiServiceBase {
             .then( () => Promise.resolve({approved, rejected}))
     }
 }
-
-module.exports = GroupService

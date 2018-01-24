@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
 //const passport = require('passport')
-const PhotosController = require('./photos-controller')
+import PhotosController from './photos-controller'
 
 module.exports = (configuration) => {
     const router = express.Router()

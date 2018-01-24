@@ -1,11 +1,7 @@
-const VkApiServiceBase = require('./vk-api-service-base')
-const Logger = require('../../utils/logger')
+import VkApiServiceBase from './vk-api-service-base'
+import Logger from '../../utils/logger'
 
-class PhotosService extends VkApiServiceBase {
-    constructor() {
-        super({})
-    }
-
+export default class PhotosService extends VkApiServiceBase {
     getByAlbum({top, skip, groupId, albumId, access_token}) {
         const url = this.getUrl('photos.get', {
             owner_id: '-' + groupId,
@@ -109,5 +105,3 @@ class PhotosService extends VkApiServiceBase {
             })
     }
 }
-
-module.exports = PhotosService

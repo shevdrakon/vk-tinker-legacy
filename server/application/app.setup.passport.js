@@ -1,7 +1,7 @@
 'use strict'
 
-const session = require('express-session')
-const passport = require('passport')
+import session from 'express-session'
+import passport from 'passport'
 const VkStrategy = require('passport-vkontakte').Strategy
 
 const configureStrategy = (configuration) => {

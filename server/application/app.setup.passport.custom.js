@@ -3,7 +3,7 @@ import Passport from 'passport'
 
 import {Strategy as CustomStrategy} from 'passport-custom'
 
-const LoginController = require('../api/login/login-controller')
+import LoginController from '../api/login/login-controller'
 
 const configureStrategy = () => {
 

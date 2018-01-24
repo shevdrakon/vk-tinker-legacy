@@ -1,13 +1,9 @@
-'use strict';
+import BaseController from '../../lib/base-controller'
+import GroupService from '../../api/vk-api/group-service'
 
-const BaseController = require('../../lib/base-controller')
-const GroupService = require('../../api/vk-api/group-service')
-
-class Controller extends BaseController {
+export default class IndexController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
-
-        this.configuration = configuration
     }
 
     index() {
@@ -39,5 +35,3 @@ class Controller extends BaseController {
             })
     }
 }
-
-module.exports = Controller

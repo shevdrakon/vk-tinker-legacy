@@ -1,12 +1,11 @@
-const BaseController = require('../../lib/base-controller')
-const GroupService = require('../vk-api/group-service')
-const UserService = require('../vk-api/user-service')
+import BaseController from '../../lib/base-controller'
 
-class BlacklistController extends BaseController {
+import GroupService from '../vk-api/group-service'
+import UserService from '../vk-api/user-service'
+
+export default class BlacklistController extends BaseController {
     constructor(request, response, next, configuration) {
         super(request, response, next, configuration)
-
-        this.configuration = configuration
     }
 
     getBanned(payload) {
@@ -53,5 +52,3 @@ class BlacklistController extends BaseController {
             })
     }
 }
-
-module.exports = BlacklistController

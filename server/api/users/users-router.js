@@ -1,6 +1,6 @@
-const express = require('express')
+import express from 'express'
 //const passport = require('passport')
-const UsersController = require('./users-controller')
+import UsersController from './users-controller'
 
 module.exports = (configuration) => {
     const router = express.Router()

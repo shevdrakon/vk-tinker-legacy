@@ -1,10 +1,6 @@
-const VkApiServiceBase = require('./vk-api-service-base')
+import VkApiServiceBase from './vk-api-service-base'
 
-class UserSevice extends VkApiServiceBase {
-    constructor() {
-        super({})
-    }
-
+export default class UserService extends VkApiServiceBase {
     getCurrentUserInfo({access_token}) {
         const url = this.getUrl('users.get', {
             fields: 'photo_50',
@@ -45,5 +41,3 @@ class UserSevice extends VkApiServiceBase {
             })
     }
 }
-
-module.exports = UserSevice
